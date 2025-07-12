@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colors */
+  --color-navy-900: #172554;
+  --color-navy-800: #1e3a8a;
+  --color-navy-700: #1d4ed8;
+  --color-navy-600: #2563eb;
+  --color-navy-500: #3b82f6;
+  
+  --color-aqua-900: #0e7490;
+  --color-aqua-800: #0891b2;
+  --color-aqua-700: #06b6d4;
+  --color-aqua-600: #0dcaf0;
+  --color-aqua-500: #22d3ee;
+  
+  /* Typography */
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* Borders */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Animation */
+  --transition-fast: 150ms;
+  --transition-medium: 300ms;
+  --transition-slow: 500ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: #121212;
+  --color-foreground: #ffffff;
+  --color-muted: rgba(255, 255, 255, 0.8);
+}
+
+/* Base styles */
+@layer base {
+  body {
+    @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+
+  p {
+    @apply text-slate-700 dark:text-slate-300;
+  }
+
+  a {
+    @apply text-navy-600 dark:text-aqua-500 hover:underline;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply bg-white dark:bg-slate-800 rounded-lg shadow-card hover:shadow-elevated transition-shadow duration-300;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-navy-800 text-white hover:bg-navy-700;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-navy-800 border border-navy-800 hover:bg-navy-50;
+  }
+
+  .btn-outline {
+    @apply btn bg-transparent border border-slate-300 hover:bg-slate-50 dark:text-white dark:border-slate-600 dark:hover:bg-slate-800;
+  }
+
+  .btn-sm {
+    @apply h-9 px-3 text-sm;
+  }
+
+  .btn-md {
+    @apply h-10 px-4 text-sm;
+  }
+
+  .btn-lg {
+    @apply h-12 px-6 text-base;
+  }
+}
