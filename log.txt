@@ -1,0 +1,541 @@
+
+> containercode-advisory@0.1.0 build:cloudflare
+> next build && npx @cloudflare/next-on-pages
+
+  ▲ Next.js 14.2.30
+  - Environments: .env.local, .env
+  - Experiments (use with caution):
+    · turbo
+    · optimizeCss
+    · typedRoutes
+
+   Creating an optimized production build ...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Auto register service worker with: /Users/ayodeleajayi/Workspace/containercode/containercode-app/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/ayodeleajayi/Workspace/containercode/containercode-app/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+   Linting and checking validity of types ...
+
+./src/app/about/page.tsx
+377:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/contact/modern-contact.tsx
+200:20  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+445:76  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/providers/performance-provider.tsx
+92:50  Warning: The ref value 'startTime.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'startTime.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+
+./src/app/resources/newsletter-signup.tsx
+79:63  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/services/[slug]/page.tsx
+312:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+467:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/terms/page.tsx
+26:41  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/examples/image-mapping-demo.tsx
+22:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+26:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/forms/contact-form.tsx
+103:41  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/forms/newsletter-form.tsx
+102:16  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/forms/newsletter-subscription.tsx
+128:43  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/layout/footer.tsx
+70:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/layout/header.tsx
+79:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+88:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/sections/feature-section.tsx
+88:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/sections/modern-services-overview.tsx
+236:16  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+236:40  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/sections/professional-services-overview.tsx
+207:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/sections/testimonial-section.tsx
+39:16  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+39:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+59:19  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+59:39  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/components/ui/design-system.tsx
+471:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/38) ...
+   Generating static pages (9/38) 
+   Generating static pages (18/38) 
+Time 3.074291
+Time 5.162167
+   Generating static pages (28/38) 
+ ✓ Generating static pages (38/38)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                                  Size     First Load JS
+┌ ○ /                                                                        5.41 kB         206 kB
+├ ○ /_not-found                                                              184 B           140 kB
+├ ○ /about                                                                   171 B           140 kB
+├ ƒ /api/analytics/performance                                               0 B                0 B
+├ ƒ /api/contact                                                             0 B                0 B
+├ ƒ /api/deepseek                                                            0 B                0 B
+├ ƒ /api/generate-newsletter                                                 0 B                0 B
+├ ○ /api/health                                                              0 B                0 B
+├ ƒ /api/newsletter                                                          0 B                0 B
+├ ƒ /api/newsletter-subscribe                                                0 B                0 B
+├ ƒ /api/revalidate                                                          0 B                0 B
+├ ○ /api/robots                                                              0 B                0 B
+├ ƒ /api/security/csp-report                                                 0 B                0 B
+├ ƒ /api/security/events                                                     0 B                0 B
+├ ƒ /api/send-newsletter                                                     0 B                0 B
+├ ƒ /api/sitemap                                                             0 B                0 B
+├ ○ /blog                                                                    186 B           157 kB
+├ ● /blog/[slug]                                                             860 B           141 kB
+├   ├ /blog/cloud-cost-optimisation-advanced-strategies-multi-cloud
+├   ├ /blog/devsecops-excellence-integrating-security-development-lifecycle
+├   ├ /blog/zero-trust-security-cloud-protection-modern-enterprises
+├   └ [+4 more paths]
+├ ○ /contact                                                                 8.41 kB         203 kB
+├ ○ /contact/thank-you                                                       145 B           201 kB
+├ ○ /faq                                                                     3.89 kB         205 kB
+├ ○ /privacy                                                                 144 B           201 kB
+├ ○ /resources                                                               14.4 kB         215 kB
+├ ○ /services                                                                186 B           157 kB
+├ ● /services/[slug]                                                         145 B           201 kB
+├   ├ /services/cloud-technologies
+├   ├ /services/cybersecurity
+├   ├ /services/devops
+├   └ [+3 more paths]
+├ ○ /team                                                                    223 B           201 kB
+└ ○ /terms                                                                   145 B           201 kB
++ First Load JS shared by all                                                140 kB
+  └ chunks/npm.next-2259e31764ca5578.js                                      138 kB
+  └ other shared chunks (total)                                              2.43 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+
+⚡️ @cloudflare/next-on-pages CLI v.1.13.12
+⚡️ Detected Package Manager: npm (10.9.0)
+⚡️ Preparing project...
+⚡️ Project is ready
+⚡️ Building project...
+▲  Vercel CLI 44.4.1
+▲  WARN! Build not running on Vercel. System environment variables will not be available.
+▲  WARNING: You should not upload the `.next` directory.
+▲  Installing dependencies...
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: its-fine@2.0.0
+▲  npm warn Found: react@18.3.1
+▲  npm warn node_modules/react
+▲  npm warn   react@"^18.2.0" from the root project
+▲  npm warn   278 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peer react@"^19.0.0" from its-fine@2.0.0
+▲  npm warn node_modules/react-konva/node_modules/its-fine
+▲  npm warn   its-fine@"^2.0.0" from react-konva@19.0.7
+▲  npm warn   node_modules/react-konva
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react@19.1.0
+▲  npm warn node_modules/react
+▲  npm warn   peer react@"^19.0.0" from its-fine@2.0.0
+▲  npm warn   node_modules/react-konva/node_modules/its-fine
+▲  npm warn     its-fine@"^2.0.0" from react-konva@19.0.7
+▲  npm warn     node_modules/react-konva
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: react-reconciler@0.32.0
+▲  npm warn Found: react@18.3.1
+▲  npm warn node_modules/react
+▲  npm warn   react@"^18.2.0" from the root project
+▲  npm warn   278 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peer react@"^19.1.0" from react-reconciler@0.32.0
+▲  npm warn node_modules/react-konva/node_modules/react-reconciler
+▲  npm warn   react-reconciler@"0.32.0" from react-konva@19.0.7
+▲  npm warn   node_modules/react-konva
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react@19.1.0
+▲  npm warn node_modules/react
+▲  npm warn   peer react@"^19.1.0" from react-reconciler@0.32.0
+▲  npm warn   node_modules/react-konva/node_modules/react-reconciler
+▲  npm warn     react-reconciler@"0.32.0" from react-konva@19.0.7
+▲  npm warn     node_modules/react-konva
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: @react-three/fiber@9.2.0
+▲  npm warn Found: react@18.3.1
+▲  npm warn node_modules/react
+▲  npm warn   react@"^18.2.0" from the root project
+▲  npm warn   278 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peer react@"^19.0.0" from @react-three/fiber@9.2.0
+▲  npm warn node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn   peer @react-three/fiber@">=6.0" from @react-spring/three@10.0.1
+▲  npm warn   node_modules/react-spring/node_modules/@react-spring/three
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react@19.1.0
+▲  npm warn node_modules/react
+▲  npm warn   peer react@"^19.0.0" from @react-three/fiber@9.2.0
+▲  npm warn   node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn     peer @react-three/fiber@">=6.0" from @react-spring/three@10.0.1
+▲  npm warn     node_modules/react-spring/node_modules/@react-spring/three
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: @react-three/fiber@9.2.0
+▲  npm warn Found: react-dom@18.3.1
+▲  npm warn node_modules/react-dom
+▲  npm warn   react-dom@"^18.2.0" from the root project
+▲  npm warn   110 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peerOptional react-dom@"^19.0.0" from @react-three/fiber@9.2.0
+▲  npm warn node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn   peer @react-three/fiber@">=6.0" from @react-spring/three@10.0.1
+▲  npm warn   node_modules/react-spring/node_modules/@react-spring/three
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react-dom@19.1.0
+▲  npm warn node_modules/react-dom
+▲  npm warn   peerOptional react-dom@"^19.0.0" from @react-three/fiber@9.2.0
+▲  npm warn   node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn     peer @react-three/fiber@">=6.0" from @react-spring/three@10.0.1
+▲  npm warn     node_modules/react-spring/node_modules/@react-spring/three
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: react-native@0.80.1
+▲  npm warn Found: react@18.3.1
+▲  npm warn node_modules/react
+▲  npm warn   react@"^18.2.0" from the root project
+▲  npm warn   278 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peer react@"^19.1.0" from react-native@0.80.1
+▲  npm warn node_modules/react-spring/node_modules/react-native
+▲  npm warn   peer react-native@">=0.78" from @react-spring/native@10.0.1
+▲  npm warn   node_modules/react-spring/node_modules/@react-spring/native
+▲  npm warn   2 more (@react-three/fiber, @react-native/virtualized-lists)
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react@19.1.0
+▲  npm warn node_modules/react
+▲  npm warn   peer react@"^19.1.0" from react-native@0.80.1
+▲  npm warn   node_modules/react-spring/node_modules/react-native
+▲  npm warn     peer react-native@">=0.78" from @react-spring/native@10.0.1
+▲  npm warn     node_modules/react-spring/node_modules/@react-spring/native
+▲  npm warn     2 more (@react-three/fiber, @react-native/virtualized-lists)
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: its-fine@2.0.0
+▲  npm warn Found: react@18.3.1
+▲  npm warn node_modules/react
+▲  npm warn   react@"^18.2.0" from the root project
+▲  npm warn   278 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peer react@"^19.0.0" from its-fine@2.0.0
+▲  npm warn node_modules/react-spring/node_modules/@react-three/fiber/node_modules/its-fine
+▲  npm warn   its-fine@"^2.0.0" from @react-three/fiber@9.2.0
+▲  npm warn   node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react@19.1.0
+▲  npm warn node_modules/react
+▲  npm warn   peer react@"^19.0.0" from its-fine@2.0.0
+▲  npm warn   node_modules/react-spring/node_modules/@react-three/fiber/node_modules/its-fine
+▲  npm warn     its-fine@"^2.0.0" from @react-three/fiber@9.2.0
+▲  npm warn     node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn ERESOLVE overriding peer dependency
+▲  npm warn While resolving: react-reconciler@0.31.0
+▲  npm warn Found: react@18.3.1
+▲  npm warn node_modules/react
+▲  npm warn   react@"^18.2.0" from the root project
+▲  npm warn   278 more (@floating-ui/react, @floating-ui/react-dom, ...)
+▲  npm warn
+▲  npm warn Could not resolve dependency:
+▲  npm warn peer react@"^19.0.0" from react-reconciler@0.31.0
+▲  npm warn node_modules/react-spring/node_modules/@react-three/fiber/node_modules/react-reconciler
+▲  npm warn   react-reconciler@"^0.31.0" from @react-three/fiber@9.2.0
+▲  npm warn   node_modules/react-spring/node_modules/@react-three/fiber
+▲  npm warn
+▲  npm warn Conflicting peer dependency: react@19.1.0
+▲  npm warn node_modules/react
+▲  npm warn   peer react@"^19.0.0" from react-reconciler@0.31.0
+▲  npm warn   node_modules/react-spring/node_modules/@react-three/fiber/node_modules/react-reconciler
+▲  npm warn     react-reconciler@"^0.31.0" from @react-three/fiber@9.2.0
+▲  npm warn     node_modules/react-spring/node_modules/@react-three/fiber
+▲  up to date in 2s
+▲  258 packages are looking for funding
+▲  run `npm fund` for details
+▲  Detected Next.js version: 14.2.30
+▲  Running "npm run build"
+▲  > containercode-advisory@0.1.0 build
+▲  > next build
+▲  ▲ Next.js 14.2.30
+▲  - Environments: .env.local, .env
+▲  - Experiments (use with caution):
+▲    · turbo
+▲    · optimizeCss
+▲    · typedRoutes
+▲  Creating an optimized production build ...
+▲  > [PWA] Compile server
+▲  > [PWA] Compile server
+▲  > [PWA] Compile client (static)
+▲  > [PWA] Auto register service worker with: /Users/ayodeleajayi/Workspace/containercode/containercode-app/node_modules/next-pwa/register.js
+▲  > [PWA] Service worker: /Users/ayodeleajayi/Workspace/containercode/containercode-app/public/sw.js
+▲  > [PWA]   url: /sw.js
+▲  > [PWA]   scope: /
+▲  ⚠ Compiled with warnings
+▲  
+▲  entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (500 KiB). This can impact web performance.
+▲  Entrypoints:
+▲   main (617 KiB)
+▲       static/chunks/webpack-9e0f1ea36756e13d.js
+▲       static/chunks/framework-f66176bb897dc684.js
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/main-eed0c58e66e7c966.js
+▲   app/layout (663 KiB)
+▲       static/css/0a39d79f53acf8be.css
+▲       static/css/917c9d4380e4fba4.css
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/npm.lucide-react-7c73e7287fdf1000.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/layout-f083fe7a72ca5f61.js
+▲   app/services/page (523 KiB)
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/services/page-853644f57c0473a7.js
+▲   app/page (672 KiB)
+▲       static/chunks/framer-motion-2b120aca856b91e8.js
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/npm.lucide-react-7c73e7287fdf1000.js
+▲       static/chunks/npm.motion-dom-bf2b9d91cf1b9f04.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/page-1ac2f727cea14700.js
+▲   app/blog/page (523 KiB)
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/blog/page-7fe4b2f1e980bac1.js
+▲   app/services/[slug]/page (655 KiB)
+▲       static/chunks/framer-motion-2b120aca856b91e8.js
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/npm.lucide-react-7c73e7287fdf1000.js
+▲       static/chunks/npm.motion-dom-bf2b9d91cf1b9f04.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/services/[slug]/page-c41c7f27f661d84f.js
+▲   app/team/page (655 KiB)
+▲       static/chunks/framer-motion-2b120aca856b91e8.js
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/npm.lucide-react-7c73e7287fdf1000.js
+▲       static/chunks/npm.motion-dom-bf2b9d91cf1b9f04.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/team/page-8bd3b02a5a25f524.js
+▲   app/contact/thank-you/page (655 KiB)
+▲       static/chunks/framer-motion-2b120aca856b91e8.js
+▲       static/chunks/npm.next-2259e31764ca5578.js
+▲       static/chunks/npm.tailwind-merge-de6b9c91b8fa4efe.js
+▲       static/chunks/npm.lucide-react-7c73e7287fdf1000.js
+▲       static/chunks/npm.motion-dom-bf2b9d91cf1b9f04.js
+▲       static/chunks/commons-66f3e36b1011cf2e.js
+▲       static/chunks/app/contact/thank-you/page-610536ef08e58317.js
+▲  
+▲  webpack performance recommendations: 
+▲  You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+▲  For more info visit https://webpack.js.org/guides/code-splitting/
+▲  
+▲  entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (500 KiB). This can impact web performance.
+▲  Entrypoints:
+▲   app/team/page (572 KiB)
+▲       ../webpack-runtime.js
+▲       276.js
+▲       722.js
+▲       529.js
+▲       86.js
+▲       966.js
+▲       481.js
+▲       710.js
+▲       746.js
+▲       935.js
+▲       ../app/team/page.js
+▲  
+▲  webpack performance recommendations: 
+▲  You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+▲  For more info visit https://webpack.js.org/guides/code-splitting/
+▲  
+▲  asset size limit: The following asset(s) exceed the recommended size limit (500 KiB).
+▲  This can impact web performance.
+▲  Assets: 
+▲   edge-chunks/767.js (634 KiB)
+▲  
+▲  entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (500 KiB). This can impact web performance.
+▲  Entrypoints:
+▲   app/api/newsletter/route (646 KiB)
+▲       edge-runtime-webpack.js
+▲       edge-chunks/767.js
+▲       app/api/newsletter/route.js
+▲   app/api/contact/route (646 KiB)
+▲       edge-runtime-webpack.js
+▲       edge-chunks/767.js
+▲       app/api/contact/route.js
+▲  
+▲  webpack performance recommendations: 
+▲  You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+▲  For more info visit https://webpack.js.org/guides/code-splitting/
+▲  
+▲  Linting and checking validity of types ...
+▲  ./src/app/about/page.tsx
+▲  377:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/app/contact/modern-contact.tsx
+▲  200:20  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  445:76  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/app/providers/performance-provider.tsx
+▲  92:50  Warning: The ref value 'startTime.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'startTime.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+▲  
+▲  ./src/app/resources/newsletter-signup.tsx
+▲  79:63  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/app/services/[slug]/page.tsx
+▲  312:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  467:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/app/terms/page.tsx
+▲  26:41  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/examples/image-mapping-demo.tsx
+▲  22:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  26:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  
+▲  ./src/components/forms/contact-form.tsx
+▲  103:41  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/forms/newsletter-form.tsx
+▲  102:16  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/forms/newsletter-subscription.tsx
+▲  128:43  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/layout/footer.tsx
+▲  70:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  
+▲  ./src/components/layout/header.tsx
+▲  79:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  88:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  
+▲  ./src/components/sections/feature-section.tsx
+▲  88:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  
+▲  ./src/components/sections/modern-services-overview.tsx
+▲  236:16  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  236:40  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/sections/professional-services-overview.tsx
+▲  207:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/sections/testimonial-section.tsx
+▲  39:16  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  39:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+▲  59:19  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+▲  59:39  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+▲  
+▲  ./src/components/ui/design-system.tsx
+▲  471:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+▲  
+▲  info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+▲  Collecting page data ...
+▲  ⚠ Using edge runtime on a page currently disables static generation for that page
+▲  (node:27274) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  (node:27273) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  (node:27271) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  (node:27276) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  (node:27275) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  Generating static pages (0/38) ...
+▲  (node:27277) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  Generating static pages (9/38)
+▲  (node:27272) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+▲  (Use `node --trace-deprecation ...` to show where the warning was created)
+▲  Generating static pages (18/38)
+▲  Time 2.988625
+▲  Time 3.374666
+▲  Generating static pages (28/38)
+▲  @notionhq/client warn: request fail { code: 'invalid_request_url', message: 'Invalid request URL.' }
+▲  @notionhq/client warn: request fail { code: 'invalid_request_url', message: 'Invalid request URL.' }
+▲  ✓ Generating static pages (38/38)
+▲  Finalizing page optimization ...
+▲  Collecting build traces ...
+▲  
+▲  Route (app)                                                                  Size     First Load JS
+▲  ┌ ○ /                                                                        5.41 kB         206 kB
+▲  ├ ○ /_not-found                                                              184 B           140 kB
+▲  ├ ○ /about                                                                   171 B           140 kB
+▲  ├ ƒ /api/analytics/performance                                               0 B                0 B
+▲  ├ ƒ /api/contact                                                             0 B                0 B
+▲  ├ ƒ /api/deepseek                                                            0 B                0 B
+▲  ├ ƒ /api/generate-newsletter                                                 0 B                0 B
+▲  ├ ○ /api/health                                                              0 B                0 B
+▲  ├ ƒ /api/newsletter                                                          0 B                0 B
+▲  ├ ƒ /api/newsletter-subscribe                                                0 B                0 B
+▲  ├ ƒ /api/revalidate                                                          0 B                0 B
+▲  ├ ○ /api/robots                                                              0 B                0 B
+▲  ├ ƒ /api/security/csp-report                                                 0 B                0 B
+▲  ├ ƒ /api/security/events                                                     0 B                0 B
+▲  ├ ƒ /api/send-newsletter                                                     0 B                0 B
+▲  ├ ƒ /api/sitemap                                                             0 B                0 B
+▲  ├ ○ /blog                                                                    186 B           157 kB
+▲  ├ ● /blog/[slug]                                                             860 B           141 kB
+▲  ├   ├ /blog/cloud-cost-optimisation-advanced-strategies-multi-cloud
+▲  ├   ├ /blog/devsecops-excellence-integrating-security-development-lifecycle
+▲  ├   ├ /blog/zero-trust-security-cloud-protection-modern-enterprises
+▲  ├   └ [+4 more paths]
+▲  ├ ○ /contact                                                                 8.41 kB         203 kB
+▲  ├ ○ /contact/thank-you                                                       145 B           201 kB
+▲  ├ ○ /faq                                                                     3.89 kB         205 kB
+▲  ├ ○ /privacy                                                                 144 B           201 kB
+▲  ├ ○ /resources                                                               14.4 kB         215 kB
+▲  ├ ○ /services                                                                186 B           157 kB
+▲  ├ ● /services/[slug]                                                         145 B           201 kB
+▲  ├   ├ /services/cloud-technologies
+▲  ├   ├ /services/cybersecurity
+▲  ├   ├ /services/devops
+▲  ├   └ [+3 more paths]
+▲  ├ ○ /team                                                                    223 B           201 kB
+▲  └ ○ /terms                                                                   145 B           201 kB
+▲  + First Load JS shared by all                                                140 kB
+▲  └ chunks/npm.next-2259e31764ca5578.js                                      138 kB
+▲  └ other shared chunks (total)                                              2.43 kB
+▲  ○  (Static)   prerendered as static content
+▲  ●  (SSG)      prerendered as static HTML (uses getStaticProps)
+▲  ƒ  (Dynamic)  server-rendered on demand
+▲  Traced Next.js server files in: 469.732ms
+▲  Created all serverless functions in: 83.707ms
+▲  Collected static files (public/, static/, .next/static): 3.734ms
+▲  Build Completed in .vercel/output [25s]
+⚡️ Completed `npx vercel build`.

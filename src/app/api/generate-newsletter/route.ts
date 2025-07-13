@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { NewsletterAutomationSystem } from '@/lib/newsletter-automation';
 
+export const runtime = 'edge';
+
 export async function POST(request: Request) {
   try {
     // Verify API key or admin authentication

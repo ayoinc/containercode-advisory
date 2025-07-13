@@ -5,6 +5,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 interface CSPViolationReport {
   'document-uri': string;
   'referrer': string;

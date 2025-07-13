@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
+export const runtime = 'edge';
+
 // Initialize DeepSeek client using OpenAI SDK
 const getDeepSeekClient = () => {
   const apiKey = process.env.DEEPSEEK_API_KEY;

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateSitemap, generateSitemapIndex } from '@/lib/seo/sitemap-generator';
 
+export const runtime = 'edge';
+
 export async function GET(request: NextRequest) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://containercode.com';
   const { searchParams } = new URL(request.url);

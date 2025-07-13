@@ -7,6 +7,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { CACHE_TAGS } from '@/lib/isr';
 
+export const runtime = 'edge';
+
 // Secret token for authentication
 const REVALIDATION_TOKEN = process.env.REVALIDATION_TOKEN || 'your-secret-token';
 

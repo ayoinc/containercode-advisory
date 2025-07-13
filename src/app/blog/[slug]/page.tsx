@@ -13,6 +13,20 @@ interface BlogPostPageProps {
   };
 }
 
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  try {
+    const { results: posts } = await getBlogPosts({ pageSize: 100 });
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to generate static params for blog posts:', error);
+    // Return empty array to avoid build failure
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug);
   

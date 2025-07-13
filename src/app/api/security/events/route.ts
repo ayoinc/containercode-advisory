@@ -5,6 +5,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 // Security event types and interfaces
 enum SecurityEventType {
   CSP_VIOLATION = 'csp_violation',

@@ -299,7 +299,7 @@ const nextConfig = {
     ];
   },
   
-  // Output configuration for edge runtime
+  // Output configuration for Cloudflare Pages
   output: 'standalone',
   
   // Compression
