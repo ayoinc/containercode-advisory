@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { NewsletterAutomationSystem } from '@/lib/newsletter-automation';
 
-export const runtime = 'edge';
+// Note: This route uses Node.js APIs through Notion client, so it cannot use Edge Runtime
 
 export async function POST(request: Request) {
   try {
