@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
 
 # next.js
 /.next/
@@ -24,6 +26,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
@@ -32,3 +35,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cloudflare
+# wrangler.toml is needed for deployment - keep it tracked
+
+# backup files
+*-original.*
+*-backup.*
+
+# Keep lighthouse.config.js for CI/CD
+# Keep scripts for automation
+# Keep functions for Cloudflare deployment
+# Keep documentation for team reference
+
+# temporary files and reports
+/monitoring-reports/
+/backups/
+performance-report.json

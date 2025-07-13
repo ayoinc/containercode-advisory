@@ -84,12 +84,12 @@ export function FeatureSection() {
               </ul>
             </div>
             
-            <div className="bg-gradient-to-tr from-navy-700 to-aqua-900 rounded-lg p-8 h-[300px] flex items-center justify-center">
-              {/* This would be replaced with an actual image or illustration */}
-              <div className="text-center">
-                <span className="block text-6xl mb-4">☁️</span>
-                <span className="text-xl font-medium">Cloud Transformation Illustration</span>
-              </div>
+            <div className="rounded-lg overflow-hidden h-[300px]">
+              <img 
+                src="/images/pexels/hero-digital-transformation.jpg"
+                alt="Digital transformation and modern technology"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>

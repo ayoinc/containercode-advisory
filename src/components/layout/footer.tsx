@@ -1,142 +1,389 @@
+'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+import { ExternalLink } from '@/components/ui/external-link';
+import { Linkedin, Twitter, Github, Mail, Phone, MapPin, ArrowRight, Building2, CheckCircle, AlertCircle } from 'lucide-react';
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!newsletterEmail.trim()) {
+      setStatus('error');
+      setErrorMessage('Email is required');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) {
+      setStatus('error');
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatus('idle');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to subscribe');
+      }
+
+      setStatus('success');
+      setNewsletterEmail('');
+      
+      // Reset success state after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'An unexpected error occurred');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
   return (
-    <footer className="bg-slate-900 text-white pt-16 pb-8">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company info */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold">ContainerCode Advisory</h3>
-            <p className="text-slate-300 max-w-xs">
-              Expert consulting across Azure, AWS, Google Cloud, Oracle, and IBM with integrated cybersecurity and DevOps excellence.
+    <footer className="relative w-full py-20 md:py-24 bg-gray-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
+          {/* Company Information */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="flex items-center space-x-3">
+              <img
+                src="/images/containercode-icon.svg"
+                alt="ContainerCode Advisory"
+                className="h-10 w-10"
+              />
+              <h3 className="text-xl font-bold">ContainerCode Advisory</h3>
+            </div>
+            <p className="text-gray-300 max-w-md leading-relaxed">
+              Strategic technology consultancy specialising in multi-cloud solutions, cybersecurity excellence, 
+              and digital transformation. Trusted by organisations worldwide to deliver measurable results.
             </p>
+            
+            {/* Newsletter Subscription */}
+            <div className="max-w-md">
+              <h4 className="text-lg font-semibold mb-3">Stay Informed</h4>
+              <p className="text-gray-400 text-sm mb-4">
+                Subscribe to our insights newsletter for expert analysis and industry updates.
+              </p>
+              <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleNewsletterSubmit}>
+                <div className="flex-1">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 rounded-lg transition-colors"
+                    aria-label="Email for newsletter subscription"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white rounded-lg font-semibold transition-colors whitespace-nowrap"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </form>
+              {status === 'success' && (
+                <div className="flex items-center space-x-2 mt-3 p-3 bg-green-900/50 border border-green-700 rounded-lg">
+                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <span className="text-sm text-green-300">
+                    Thank you for subscribing! Please check your email to confirm your subscription.
+                  </span>
+                </div>
+              )}
+              {status === 'error' && errorMessage && (
+                <div className="flex items-center space-x-2 mt-3 p-3 bg-red-900/50 border border-red-700 rounded-lg">
+                  <AlertCircle className="h-4 w-4 text-red-400" />
+                  <span className="text-sm text-red-300">
+                    {errorMessage}
+                  </span>
+                </div>
+              )}
+              <p className="text-xs text-gray-500 mt-2">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </div>
+            
+            {/* Social Links */}
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-aqua-500 transition-colors" aria-label="LinkedIn">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" className="text-white hover:text-aqua-500 transition-colors" aria-label="Twitter">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
-              <a href="#" className="text-white hover:text-aqua-500 transition-colors" aria-label="GitHub">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                </svg>
-              </a>
+              <ExternalLink 
+                href="https://linkedin.com/company/containercode-advisory" 
+                className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors group" 
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="h-5 w-5 group-hover:text-primary-400 transition-colors" />
+              </ExternalLink>
+              <ExternalLink 
+                href="https://twitter.com/containercode" 
+                className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors group" 
+                aria-label="Follow us on Twitter"
+              >
+                <Twitter className="h-5 w-5 group-hover:text-sky-400 transition-colors" />
+              </ExternalLink>
+              <ExternalLink 
+                href="https://github.com/containercode" 
+                className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors group" 
+                aria-label="View our GitHub"
+              >
+                <Github className="h-5 w-5 group-hover:text-gray-300 transition-colors" />
+              </ExternalLink>
             </div>
           </div>
 
           {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-semibold mb-6 text-white">Services</h3>
+            <ul className="space-y-4">
               <li>
-                <Link href="/services/cloud-technologies" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  Cloud Technologies
+                <Link 
+                  href="/services/cloud-technologies" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Multi-Cloud Technologies
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/services/cybersecurity" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  Cybersecurity
+                <Link 
+                  href="/services/cybersecurity" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Cybersecurity Excellence
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/services/devops" className="text-slate-300 hover:text-aqua-500 transition-colors">
+                <Link 
+                  href="/services/devops" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
                   DevOps & DevSecOps
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/services/digital-transformation" className="text-slate-300 hover:text-aqua-500 transition-colors">
+                <Link 
+                  href="/services/digital-transformation" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
                   Digital Transformation
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/services/software-engineering" className="text-slate-300 hover:text-aqua-500 transition-colors">
+                <Link 
+                  href="/services/software-engineering" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
                   Software Engineering
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/services/it-support" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  IT Support & Management
+                <Link 
+                  href="/services/it-support" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Managed IT Support
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Resources */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
+          {/* Company */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-semibold mb-6 text-white">Company</h3>
+            <ul className="space-y-4">
               <li>
-                <Link href="/case-studies" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  Case Studies
+                <Link 
+                  href="/about" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  About Us
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  Blog
+                <Link 
+                  href="/resources" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Resources
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  Whitepapers
+                <Link 
+                  href="/blog" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Insights
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/resources#tools" className="text-slate-300 hover:text-aqua-500 transition-colors">
-                  Free Tools
+                <Link 
+                  href="/team" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Our Team
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="text-slate-300 hover:text-aqua-500 transition-colors">
+                <Link 
+                  href="/contact" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
+                  Contact Us
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/faq" 
+                  className="text-gray-300 hover:text-primary-400 transition-colors inline-flex items-center group"
+                >
                   FAQ
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="text-slate-300">
-                <span className="block">Email:</span>
-                <a href="mailto:info@containercode.club" className="text-aqua-500 hover:underline">
-                  info@containercode.club
-                </a>
+          {/* Contact Information */}
+          <div className="lg:col-span-3">
+            <h3 className="text-lg font-semibold mb-6 text-white">Contact Information</h3>
+            <ul className="space-y-6">
+              <li className="flex items-start space-x-3 text-gray-300">
+                <Mail className="h-5 w-5 mt-0.5 text-primary-400 flex-shrink-0" />
+                <div>
+                  <span className="block text-sm text-gray-400 mb-1">General Enquiries:</span>
+                  <a 
+                    href="mailto:hello@containercode.club" 
+                    className="text-primary-400 hover:text-primary-300 transition-colors font-medium"
+                  >
+                    hello@containercode.club
+                  </a>
+                </div>
               </li>
-              <li className="text-slate-300">
-                <span className="block">Phone:</span>
-                <a href="tel:+11234567890" className="text-aqua-500 hover:underline">
-                  +1 (123) 456-7890
-                </a>
+              <li className="flex items-start space-x-3 text-gray-300">
+                <Phone className="h-5 w-5 mt-0.5 text-primary-400 flex-shrink-0" />
+                <div>
+                  <span className="block text-sm text-gray-400 mb-1">Telephone:</span>
+                  <a 
+                    href="tel:+442079460958" 
+                    className="text-primary-400 hover:text-primary-300 transition-colors font-medium"
+                  >
+                    +44 (0) 20 7946 0958
+                  </a>
+                  <div className="text-sm text-gray-500 mt-1">
+                    Monday-Friday, 9AM-6PM GMT
+                  </div>
+                </div>
               </li>
-              <li className="text-slate-300">
-                <span className="block">Address:</span>
-                <address className="not-italic">
-                  123 Tech Plaza<br />
-                  San Francisco, CA 94103
-                </address>
+              <li className="flex items-start space-x-3 text-gray-300">
+                <MapPin className="h-5 w-5 mt-0.5 text-primary-400 flex-shrink-0" />
+                <div>
+                  <span className="block text-sm text-gray-400 mb-1">Headquarters:</span>
+                  <address className="not-italic">
+                    London, United Kingdom<br />
+                    <span className="text-sm text-gray-500">Serving clients globally</span>
+                  </address>
+                </div>
               </li>
             </ul>
+
+            {/* Emergency Support */}
+            <div className="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+              <div className="flex items-center gap-2 mb-2">
+                <Building2 className="h-4 w-4 text-red-400" />
+                <span className="text-sm font-semibold text-white">Emergency Support</span>
+              </div>
+              <p className="text-xs text-gray-400 mb-3">
+                24/7 critical issue assistance available
+              </p>
+              <a
+                href="tel:+442079460958"
+                className="inline-flex items-center gap-2 text-sm text-red-400 hover:text-red-300 transition-colors font-medium"
+              >
+                <Phone className="h-3 w-3" />
+                Emergency Hotline
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom section */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-400 text-sm">
-            © {new Date().getFullYear()} ContainerCode Advisory. All rights reserved.
+        {/* Certifications & Partnerships */}
+        <div className="py-8 border-t border-b border-gray-800">
+          <div className="text-center mb-6">
+            <h4 className="text-lg font-semibold text-white mb-2">Certified Partners & Accreditations</h4>
+            <p className="text-gray-400 text-sm">
+              Industry-leading certifications and partnerships ensuring exceptional service delivery
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-8 text-gray-400">
+            <div className="text-sm font-medium">AWS Partner</div>
+            <div className="text-sm font-medium">Microsoft Partner</div>
+            <div className="text-sm font-medium">Google Cloud Partner</div>
+            <div className="text-sm font-medium">ISO 27001 Certified</div>
+            <div className="text-sm font-medium">SOC 2 Type II</div>
+            <div className="text-sm font-medium">Cyber Essentials Plus</div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            © {currentYear} ContainerCode Advisory Limited. All rights reserved. Company registered in England and Wales.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-slate-400 hover:text-aqua-500 text-sm">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4 md:mt-0">
+            <Link 
+              href="/privacy" 
+              className="text-gray-400 hover:text-primary-400 text-sm transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-slate-400 hover:text-aqua-500 text-sm">
-              Terms of Service
+            <Link 
+              href="/terms" 
+              className="text-gray-400 hover:text-primary-400 text-sm transition-colors"
+            >
+              Terms & Conditions
+            </Link>
+            <Link
+              href={"/cookies" as any}
+              className="text-gray-400 hover:text-primary-400 text-sm transition-colors"
+            >
+              Cookie Policy
+            </Link>
+            <Link
+              href={"/accessibility" as any}
+              className="text-gray-400 hover:text-primary-400 text-sm transition-colors"
+            >
+              Accessibility
             </Link>
           </div>
         </div>

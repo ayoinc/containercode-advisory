@@ -1,0 +1,231 @@
+{
+  "timestamp": "2025-07-13T19:45:00.133Z",
+  "total_images": 8,
+  "categories": {
+    "hero": [
+      "hero-main.jpg"
+    ],
+    "cloud-technologies": [
+      "service-cloud-technologies.jpg"
+    ],
+    "cybersecurity": [
+      "service-cybersecurity.jpg"
+    ],
+    "devops": [
+      "service-devops.jpg"
+    ],
+    "digital-transformation": [
+      "service-digital-transformation.jpg"
+    ],
+    "software-engineering": [
+      "service-software-engineering.jpg"
+    ],
+    "it-support": [
+      "service-it-support.jpg"
+    ],
+    "team": [
+      "team-professional.jpg"
+    ]
+  },
+  "staticImages": {
+    "placeholders": {
+      "placeholder-tech": {
+        "path": "/images/team-professional.jpg",
+        "alt": "Technology placeholder",
+        "dimensions": { "width": 800, "height": 600 },
+        "metadata": { "category": "placeholder" }
+      }
+    },
+    "branding": {
+      "containercode-logo-horizontal": {
+        "path": "/images/containercode-logo-horizontal.svg",
+        "alt": "ContainerCode Advisory horizontal logo",
+        "dimensions": { "width": 300, "height": 80 },
+        "metadata": { "category": "branding", "type": "logo" }
+      },
+      "containercode-icon": {
+        "path": "/images/containercode-icon.svg",
+        "alt": "ContainerCode Advisory icon",
+        "dimensions": { "width": 64, "height": 64 },
+        "metadata": { "category": "branding", "type": "icon" }
+      }
+    }
+  },
+  "dynamicImages": {
+    "categories": {
+      "hero": { "fallback": "hero-main.jpg" },
+      "services": { "fallback": "service-cloud-technologies.jpg" },
+      "team": { "fallback": "team-professional.jpg" }
+    }
+  },
+  "optimizationSettings": {
+    "sizes": {
+      "card": {
+        "medium": { "width": 400, "height": 300 }
+      }
+    }
+  },
+  "locationMapping": {
+    "pages": {
+      "home": {
+        "hero": { "category": "hero" }
+      },
+      "services": {
+        "hero": { "category": "services" }
+      },
+      "team": {
+        "hero": { "category": "team" }
+      }
+    },
+    "components": {
+      "ServiceCard": { "category": "services" },
+      "TeamCard": { "category": "team" }
+    }
+  },
+  "images": {
+    "hero-main.jpg": {
+      "filename": "hero-main.jpg",
+      "path": "/images/hero-main.jpg",
+      "alt": "Modern cloud computing infrastructure and data center",
+      "usage": "Main homepage hero section",
+      "category": "hero",
+      "priority": 1,
+      "pexels": {
+        "id": 17489163,
+        "photographer": "panumas nikhomkhai",
+        "photographer_url": "https://www.pexels.com/@cookiecutter",
+        "pexels_url": "https://www.pexels.com/photo/computer-server-in-data-center-room-17489163/",
+        "original_size": {
+          "width": 4256,
+          "height": 2832
+        }
+      }
+    },
+    "service-cloud-technologies.jpg": {
+      "filename": "service-cloud-technologies.jpg",
+      "path": "/images/service-cloud-technologies.jpg",
+      "alt": "Multi-cloud technology infrastructure",
+      "usage": "services",
+      "category": "cloud-technologies",
+      "priority": 1,
+      "pexels": {
+        "id": 32975434,
+        "photographer": "Jędrzej Koralewski",
+        "photographer_url": "https://www.pexels.com/@jedrzej-koralewski-14125120",
+        "pexels_url": "https://www.pexels.com/photo/wind-turbines-on-a-sunny-spring-day-32975434/",
+        "original_size": {
+          "width": 6000,
+          "height": 3375
+        }
+      }
+    },
+    "service-cybersecurity.jpg": {
+      "filename": "service-cybersecurity.jpg",
+      "path": "/images/service-cybersecurity.jpg",
+      "alt": "Cybersecurity and data protection",
+      "usage": "services",
+      "category": "cybersecurity",
+      "priority": 1,
+      "pexels": {
+        "id": 2882506,
+        "photographer": "Miguel Á. Padriñán",
+        "photographer_url": "https://www.pexels.com/@padrinan",
+        "pexels_url": "https://www.pexels.com/photo/close-up-shot-of-keyboard-buttons-2882506/",
+        "original_size": {
+          "width": 3008,
+          "height": 2000
+        }
+      }
+    },
+    "service-devops.jpg": {
+      "filename": "service-devops.jpg",
+      "path": "/images/service-devops.jpg",
+      "alt": "DevOps and software development automation",
+      "usage": "services",
+      "category": "devops",
+      "priority": 1,
+      "pexels": {
+        "id": 11035393,
+        "photographer": "RealToughCandy.com",
+        "photographer_url": "https://www.pexels.com/@realtoughcandy",
+        "pexels_url": "https://www.pexels.com/photo/person-holding-a-sticker-11035393/",
+        "original_size": {
+          "width": 6000,
+          "height": 4000
+        }
+      }
+    },
+    "service-digital-transformation.jpg": {
+      "filename": "service-digital-transformation.jpg",
+      "path": "/images/service-digital-transformation.jpg",
+      "alt": "Digital transformation and business innovation",
+      "usage": "services",
+      "category": "digital-transformation",
+      "priority": 1,
+      "pexels": {
+        "id": 1181271,
+        "photographer": "Christina Morillo",
+        "photographer_url": "https://www.pexels.com/@divinetechygirl",
+        "pexels_url": "https://www.pexels.com/photo/black-and-gray-laptop-computer-turned-on-doing-computer-codes-1181271/",
+        "original_size": {
+          "width": 6016,
+          "height": 4016
+        }
+      }
+    },
+    "service-software-engineering.jpg": {
+      "filename": "service-software-engineering.jpg",
+      "path": "/images/service-software-engineering.jpg",
+      "alt": "Software engineering and programming",
+      "usage": "services",
+      "category": "software-engineering",
+      "priority": 1,
+      "pexels": {
+        "id": 3861972,
+        "photographer": "ThisIsEngineering",
+        "photographer_url": "https://www.pexels.com/@thisisengineering",
+        "pexels_url": "https://www.pexels.com/photo/female-software-engineer-coding-on-computer-3861972/",
+        "original_size": {
+          "width": 7890,
+          "height": 5263
+        }
+      }
+    },
+    "service-it-support.jpg": {
+      "filename": "service-it-support.jpg",
+      "path": "/images/service-it-support.jpg",
+      "alt": "IT support and managed services",
+      "usage": "services",
+      "category": "it-support",
+      "priority": 1,
+      "pexels": {
+        "id": 7709208,
+        "photographer": "MART  PRODUCTION",
+        "photographer_url": "https://www.pexels.com/@mart-production",
+        "pexels_url": "https://www.pexels.com/photo/photo-of-a-woman-in-a-white-shirt-holding-the-microphone-on-her-headset-7709208/",
+        "original_size": {
+          "width": 6000,
+          "height": 4000
+        }
+      }
+    },
+    "team-professional.jpg": {
+      "filename": "team-professional.jpg",
+      "path": "/images/team-professional.jpg",
+      "alt": "Professional business team collaboration",
+      "usage": "Team section and about page",
+      "category": "team",
+      "priority": 2,
+      "pexels": {
+        "id": 3184465,
+        "photographer": "fauxels",
+        "photographer_url": "https://www.pexels.com/@fauxels",
+        "pexels_url": "https://www.pexels.com/photo/man-and-woman-near-table-3184465/",
+        "original_size": {
+          "width": 6000,
+          "height": 4000
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,27 @@
 import { Client } from '@notionhq/client';
 import { NotionAPI } from 'notion-client';
-import { cache } from 'react';
+
+// Simple cache implementation for Node.js environments
+const simpleCache = new Map<string, { data: any; expiry: number }>();
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+function cache<T extends (...args: any[]) => Promise<any>>(fn: T): T {
+  return ((...args: any[]) => {
+    const key = JSON.stringify(args);
+    const cached = simpleCache.get(key);
+    
+    if (cached && cached.expiry > Date.now()) {
+      return Promise.resolve(cached.data);
+    }
+    
+    const result = fn(...args);
+    result.then((data: any) => {
+      simpleCache.set(key, { data, expiry: Date.now() + CACHE_TTL });
+    });
+    
+    return result;
+  }) as T;
+}
 
 // Initialize official Notion client
 export const notion = new Client({
@@ -45,7 +66,6 @@ export const getBlocks = cache(async (blockId: string) => {
 // Constants for database IDs
 export const DATABASE_IDS = {
   BLOG_POSTS: process.env.NOTION_DATABASE_BLOG_POSTS || '',
-  CASE_STUDIES: process.env.NOTION_DATABASE_CASE_STUDIES || '',
   TEAM_MEMBERS: process.env.NOTION_DATABASE_TEAM_MEMBERS || '',
   SERVICES: process.env.NOTION_DATABASE_SERVICES || '',
 };
@@ -66,26 +86,7 @@ export interface BlogPost {
   excerpt: string;
   coverImage: string;
   content: any[];
-}
-
-export interface CaseStudy {
-  id: string;
-  title: string;
-  slug: string;
-  client: string;
-  industry: string;
-  services: string[];
-  challenge: any[];
-  solution: any[];
-  results: any[];
-  testimonial: {
-    quote: string;
-    author: string;
-    position: string;
-    company: string;
-  };
-  coverImage: string;
-  gallery: string[];
+  featured?: boolean;
 }
 
 export interface TeamMember {
@@ -100,6 +101,20 @@ export interface TeamMember {
   linkedIn: string;
   email: string;
   featured: boolean;
+}
+
+export interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  shortDescription: string;
+  icon: string;
+  featuredImage: string;
+  status: string;
+  featured: boolean;
+  order: number;
+  content: any[];
 }
 
 // Helper function to parse blog posts from Notion database results
@@ -122,33 +137,7 @@ export const parseBlogPosts = (posts: any[]): BlogPost[] => {
       excerpt: properties.Excerpt?.rich_text[0]?.plain_text || '',
       coverImage: properties.CoverImage?.files[0]?.file?.url || properties.CoverImage?.files[0]?.external?.url || '',
       content: [], // To be populated with getBlocks
-    };
-  });
-};
-
-// Helper function to parse case studies from Notion database results
-export const parseCaseStudies = (caseStudies: any[]): CaseStudy[] => {
-  return caseStudies.map((caseStudy) => {
-    const properties = caseStudy.properties;
-    
-    return {
-      id: caseStudy.id,
-      title: properties.Title?.title[0]?.plain_text || 'Untitled',
-      slug: properties.Slug?.rich_text[0]?.plain_text || caseStudy.id,
-      client: properties.Client?.rich_text[0]?.plain_text || '',
-      industry: properties.Industry?.select?.name || '',
-      services: properties.Services?.multi_select.map((service: any) => service.name) || [],
-      challenge: [], // To be populated with getBlocks
-      solution: [], // To be populated with getBlocks
-      results: [], // To be populated with getBlocks
-      testimonial: {
-        quote: properties.TestimonialQuote?.rich_text[0]?.plain_text || '',
-        author: properties.TestimonialAuthor?.rich_text[0]?.plain_text || '',
-        position: properties.TestimonialPosition?.rich_text[0]?.plain_text || '',
-        company: properties.TestimonialCompany?.rich_text[0]?.plain_text || '',
-      },
-      coverImage: properties.CoverImage?.files[0]?.file?.url || properties.CoverImage?.files[0]?.external?.url || '',
-      gallery: properties.Gallery?.files.map((file: any) => file.file?.url || file.external?.url) || [],
+      featured: properties.Featured?.checkbox || false,
     };
   });
 };
@@ -173,3 +162,208 @@ export const parseTeamMembers = (teamMembers: any[]): TeamMember[] => {
     };
   });
 };
+
+// Helper function to parse services from Notion database results
+export const parseServices = (services: any[]): Service[] => {
+  return services.map((service) => {
+    const properties = service.properties;
+    
+    return {
+      id: service.id,
+      title: properties["Service Name"]?.title[0]?.plain_text || 'Untitled',
+      slug: properties.Slug?.rich_text[0]?.plain_text || service.id,
+      category: properties.Category?.select?.name || '',
+      shortDescription: properties.ShortDescription?.rich_text[0]?.plain_text || '',
+      icon: properties.Icon?.files[0]?.file?.url || properties.Icon?.files[0]?.external?.url || '',
+      featuredImage: properties.FeaturedImage?.files[0]?.file?.url || properties.FeaturedImage?.files[0]?.external?.url || '',
+      status: properties.Status?.select?.name || 'Inactive',
+      featured: properties.Featured?.checkbox || false,
+      order: properties.Order?.number || 0,
+      content: [], // To be populated with getBlocks
+    };
+  });
+};
+
+// Get blog posts with filtering and pagination
+export const getBlogPosts = cache(async ({
+  pageSize = 10,
+  startCursor = undefined,
+  filter = { property: "Status", select: { equals: "Published" } },
+  sorts = [{ property: "PublishedDate", direction: "descending" }]
+}: {
+  pageSize?: number;
+  startCursor?: string;
+  filter?: any;
+  sorts?: any[];
+} = {}) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: DATABASE_IDS.BLOG_POSTS,
+      page_size: pageSize,
+      start_cursor: startCursor,
+      filter,
+      sorts,
+    });
+    
+    return {
+      results: parseBlogPosts(response.results),
+      next_cursor: response.next_cursor,
+      has_more: response.has_more,
+    };
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return { results: [], next_cursor: null, has_more: false };
+  }
+});
+
+// Get single blog post by slug
+export const getBlogPostBySlug = cache(async (slug: string) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: DATABASE_IDS.BLOG_POSTS,
+      filter: {
+        property: "Slug",
+        rich_text: {
+          equals: slug,
+        },
+      },
+    });
+    
+    if (!response.results.length) {
+      return null;
+    }
+    
+    const post = parseBlogPosts(response.results)[0];
+    post.content = await getBlocks(response.results[0].id);
+    
+    return post;
+  } catch (error) {
+    console.error(`Error fetching blog post with slug ${slug}:`, error);
+    return null;
+  }
+});
+
+// Get team members with filtering and pagination
+export const getTeamMembers = cache(async ({
+  pageSize = 100,
+  startCursor = undefined,
+  filter = {},
+  sorts = [{ property: "Order", direction: "ascending" }]
+}: {
+  pageSize?: number;
+  startCursor?: string;
+  filter?: any;
+  sorts?: any[];
+} = {}) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: DATABASE_IDS.TEAM_MEMBERS,
+      page_size: pageSize,
+      start_cursor: startCursor,
+      filter,
+      sorts,
+    });
+    
+    return {
+      results: parseTeamMembers(response.results),
+      next_cursor: response.next_cursor,
+      has_more: response.has_more,
+    };
+  } catch (error) {
+    console.error("Error fetching team members:", error);
+    return { results: [], next_cursor: null, has_more: false };
+  }
+});
+
+// Get featured team members
+export const getFeaturedTeamMembers = cache(async () => {
+  return getTeamMembers({
+    filter: {
+      property: "Featured",
+      checkbox: {
+        equals: true,
+      },
+    },
+  });
+});
+
+// Get services with filtering and pagination
+export const getServices = cache(async ({
+  pageSize = 100,
+  startCursor = undefined,
+  filter = { property: "Status", select: { equals: "Active" } },
+  sorts = [{ property: "Order", direction: "ascending" }]
+}: {
+  pageSize?: number;
+  startCursor?: string;
+  filter?: any;
+  sorts?: any[];
+} = {}) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: DATABASE_IDS.SERVICES,
+      page_size: pageSize,
+      start_cursor: startCursor,
+      filter,
+      sorts,
+    });
+    
+    return {
+      results: parseServices(response.results),
+      next_cursor: response.next_cursor,
+      has_more: response.has_more,
+    };
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return { results: [], next_cursor: null, has_more: false };
+  }
+});
+
+// Get featured services
+export const getFeaturedServices = cache(async () => {
+  return getServices({
+    filter: {
+      and: [
+        {
+          property: "Status",
+          select: {
+            equals: "Active",
+          },
+        },
+        {
+          property: "Featured",
+          checkbox: {
+            equals: true,
+          },
+        },
+      ],
+    },
+  });
+});
+
+// Get service by slug
+export const getServiceBySlug = cache(async (slug: string) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: DATABASE_IDS.SERVICES,
+      filter: {
+        property: "Slug",
+        rich_text: {
+          equals: slug,
+        },
+      },
+    });
+    
+    if (!response.results.length) {
+      return null;
+    }
+    
+    const service = parseServices(response.results)[0];
+    service.content = await getBlocks(response.results[0].id);
+    
+    return service;
+  } catch (error) {
+    console.error(`Error fetching service with slug ${slug}:`, error);
+    return null;
+  }
+});

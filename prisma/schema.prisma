@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model NewsletterSubscriber {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  firstName         String?
+  lastName          String?
+  frequency         NewsletterFrequency @default(WEEKLY)
+  isActive          Boolean  @default(true)
+  interests         String[] // Cloud, DevOps, Cybersecurity, etc.
+  subscribedAt      DateTime @default(now())
+  lastEmailSent     DateTime?
+  unsubscribeToken  String   @unique @default(cuid())
+  
+  @@map("newsletter_subscribers")
+}
+
+model ContactFormSubmission {
+  id          String   @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String
+  company     String?
+  phone       String?
+  subject     String
+  message     String
+  services    String[] // Array of interested services
+  budget      String?
+  timeline    String?
+  submittedAt DateTime @default(now())
+  isProcessed Boolean  @default(false)
+  
+  @@map("contact_submissions")
+}
+
+model Newsletter {
+  id          String   @id @default(cuid())
+  title       String
+  content     String   // HTML content
+  excerpt     String
+  topics      String[] // Topics covered
+  createdAt   DateTime @default(now())
+  publishedAt DateTime?
+  isPublished Boolean  @default(false)
+  sentCount   Int      @default(0)
+  
+  @@map("newsletters")
+}
+
+model EmailLog {
+  id            String   @id @default(cuid())
+  to            String
+  subject       String
+  type          EmailType
+  status        EmailStatus @default(PENDING)
+  sentAt        DateTime?
+  error         String?
+  newsletterId  String?
+  submissionId  String?
+  
+  @@map("email_logs")
+}
+
+enum NewsletterFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum EmailType {
+  CONTACT_FORM
+  NEWSLETTER
+  WELCOME
+  UNSUBSCRIBE_CONFIRMATION
+}
+
+enum EmailStatus {
+  PENDING
+  SENT
+  FAILED
+  BOUNCED
+}

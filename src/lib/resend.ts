@@ -13,7 +13,7 @@ export const resend = new Resend(resendApiKey);
 export const EMAIL_CONFIG = {
   fromEmail: 'ContainerCode Advisory <hello@containercode.club>',
   replyTo: 'info@containercode.club',
-  supportEmail: 'support@containercode.club',
+  adminEmail: process.env.ADMIN_EMAIL || 'admin@containercode.club',
   domain: 'containercode.club',
 };
 
@@ -22,7 +22,7 @@ export const emailTemplates = {
   // Contact form notification to team
   contactFormNotification: (data: ContactFormData) => ({
     from: EMAIL_CONFIG.fromEmail,
-    to: [EMAIL_CONFIG.supportEmail],
+    to: [EMAIL_CONFIG.adminEmail],
     subject: `New contact form submission from ${data.name}`,
     html: generateContactFormNotificationHtml(data),
   }),
@@ -80,6 +80,20 @@ function generateContactFormNotificationHtml(data: ContactFormData): string {
               <div>${data.email}</div>
             </div>
             
+            ${data.phone ? `
+            <div class="field">
+              <div class="label">Phone:</div>
+              <div>${data.phone}</div>
+            </div>
+            ` : ''}
+            
+            ${data.company ? `
+            <div class="field">
+              <div class="label">Company:</div>
+              <div>${data.company}</div>
+            </div>
+            ` : ''}
+            
             <div class="field">
               <div class="label">Service of Interest:</div>
               <div>${data.service}</div>
@@ -88,6 +102,11 @@ function generateContactFormNotificationHtml(data: ContactFormData): string {
             <div class="field">
               <div class="label">Message:</div>
               <div>${data.message}</div>
+            </div>
+            
+            <div class="field">
+              <div class="label">Newsletter Subscription:</div>
+              <div>${data.subscribe ? 'Yes, wants to subscribe' : 'No subscription requested'}</div>
             </div>
           </div>
           <div class="footer">

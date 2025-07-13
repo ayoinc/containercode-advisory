@@ -1,0 +1,32 @@
+name = "containercode-workers"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[[env.production.kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "137e4efd34d240a498369c0cc273d5e3"
+
+[[env.production.kv_namespaces]]
+binding = "NEWSLETTER_CONTENT"
+id = "137e4efd34d240a498369c0cc273d5e3"
+
+[vars]
+ENVIRONMENT = "development"
+ADMIN_EMAIL = "ayoinc@me.com"
+RESEND_API_KEY = "re_gb5V7GVc_6AG9FpvJVFk6q4jdfh7r1yqt"
+DEEPSEEK_API_KEY = "sk-b38df53d479a4035a9d46deb665a9404"
+BRAVE_API_KEY = "BSAfxj3FizWR4egy5Cv61FQNXlEB6Fi"
+
+[[kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "137e4efd34d240a498369c0cc273d5e3"
+
+[[kv_namespaces]]
+binding = "NEWSLETTER_CONTENT"
+id = "137e4efd34d240a498369c0cc273d5e3"
+
+[triggers]
+crons = ["0 9 * * *"]  # Daily at 9 AM UTC

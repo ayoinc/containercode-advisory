@@ -1,0 +1,115 @@
+{
+  "timestamp": "2025-07-13T19:39:31.649Z",
+  "summary": {
+    "totalFilesScanned": 6,
+    "placeholdersFound": 5,
+    "missingImages": 1,
+    "optimizationOpportunities": 0,
+    "suggestions": 0
+  },
+  "findings": {
+    "missingImages": [
+      {
+        "file": "src/components/ui/smart-image.tsx",
+        "type": "component_without_proper_image",
+        "matches": [
+          "<SmartImage\n      category=\"cloud computing\"\n      className={className}\n      {...props}\n    />",
+          "<SmartImage\n      category=\"digital innovation\"\n      className={className}\n      {...props}\n    />",
+          "<SmartImage\n      category=\"business team\"\n      className={className}\n      {...props}\n    />"
+        ],
+        "line": []
+      }
+    ],
+    "placeholders": [
+      {
+        "file": "src/components/examples/image-mapping-demo.tsx",
+        "matches": [
+          "PlaceholderImage",
+          "PlaceholderImage"
+        ],
+        "line": [
+          6,
+          10,
+          6,
+          10
+        ]
+      },
+      {
+        "file": "src/components/ui/pexels-image.tsx",
+        "matches": [
+          "placeholder-tech"
+        ],
+        "line": [
+          29
+        ]
+      },
+      {
+        "file": "src/components/ui/smart-image.tsx",
+        "matches": [
+          "placeholder-tech"
+        ],
+        "line": [
+          152
+        ]
+      },
+      {
+        "file": "src/lib/image-mapper.ts",
+        "matches": [
+          "placeholder-tech",
+          "placeholder-tech",
+          "PlaceholderImage",
+          "placeholder-tech"
+        ],
+        "line": [
+          118,
+          191,
+          290,
+          118,
+          191,
+          290,
+          289,
+          118,
+          191,
+          290
+        ]
+      },
+      {
+        "file": "src/lib/image-mapper.ts",
+        "matches": [
+          "/images/placeholder-tech.jpg",
+          "/images/placeholder-tech.jpg"
+        ],
+        "line": [
+          118,
+          191,
+          118,
+          191
+        ]
+      }
+    ],
+    "opportunities": [],
+    "suggestions": []
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "Replace placeholder images",
+      "description": "Found 5 placeholder images that could be replaced with professional Pexels images",
+      "files": [
+        "src/components/examples/image-mapping-demo.tsx",
+        "src/components/ui/pexels-image.tsx",
+        "src/components/ui/smart-image.tsx",
+        "src/lib/image-mapper.ts",
+        "src/lib/image-mapper.ts"
+      ]
+    },
+    {
+      "priority": "medium",
+      "action": "Add missing images",
+      "description": "1 components are missing proper images",
+      "files": [
+        "src/components/ui/smart-image.tsx"
+      ]
+    }
+  ]
+}

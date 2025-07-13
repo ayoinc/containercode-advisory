@@ -56,41 +56,41 @@ export function CtaSection() {
           </div>
           
           <div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-8 shadow-elevated">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+            <div className="bg-white rounded-lg p-8 shadow-elevated">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Contact Us
               </h3>
               
               <form className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
                   </label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md focus:ring-2 focus:ring-navy-500 dark:focus:ring-aqua-500 focus:border-transparent dark:bg-slate-700 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                     Email Address
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md focus:ring-2 focus:ring-navy-500 dark:focus:ring-aqua-500 focus:border-transparent dark:bg-slate-700 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
                     Service of Interest
                   </label>
                   <select
                     id="service"
-                    className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md focus:ring-2 focus:ring-navy-500 dark:focus:ring-aqua-500 focus:border-transparent dark:bg-slate-700 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   >
                     <option value="">Select a service...</option>
                     <option value="cloud">Cloud Technologies</option>
@@ -103,13 +103,13 @@ export function CtaSection() {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                     Message
                   </label>
                   <textarea
                     id="message"
                     rows={4}
-                    className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md focus:ring-2 focus:ring-navy-500 dark:focus:ring-aqua-500 focus:border-transparent dark:bg-slate-700 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   ></textarea>
                 </div>
                 
