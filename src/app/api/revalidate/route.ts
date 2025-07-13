@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { CACHE_TAGS } from '@/lib/isr';
 
-export const runtime = 'edge';
+// Note: Using Node.js runtime for OpenNext Cloudflare compatibility
 
 // Secret token for authentication
 const REVALIDATION_TOKEN = process.env.REVALIDATION_TOKEN || 'your-secret-token';

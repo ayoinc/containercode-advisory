@@ -1,4 +1,0 @@
-# Configuration for Cloudflare Pages with Next.js support
-name = "containercode-advisory"
-pages_build_output_dir = ".vercel/output/static"
-compatibility_date = "2024-01-01"

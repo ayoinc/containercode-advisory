@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-export const runtime = 'edge';
 
 const subscribeSchema = z.object({
   email: z.string().email('Valid email address required'),

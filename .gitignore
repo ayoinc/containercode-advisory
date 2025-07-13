@@ -57,3 +57,6 @@ next-env.d.ts
 /monitoring-reports/
 /backups/
 performance-report.json
+
+# OpenNext build output
+.open-next

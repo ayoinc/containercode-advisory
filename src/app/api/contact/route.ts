@@ -3,7 +3,6 @@ import { resend } from '@/lib/resend';
 import { emailTemplates } from '@/lib/resend';
 import { contactFormSchema } from '@/lib/validations';
 
-export const runtime = 'edge';
 
 export async function POST(request: NextRequest) {
   console.log('📧 Contact form API called at:', new Date().toISOString());

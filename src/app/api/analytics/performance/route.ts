@@ -5,7 +5,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'edge';
 
 // Analytics data structures
 interface PerformanceDataPoint {

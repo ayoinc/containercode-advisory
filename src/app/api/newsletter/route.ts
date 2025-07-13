@@ -3,7 +3,7 @@ import { resend } from '@/lib/resend';
 import { emailTemplates } from '@/lib/resend';
 import { newsletterSchema } from '@/lib/validations';
 
-export const runtime = 'edge';
+// Note: Using Node.js runtime for OpenNext Cloudflare compatibility
 
 export async function POST(request: NextRequest) {
   try {
