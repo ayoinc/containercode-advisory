@@ -72,7 +72,7 @@ jobs:
       - name: Build application
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://containercode.com
+          NEXT_PUBLIC_SITE_URL: https://containercode.club
           NODE_ENV: production
 
       - name: Cache build artifacts
@@ -198,7 +198,7 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     environment:
       name: staging
-      url: https://staging.containercode.com
+      url: https://staging.containercode.club
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -215,7 +215,7 @@ jobs:
       - name: Build for staging
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://staging.containercode.com
+          NEXT_PUBLIC_SITE_URL: https://staging.containercode.club
           NODE_ENV: production
 
       - name: Deploy to Cloudflare Pages (Staging)
@@ -240,7 +240,7 @@ jobs:
           sleep 30 # Wait for deployment
           npm run test:smoke
         env:
-          PLAYWRIGHT_BASE_URL: https://staging.containercode.com
+          PLAYWRIGHT_BASE_URL: https://staging.containercode.club
 
   # Production Deployment
   deploy-production:
@@ -250,7 +250,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment:
       name: production
-      url: https://containercode.com
+      url: https://containercode.club
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -265,9 +265,9 @@ jobs:
         run: npm ci
 
       - name: Build for production
-        run: npm run build
+        run: npx opennextjs-cloudflare build
         env:
-          NEXT_PUBLIC_SITE_URL: https://containercode.com
+          NEXT_PUBLIC_SITE_URL: https://containercode.club
           NODE_ENV: production
 
       - name: Deploy to Cloudflare Pages (Production)
@@ -276,7 +276,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: containercode-app
-          directory: .next
+          directory: .open-next/assets
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy Cloudflare Workers (Production)
@@ -284,8 +284,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --env production
-          workingDirectory: functions
+          command: deploy
 
       - name: Invalidate CDN cache
         run: |
@@ -299,7 +298,7 @@ jobs:
           sleep 60 # Wait for deployment and cache invalidation
           npm run test:smoke
         env:
-          PLAYWRIGHT_BASE_URL: https://containercode.com
+          PLAYWRIGHT_BASE_URL: https://containercode.club
 
       - name: Notify Slack on success
         if: success()
@@ -330,11 +329,11 @@ jobs:
     steps:
       - name: Health check
         run: |
-          curl -f https://containercode.com/api/health || exit 1
+          curl -f https://containercode.club/api/health || exit 1
 
       - name: Performance monitoring
         run: |
-          curl -f https://containercode.com/api/analytics/performance || echo "Performance endpoint not available"
+          curl -f https://containercode.club/api/analytics/performance || echo "Performance endpoint not available"
 
       - name: Create deployment record
         uses: actions/github-script@v6

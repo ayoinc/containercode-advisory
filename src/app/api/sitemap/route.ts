@@ -4,7 +4,7 @@ import { generateSitemap, generateSitemapIndex } from '@/lib/seo/sitemap-generat
 // Note: This route uses Node.js APIs through Notion client, so it cannot use Edge Runtime
 
 export async function GET(request: NextRequest) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://containercode.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://containercode.club';
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') || 'main';
   
