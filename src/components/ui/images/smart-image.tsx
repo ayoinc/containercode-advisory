@@ -251,19 +251,34 @@ export function SmartImage({
   return (
     <Image
       {...imageProps}
-      width={width || 800}
-      height={height || 600}
+      width={width || 600}  // Reduced from 800 for faster loading
+      height={height || 400} // Reduced from 600 for faster loading
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
     />
   );
 }
 
 // Convenience components for specific use cases
 export function HeroImage({ category, ...props }: Omit<SmartImageProps, 'usage'>) {
-  return <SmartImage {...props} usage="hero" category={category} priority={true} />;
+  return <SmartImage 
+    {...props} 
+    usage="hero" 
+    category={category} 
+    priority={true} 
+    sizes="(max-width: 768px) 100vw, 50vw"
+    quality={80}
+  />;
 }
 
 export function ServiceImage({ category, ...props }: Omit<SmartImageProps, 'usage'>) {
-  return <SmartImage {...props} usage="service" category={category} />;
+  return <SmartImage 
+    {...props} 
+    usage="service" 
+    category={category}
+    sizes="(max-width: 768px) 100vw, 25vw"
+    quality={75}
+  />;
 }
 
 export function TeamImage({ ...props }: Omit<SmartImageProps, 'usage' | 'category'>) {

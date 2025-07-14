@@ -148,13 +148,18 @@ const nextConfig = {
         pathname: '**',
       },
     ],
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    formats: ['image/webp'], // Only WebP for faster processing
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days (shorter for development)
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Advanced image optimization settings
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Optimized for faster development
+    deviceSizes: [640, 828, 1200, 1920], // Reduced sizes for faster processing
+    imageSizes: [16, 32, 48, 64, 96, 128, 256], // Removed larger sizes
+    // Add development optimizations
+    ...(process.env.NODE_ENV === 'development' && {
+      unoptimized: false, // Keep optimization but with simpler settings
+      loader: 'default',
+    }),
   },
 
   // Experimental features for better performance
