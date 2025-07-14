@@ -25,7 +25,7 @@ function cache<T extends (...args: any[]) => Promise<any>>(fn: T): T {
 
 // Initialize official Notion client
 export const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
+  auth: process.env.NOTION_TOKEN,
 });
 
 // Initialize unofficial client for better content parsing
@@ -33,34 +33,64 @@ export const notionAPI = new NotionAPI();
 
 // Cache-optimized database query function
 export const getDatabase = cache(async (databaseId: string) => {
-  const response = await notion.databases.query({
-    database_id: databaseId,
-  });
-  return response.results;
+  try {
+    if (!process.env.NOTION_TOKEN) {
+      console.warn('NOTION_TOKEN not found, returning empty results');
+      return [];
+    }
+    
+    const response = await notion.databases.query({
+      database_id: databaseId,
+    });
+    return response.results;
+  } catch (error) {
+    console.warn(`Failed to query Notion database ${databaseId}:`, error);
+    return [];
+  }
 });
 
 // Cache-optimized page query function
 export const getPage = cache(async (pageId: string) => {
-  const response = await notion.pages.retrieve({ page_id: pageId });
-  return response;
+  try {
+    if (!process.env.NOTION_TOKEN) {
+      console.warn('NOTION_TOKEN not found, returning null');
+      return null;
+    }
+    
+    const response = await notion.pages.retrieve({ page_id: pageId });
+    return response;
+  } catch (error) {
+    console.warn(`Failed to retrieve Notion page ${pageId}:`, error);
+    return null;
+  }
 });
 
 // Cache-optimized block query function
 export const getBlocks = cache(async (blockId: string) => {
-  const blocks = [];
-  let cursor;
-  
-  while (true) {
-    const { results, next_cursor } = await notion.blocks.children.list({
-      block_id: blockId,
-      start_cursor: cursor,
-    });
-    blocks.push(...results);
-    if (!next_cursor) break;
-    cursor = next_cursor;
+  try {
+    if (!process.env.NOTION_TOKEN) {
+      console.warn('NOTION_TOKEN not found, returning empty blocks');
+      return [];
+    }
+    
+    const blocks = [];
+    let cursor;
+    
+    while (true) {
+      const { results, next_cursor } = await notion.blocks.children.list({
+        block_id: blockId,
+        start_cursor: cursor,
+      });
+      blocks.push(...results);
+      if (!next_cursor) break;
+      cursor = next_cursor;
+    }
+    
+    return blocks;
+  } catch (error) {
+    console.warn(`Failed to retrieve Notion blocks for ${blockId}:`, error);
+    return [];
   }
-  
-  return blocks;
 });
 
 // Constants for database IDs
