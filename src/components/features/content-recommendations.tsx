@@ -134,7 +134,7 @@ export const ContentRecommendations: React.FC<ContentRecommendationsProps> = ({
     setIsLoading(true);
 
     // Filter out current content
-    let availableContent = contentDatabase.filter((c) => c.id !== currentContentId);
+    const availableContent = contentDatabase.filter((c) => c.id !== currentContentId);
 
     // Calculate relevance scores based on user behavior
     const scoredContent = availableContent.map((content) => {

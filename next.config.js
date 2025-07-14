@@ -167,9 +167,11 @@ const nextConfig = {
     typedRoutes: true,
     // Advanced experimental features
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@nextui-org/react'],
     // Edge runtime optimization
     serverMinification: true,
+    // Enhanced tree shaking
+    esmExternals: true,
     // Turbopack for faster builds
     turbo: {
       rules: {
@@ -185,12 +187,15 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     // Optimize bundle in production
     if (!dev && !isServer) {
+      // Enhanced code splitting configuration
       config.optimization.splitChunks = {
         chunks: 'all',
         maxAsyncRequests: 30,
-        maxInitialRequests: 30,
-        minSize: 20000,
+        maxInitialRequests: 25, // Reduced from 30
+        minSize: 30000, // Increased from 20000
+        maxSize: 350000, // Add max size limit
         cacheGroups: {
+          // React framework bundle
           framework: {
             chunks: 'all',
             name: 'framework',
@@ -198,48 +203,76 @@ const nextConfig = {
             priority: 40,
             enforce: true,
           },
-          lib: {
-            test: /[\\/]node_modules[\\/]/,
-            name(module) {
-              const match = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-              if (!match) return 'lib'; // Default name if no match
-              const packageName = match[1];
-              return `npm.${packageName.replace('@', '')}`;
-            },
-            priority: 30,
-            minChunks: 1,
-            reuseExistingChunk: true,
-          },
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 20,
-          },
-          // Separate vendor bundles for better caching
+          // Framer Motion (large library)
           'framer-motion': {
             test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
             name: 'framer-motion',
             priority: 35,
             enforce: true,
+            chunks: 'async', // Load framer-motion asynchronously
           },
+          // NextUI components
+          nextui: {
+            test: /[\\/]node_modules[\\/]@nextui-org[\\/]/,
+            name: 'nextui',
+            priority: 35,
+            enforce: true,
+            chunks: 'async',
+          },
+          // Radix UI components
           radix: {
             test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
             name: 'radix-ui',
             priority: 35,
             enforce: true,
           },
+          // Lucide icons
+          lucide: {
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            name: 'lucide-react',
+            priority: 33,
+            enforce: true,
+          },
+          // Other libraries
+          lib: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              const match = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+              if (!match) return 'lib';
+              const packageName = match[1];
+              return `npm.${packageName.replace('@', '')}`;
+            },
+            priority: 30,
+            minChunks: 1,
+            reuseExistingChunk: true,
+            maxSize: 300000, // Split large vendor chunks
+          },
+          // Commons for shared code
+          commons: {
+            name: 'commons',
+            minChunks: 2,
+            priority: 20,
+            maxSize: 250000,
+          },
         },
       };
       
       // Module concatenation for smaller bundles
       config.optimization.concatenateModules = true;
+      
+      // Better tree shaking
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+      
+      // Add dynamic imports analysis
+      config.optimization.mangleExports = 'size';
     }
     
-    // Performance hints
+    // Enhanced performance hints
     config.performance = {
       hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
-      maxEntrypointSize: 512000,
-      maxAssetSize: 512000,
+      maxEntrypointSize: 400000, // Reduced from 512000
+      maxAssetSize: 400000, // Reduced from 512000
     };
     
     return config;

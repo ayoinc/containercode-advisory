@@ -318,7 +318,7 @@ export function simulateColorBlindness(
   const rgb = hexToRgb(color);
   if (!rgb) return color;
 
-  let [r, g, b] = rgb.map(c => c / 255);
+  const [r, g, b] = rgb.map(c => c / 255);
 
   // Simplified color blindness simulation matrices
   const matrices = {
