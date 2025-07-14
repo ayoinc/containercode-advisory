@@ -291,7 +291,7 @@ Ensure the content demonstrates ContainerCode's expertise and provides genuine v
     for (const article of articles) {
       try {
         // Create blog post in Notion database
-        const response = await notion.pages.create({
+        const response = await notion?.pages.create({
           parent: {
             database_id: DATABASE_IDS.BLOG_POSTS
           },
@@ -458,7 +458,7 @@ Ensure the content demonstrates ContainerCode's expertise and provides genuine v
     
     try {
       // Create a newsletter activity log entry
-      await notion.pages.create({
+      await notion?.pages.create({
         parent: {
           database_id: DATABASE_IDS.BLOG_POSTS // Using blog database for now, could create separate activity log
         },

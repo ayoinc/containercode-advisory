@@ -9,6 +9,7 @@ export interface SmartImageProps {
   src?: string;
   alt: string;
   className?: string;
+  style?: React.CSSProperties;
   
   // Smart loading props
   category?: string;

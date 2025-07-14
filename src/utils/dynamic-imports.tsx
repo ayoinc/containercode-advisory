@@ -44,33 +44,33 @@ export const NewsletterForm = dynamic(() => import('@/components/forms/newslette
   ssr: true
 });
 
-export const NewsletterSubscription = dynamic(() => import('@/components/forms/newsletter-subscription'), {
+export const NewsletterSubscription = dynamic(() => import('@/components/forms/newsletter-subscription').then(mod => ({ default: mod.NewsletterSubscription })), {
   loading: () => <LoadingSpinner />,
   ssr: true
 });
 
 // Interactive components that don't need immediate loading
-export const TestimonialSection = dynamic(() => import('@/components/sections/testimonial-section'), {
+export const TestimonialSection = dynamic(() => import('@/components/sections/testimonial-section').then(mod => ({ default: mod.TestimonialSection })), {
   loading: () => <LoadingSpinner />
 });
 
-export const FeatureSection = dynamic(() => import('@/components/sections/feature-section'), {
+export const FeatureSection = dynamic(() => import('@/components/sections/feature-section').then(mod => ({ default: mod.FeatureSection })), {
   loading: () => <LoadingSpinner />
 });
 
-export const ModernServicesOverview = dynamic(() => import('@/components/sections/modern-services-overview'), {
+export const ModernServicesOverview = dynamic(() => import('@/components/sections/modern-services-overview').then(mod => ({ default: mod.ModernServicesOverview })), {
   loading: () => <LoadingSpinner />
 });
 
-export const ProfessionalServicesOverview = dynamic(() => import('@/components/sections/professional-services-overview'), {
+export const ProfessionalServicesOverview = dynamic(() => import('@/components/sections/professional-services-overview').then(mod => ({ default: mod.ProfessionalServicesOverview })), {
   loading: () => <LoadingSpinner />
 });
 
-// Modal components (only load when needed)
-export const Modal = dynamic(() => import('@/components/ui/modal'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-});
+// Modal components (only load when needed) - Comment out missing modal
+// export const Modal = dynamic(() => import('@/components/ui/modal'), {
+//   loading: () => <LoadingSpinner />,
+//   ssr: false
+// });
 
 // Advanced: Intersection Observer for viewport-based loading
 import { useInView } from 'react-intersection-observer';
