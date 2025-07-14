@@ -6,6 +6,7 @@
     "dev": "next dev",
     "dev:performance": "ANALYZE=true next dev",
     "build": "next build",
+    "build:cloudflare": "opennextjs-cloudflare build",
     "build:analyze": "ANALYZE=true next build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
