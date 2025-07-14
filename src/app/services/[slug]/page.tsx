@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { PageHeader } from '@/components/ui/page-header';
 import { Section, Container, Card, CardContent } from '@/components/ui';
 import { CheckCircle, ArrowRight, Star, Clock, Users, Award } from 'lucide-react';
+import { HeroImage } from '@/components/ui/images';
 import Link from 'next/link';
 
 // Service data structure
@@ -309,20 +310,22 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img
-            src={(() => {
-              const serviceImageMap = {
-                'cloud-technologies': '/images/pexels/service-cloud-technologies.jpg',
-                'cybersecurity': '/images/pexels/service-cybersecurity.jpg',
-                'devops': '/images/pexels/service-devops.jpg',
-                'digital-transformation': '/images/pexels/service-digital-transformation.jpg',
-                'software-engineering': '/images/pexels/service-software-engineering.jpg',
-                'it-support': '/images/pexels/service-it-support.jpg'
+          <HeroImage
+            category={(() => {
+              const categoryMap: Record<string, string> = {
+                'cloud-technologies': 'cloud computing',
+                'cybersecurity': 'cybersecurity',
+                'devops': 'software development',
+                'digital-transformation': 'digital innovation',
+                'software-engineering': 'software development',
+                'it-support': 'it support'
               };
-              return serviceImageMap[params.slug as keyof typeof serviceImageMap] || '/images/pexels/hero-cloud-computing.jpg';
+              return categoryMap[params.slug] || 'technology';
             })()}
             alt={`${service.title} hero background`}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-secondary-900/90" />
         </div>

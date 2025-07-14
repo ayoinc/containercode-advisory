@@ -1,270 +1,1537 @@
 {
-  "timestamp": "2025-07-13T19:45:00.133Z",
-  "total_images": 8,
-  "categories": {
-    "hero": [
-      "hero-main.jpg"
-    ],
-    "cloud-technologies": [
-      "service-cloud-technologies.jpg"
-    ],
-    "cybersecurity": [
-      "service-cybersecurity.jpg"
-    ],
-    "devops": [
-      "service-devops.jpg"
-    ],
-    "digital-transformation": [
-      "service-digital-transformation.jpg"
-    ],
-    "software-engineering": [
-      "service-software-engineering.jpg"
-    ],
-    "it-support": [
-      "service-it-support.jpg"
-    ],
-    "team": [
-      "team-professional.jpg"
-    ]
-  },
-  "staticImages": {
-    "placeholders": {
-      "placeholder-tech": {
-        "path": "/images/team-professional.jpg",
-        "alt": "Technology placeholder",
-        "dimensions": {
-          "width": 800,
-          "height": 600
-        },
-        "metadata": {
-          "category": "placeholder"
-        }
-      }
-    },
-    "branding": {
-      "containercode-logo-horizontal": {
-        "path": "/images/containercode-logo-horizontal.svg",
-        "alt": "ContainerCode Advisory horizontal logo",
-        "dimensions": {
-          "width": 300,
-          "height": 80
-        },
-        "metadata": {
-          "category": "branding",
-          "type": "logo"
-        }
-      },
-      "containercode-icon": {
-        "path": "/images/containercode-icon.svg",
-        "alt": "ContainerCode Advisory icon",
-        "dimensions": {
-          "width": 64,
-          "height": 64
-        },
-        "metadata": {
-          "category": "branding",
-          "type": "icon"
-        }
-      }
-    }
-  },
-  "dynamicImages": {
-    "categories": {
-      "hero": {
-        "fallback": "hero-main.jpg"
-      },
-      "services": {
-        "fallback": "service-cloud-technologies.jpg"
-      },
-      "team": {
-        "fallback": "team-professional.jpg"
-      }
-    }
-  },
-  "optimizationSettings": {
-    "sizes": {
-      "card": {
-        "medium": {
-          "width": 400,
-          "height": 300
-        }
-      }
-    }
-  },
-  "locationMapping": {
-    "pages": {
-      "home": {
-        "hero": {
-          "category": "hero"
-        }
-      },
-      "services": {
-        "hero": {
-          "category": "services"
-        }
-      },
-      "team": {
-        "hero": {
-          "category": "team"
-        }
-      }
-    },
-    "components": {
-      "ServiceCard": {
-        "category": "services"
-      },
-      "TeamCard": {
-        "category": "team"
-      }
-    }
+  "metadata": {
+    "generatedAt": "2025-07-14T07:56:56.910Z",
+    "version": "2.0.0",
+    "totalImages": 81
   },
   "images": {
-    "hero-main.jpg": {
-      "filename": "hero-main.jpg",
-      "path": "/images/hero-main.jpg",
-      "alt": "Modern cloud computing infrastructure and data center",
-      "usage": "Main homepage hero section",
-      "category": "hero",
-      "priority": 1,
-      "pexels": {
-        "id": 17489163,
-        "photographer": "panumas nikhomkhai",
-        "photographer_url": "https://www.pexels.com/@cookiecutter",
-        "pexels_url": "https://www.pexels.com/photo/computer-server-in-data-center-room-17489163/",
-        "original_size": {
-          "width": 4256,
-          "height": 2832
-        }
-      }
+    "hero-cloud-computing-1": {
+      "id": "hero-cloud-computing-1",
+      "filename": "hero-cloud-computing-1.jpeg",
+      "localPath": "images/pexels/hero/hero-cloud-computing-1.jpeg",
+      "url": "https://images.pexels.com/photos/17489163/pexels-photo-17489163.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "panumas nikhomkhai",
+      "alt": "Close-up of a modern server unit in a blue-lit data center environment.",
+      "category": "cloud computing",
+      "usage": "hero",
+      "searchTerm": "cloud computing servers",
+      "dimensions": {
+        "width": 4256,
+        "height": 2832
+      },
+      "downloadedAt": "2025-07-14T07:56:57.722Z"
     },
-    "service-cloud-technologies.jpg": {
-      "filename": "service-cloud-technologies.jpg",
-      "path": "/images/service-cloud-technologies.jpg",
-      "alt": "Multi-cloud technology infrastructure",
-      "usage": "services",
-      "category": "cloud-technologies",
-      "priority": 1,
-      "pexels": {
-        "id": 32975434,
-        "photographer": "Jędrzej Koralewski",
-        "photographer_url": "https://www.pexels.com/@jedrzej-koralewski-14125120",
-        "pexels_url": "https://www.pexels.com/photo/wind-turbines-on-a-sunny-spring-day-32975434/",
-        "original_size": {
-          "width": 6000,
-          "height": 3375
-        }
-      }
+    "hero-cloud-computing-2": {
+      "id": "hero-cloud-computing-2",
+      "filename": "hero-cloud-computing-2.jpeg",
+      "localPath": "images/pexels/hero/hero-cloud-computing-2.jpeg",
+      "url": "https://images.pexels.com/photos/19226354/pexels-photo-19226354.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "panumas nikhomkhai",
+      "alt": "A technician inserts a circuit board into a server rack, illustrating technology and connectivity.",
+      "category": "cloud computing",
+      "usage": "hero",
+      "searchTerm": "data center infrastructure",
+      "dimensions": {
+        "width": 4256,
+        "height": 2832
+      },
+      "downloadedAt": "2025-07-14T07:56:58.572Z"
     },
-    "service-cybersecurity.jpg": {
-      "filename": "service-cybersecurity.jpg",
-      "path": "/images/service-cybersecurity.jpg",
-      "alt": "Cybersecurity and data protection",
-      "usage": "services",
+    "hero-cloud-computing-3": {
+      "id": "hero-cloud-computing-3",
+      "filename": "hero-cloud-computing-3.jpeg",
+      "localPath": "images/pexels/hero/hero-cloud-computing-3.jpeg",
+      "url": "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "panumas nikhomkhai",
+      "alt": "Detailed image of a server rack with glowing lights in a modern data center.",
+      "category": "cloud computing",
+      "usage": "hero",
+      "searchTerm": "cloud technology",
+      "dimensions": {
+        "width": 6016,
+        "height": 4016
+      },
+      "downloadedAt": "2025-07-14T07:56:59.111Z"
+    },
+    "hero-cybersecurity-1": {
+      "id": "hero-cybersecurity-1",
+      "filename": "hero-cybersecurity-1.jpeg",
+      "localPath": "images/pexels/hero/hero-cybersecurity-1.jpeg",
+      "url": "https://images.pexels.com/photos/5475786/pexels-photo-5475786.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Antoni Shkraba Studio",
+      "alt": "A tech-savvy individual using a laptop in a neon-lit room, symbolizing cybersecurity.",
       "category": "cybersecurity",
-      "priority": 1,
-      "pexels": {
-        "id": 2882506,
-        "photographer": "Miguel Á. Padriñán",
-        "photographer_url": "https://www.pexels.com/@padrinan",
-        "pexels_url": "https://www.pexels.com/photo/close-up-shot-of-keyboard-buttons-2882506/",
-        "original_size": {
-          "width": 3008,
-          "height": 2000
-        }
-      }
+      "usage": "hero",
+      "searchTerm": "cybersecurity shield",
+      "dimensions": {
+        "width": 4000,
+        "height": 2667
+      },
+      "downloadedAt": "2025-07-14T07:57:00.821Z"
     },
-    "service-devops.jpg": {
-      "filename": "service-devops.jpg",
-      "path": "/images/service-devops.jpg",
-      "alt": "DevOps and software development automation",
-      "usage": "services",
-      "category": "devops",
-      "priority": 1,
-      "pexels": {
-        "id": 11035393,
-        "photographer": "RealToughCandy.com",
-        "photographer_url": "https://www.pexels.com/@realtoughcandy",
-        "pexels_url": "https://www.pexels.com/photo/person-holding-a-sticker-11035393/",
-        "original_size": {
-          "width": 6000,
-          "height": 4000
-        }
-      }
+    "hero-cybersecurity-2": {
+      "id": "hero-cybersecurity-2",
+      "filename": "hero-cybersecurity-2.jpeg",
+      "localPath": "images/pexels/hero/hero-cybersecurity-2.jpeg",
+      "url": "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Scott Webb",
+      "alt": "Two surveillance cameras mounted on a concrete wall, highlighting security technology.",
+      "category": "cybersecurity",
+      "usage": "hero",
+      "searchTerm": "data protection security",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:01.360Z"
     },
-    "service-digital-transformation.jpg": {
-      "filename": "service-digital-transformation.jpg",
-      "path": "/images/service-digital-transformation.jpg",
-      "alt": "Digital transformation and business innovation",
-      "usage": "services",
-      "category": "digital-transformation",
-      "priority": 1,
-      "pexels": {
-        "id": 1181271,
-        "photographer": "Christina Morillo",
-        "photographer_url": "https://www.pexels.com/@divinetechygirl",
-        "pexels_url": "https://www.pexels.com/photo/black-and-gray-laptop-computer-turned-on-doing-computer-codes-1181271/",
-        "original_size": {
-          "width": 6016,
-          "height": 4016
-        }
-      }
+    "hero-cybersecurity-3": {
+      "id": "hero-cybersecurity-3",
+      "filename": "hero-cybersecurity-3.jpeg",
+      "localPath": "images/pexels/hero/hero-cybersecurity-3.jpeg",
+      "url": "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Pixabay",
+      "alt": "Close-up view of a mouse cursor over digital security text on display.",
+      "category": "cybersecurity",
+      "usage": "hero",
+      "searchTerm": "network security",
+      "dimensions": {
+        "width": 4576,
+        "height": 3051
+      },
+      "downloadedAt": "2025-07-14T07:57:01.808Z"
     },
-    "service-software-engineering.jpg": {
-      "filename": "service-software-engineering.jpg",
-      "path": "/images/service-software-engineering.jpg",
-      "alt": "Software engineering and programming",
-      "usage": "services",
-      "category": "software-engineering",
-      "priority": 1,
-      "pexels": {
-        "id": 3861972,
-        "photographer": "ThisIsEngineering",
-        "photographer_url": "https://www.pexels.com/@thisisengineering",
-        "pexels_url": "https://www.pexels.com/photo/female-software-engineer-coding-on-computer-3861972/",
-        "original_size": {
-          "width": 7890,
-          "height": 5263
-        }
-      }
+    "hero-devops-1": {
+      "id": "hero-devops-1",
+      "filename": "hero-devops-1.jpeg",
+      "localPath": "images/pexels/hero/hero-devops-1.jpeg",
+      "url": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "ThisIsEngineering",
+      "alt": "A woman with digital code projections on her face, representing technology and future concepts.",
+      "category": "software development",
+      "usage": "hero",
+      "searchTerm": "software development coding",
+      "dimensions": {
+        "width": 7330,
+        "height": 4889
+      },
+      "downloadedAt": "2025-07-14T07:57:03.225Z"
     },
-    "service-it-support.jpg": {
-      "filename": "service-it-support.jpg",
-      "path": "/images/service-it-support.jpg",
-      "alt": "IT support and managed services",
-      "usage": "services",
-      "category": "it-support",
-      "priority": 1,
-      "pexels": {
-        "id": 7709208,
-        "photographer": "MART  PRODUCTION",
-        "photographer_url": "https://www.pexels.com/@mart-production",
-        "pexels_url": "https://www.pexels.com/photo/photo-of-a-woman-in-a-white-shirt-holding-the-microphone-on-her-headset-7709208/",
-        "original_size": {
-          "width": 6000,
-          "height": 4000
-        }
-      }
+    "hero-devops-2": {
+      "id": "hero-devops-2",
+      "filename": "hero-devops-2.jpeg",
+      "localPath": "images/pexels/hero/hero-devops-2.jpeg",
+      "url": "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Markus Spiske",
+      "alt": "Abstract green matrix code background with binary style.",
+      "category": "software development",
+      "usage": "hero",
+      "searchTerm": "programming computer",
+      "dimensions": {
+        "width": 5760,
+        "height": 3840
+      },
+      "downloadedAt": "2025-07-14T07:57:03.909Z"
     },
-    "team-professional.jpg": {
-      "filename": "team-professional.jpg",
-      "path": "/images/team-professional.jpg",
-      "alt": "Professional business team collaboration",
-      "usage": "Team section and about page",
-      "category": "team",
-      "priority": 2,
-      "pexels": {
-        "id": 3184465,
-        "photographer": "fauxels",
-        "photographer_url": "https://www.pexels.com/@fauxels",
-        "pexels_url": "https://www.pexels.com/photo/man-and-woman-near-table-3184465/",
-        "original_size": {
-          "width": 6000,
-          "height": 4000
-        }
-      }
+    "hero-devops-3": {
+      "id": "hero-devops-3",
+      "filename": "hero-devops-3.jpeg",
+      "localPath": "images/pexels/hero/hero-devops-3.jpeg",
+      "url": "https://images.pexels.com/photos/6804605/pexels-photo-6804605.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "cottonbro studio",
+      "alt": "Discover a modern office workspace with computers, chairs, and natural light from large windows.",
+      "category": "software development",
+      "usage": "hero",
+      "searchTerm": "developer workspace",
+      "dimensions": {
+        "width": 6514,
+        "height": 4343
+      },
+      "downloadedAt": "2025-07-14T07:57:04.599Z"
+    },
+    "hero-innovation-1": {
+      "id": "hero-innovation-1",
+      "filename": "hero-innovation-1.jpeg",
+      "localPath": "images/pexels/hero/hero-innovation-1.jpeg",
+      "url": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "ThisIsEngineering",
+      "alt": "A woman with digital code projections on her face, representing technology and future concepts.",
+      "category": "digital innovation",
+      "usage": "hero",
+      "searchTerm": "digital transformation technology",
+      "dimensions": {
+        "width": 7330,
+        "height": 4889
+      },
+      "downloadedAt": "2025-07-14T07:57:06.007Z"
+    },
+    "hero-innovation-2": {
+      "id": "hero-innovation-2",
+      "filename": "hero-innovation-2.jpeg",
+      "localPath": "images/pexels/hero/hero-innovation-2.jpeg",
+      "url": "https://images.pexels.com/photos/8849295/pexels-photo-8849295.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Tara Winstead",
+      "alt": "Abstract illustration of AI with silhouette head full of eyes, symbolizing observation and technology.",
+      "category": "digital innovation",
+      "usage": "hero",
+      "searchTerm": "innovation artificial intelligence",
+      "dimensions": {
+        "width": 6720,
+        "height": 4480
+      },
+      "downloadedAt": "2025-07-14T07:57:06.860Z"
+    },
+    "hero-innovation-3": {
+      "id": "hero-innovation-3",
+      "filename": "hero-innovation-3.jpeg",
+      "localPath": "images/pexels/hero/hero-innovation-3.jpeg",
+      "url": "https://images.pexels.com/photos/3183164/pexels-photo-3183164.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "African American woman engaging with VR headset in indoor setting.",
+      "category": "digital innovation",
+      "usage": "hero",
+      "searchTerm": "future technology",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:07.445Z"
+    },
+    "hero-team-1": {
+      "id": "hero-team-1",
+      "filename": "hero-team-1.jpeg",
+      "localPath": "images/pexels/hero/hero-team-1.jpeg",
+      "url": "https://images.pexels.com/photos/7735623/pexels-photo-7735623.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Mikhail Nilov",
+      "alt": "Three adults discussing business inside, focused on cooperation and strategy.",
+      "category": "business team",
+      "usage": "hero",
+      "searchTerm": "business team meeting",
+      "dimensions": {
+        "width": 3827,
+        "height": 2480
+      },
+      "downloadedAt": "2025-07-14T07:57:09.177Z"
+    },
+    "hero-team-2": {
+      "id": "hero-team-2",
+      "filename": "hero-team-2.jpeg",
+      "localPath": "images/pexels/hero/hero-team-2.jpeg",
+      "url": "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Anamul Rezwan",
+      "alt": "Two engineers in safety helmets reviewing construction plans at a worksite.",
+      "category": "business team",
+      "usage": "hero",
+      "searchTerm": "professional collaboration",
+      "dimensions": {
+        "width": 5015,
+        "height": 3343
+      },
+      "downloadedAt": "2025-07-14T07:57:10.196Z"
+    },
+    "hero-team-3": {
+      "id": "hero-team-3",
+      "filename": "hero-team-3.jpeg",
+      "localPath": "images/pexels/hero/hero-team-3.jpeg",
+      "url": "https://images.pexels.com/photos/5716001/pexels-photo-5716001.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Artem Podrez",
+      "alt": "Business professionals discussing data charts and graphs in a modern office setting.",
+      "category": "business team",
+      "usage": "hero",
+      "searchTerm": "consulting teamwork",
+      "dimensions": {
+        "width": 6144,
+        "height": 3456
+      },
+      "downloadedAt": "2025-07-14T07:57:10.778Z"
+    },
+    "service-cloud-technologies-1": {
+      "id": "service-cloud-technologies-1",
+      "filename": "service-cloud-technologies-1.jpeg",
+      "localPath": "images/pexels/service/service-cloud-technologies-1.jpeg",
+      "url": "https://images.pexels.com/photos/17489163/pexels-photo-17489163.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "panumas nikhomkhai",
+      "alt": "Close-up of a modern server unit in a blue-lit data center environment.",
+      "category": "cloud computing",
+      "usage": "service",
+      "searchTerm": "cloud server infrastructure",
+      "dimensions": {
+        "width": 4256,
+        "height": 2832
+      },
+      "downloadedAt": "2025-07-14T07:57:12.206Z"
+    },
+    "service-cloud-technologies-2": {
+      "id": "service-cloud-technologies-2",
+      "filename": "service-cloud-technologies-2.jpeg",
+      "localPath": "images/pexels/service/service-cloud-technologies-2.jpeg",
+      "url": "https://images.pexels.com/photos/17489156/pexels-photo-17489156.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "panumas nikhomkhai",
+      "alt": "Focused detail of a modern server rack with blue LED indicators in a data center.",
+      "category": "cloud computing",
+      "usage": "service",
+      "searchTerm": "cloud server infrastructure",
+      "dimensions": {
+        "width": 6016,
+        "height": 4016
+      },
+      "downloadedAt": "2025-07-14T07:57:12.261Z"
+    },
+    "service-cloud-technologies-3": {
+      "id": "service-cloud-technologies-3",
+      "filename": "service-cloud-technologies-3.jpeg",
+      "localPath": "images/pexels/service/service-cloud-technologies-3.jpeg",
+      "url": "https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Roberto Nickson",
+      "alt": "Stunning sunset view with dramatic clouds over the ocean in Maldives, perfect for travel inspiration.",
+      "category": "cloud computing",
+      "usage": "service",
+      "searchTerm": "aws azure cloud",
+      "dimensions": {
+        "width": 5444,
+        "height": 3629
+      },
+      "downloadedAt": "2025-07-14T07:57:13.129Z"
+    },
+    "service-cloud-technologies-4": {
+      "id": "service-cloud-technologies-4",
+      "filename": "service-cloud-technologies-4.jpeg",
+      "localPath": "images/pexels/service/service-cloud-technologies-4.jpeg",
+      "url": "https://images.pexels.com/photos/55787/pexels-photo-55787.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Donald Tong",
+      "alt": "Breathtaking view of clouds with vibrant blue sky above, offering a dreamy skyscape",
+      "category": "cloud computing",
+      "usage": "service",
+      "searchTerm": "aws azure cloud",
+      "dimensions": {
+        "width": 6480,
+        "height": 4320
+      },
+      "downloadedAt": "2025-07-14T07:57:13.185Z"
+    },
+    "service-cloud-technologies-5": {
+      "id": "service-cloud-technologies-5",
+      "filename": "service-cloud-technologies-5.jpeg",
+      "localPath": "images/pexels/service/service-cloud-technologies-5.jpeg",
+      "url": "https://images.pexels.com/photos/32977745/pexels-photo-32977745.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Veronika Andrews",
+      "alt": "Bald Ealge",
+      "category": "cloud computing",
+      "usage": "service",
+      "searchTerm": "cloud migration",
+      "dimensions": {
+        "width": 7025,
+        "height": 4595
+      },
+      "downloadedAt": "2025-07-14T07:57:13.632Z"
+    },
+    "service-cybersecurity-1": {
+      "id": "service-cybersecurity-1",
+      "filename": "service-cybersecurity-1.jpeg",
+      "localPath": "images/pexels/service/service-cybersecurity-1.jpeg",
+      "url": "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Pixabay",
+      "alt": "Close-up view of a mouse cursor over digital security text on display.",
+      "category": "cybersecurity",
+      "usage": "service",
+      "searchTerm": "cybersecurity protection",
+      "dimensions": {
+        "width": 4576,
+        "height": 3051
+      },
+      "downloadedAt": "2025-07-14T07:57:15.141Z"
+    },
+    "service-cybersecurity-2": {
+      "id": "service-cybersecurity-2",
+      "filename": "service-cybersecurity-2.jpeg",
+      "localPath": "images/pexels/service/service-cybersecurity-2.jpeg",
+      "url": "https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Pixabay",
+      "alt": "Chain-locked book, phone, and laptop symbolizing digital and intellectual security.",
+      "category": "cybersecurity",
+      "usage": "service",
+      "searchTerm": "cybersecurity protection",
+      "dimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "downloadedAt": "2025-07-14T07:57:15.203Z"
+    },
+    "service-cybersecurity-3": {
+      "id": "service-cybersecurity-3",
+      "filename": "service-cybersecurity-3.jpeg",
+      "localPath": "images/pexels/service/service-cybersecurity-3.jpeg",
+      "url": "https://images.pexels.com/photos/7715105/pexels-photo-7715105.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Kindel Media",
+      "alt": "Close-up of a police officer writing a ticket by a car window. Law enforcement scene.",
+      "category": "cybersecurity",
+      "usage": "service",
+      "searchTerm": "security compliance",
+      "dimensions": {
+        "width": 5184,
+        "height": 3888
+      },
+      "downloadedAt": "2025-07-14T07:57:15.544Z"
+    },
+    "service-cybersecurity-4": {
+      "id": "service-cybersecurity-4",
+      "filename": "service-cybersecurity-4.jpeg",
+      "localPath": "images/pexels/service/service-cybersecurity-4.jpeg",
+      "url": "https://images.pexels.com/photos/7715199/pexels-photo-7715199.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Kindel Media",
+      "alt": "Police officers searching a suspect by a car for public safety and law enforcement.",
+      "category": "cybersecurity",
+      "usage": "service",
+      "searchTerm": "security compliance",
+      "dimensions": {
+        "width": 6545,
+        "height": 4363
+      },
+      "downloadedAt": "2025-07-14T07:57:15.852Z"
+    },
+    "service-cybersecurity-5": {
+      "id": "service-cybersecurity-5",
+      "filename": "service-cybersecurity-5.jpeg",
+      "localPath": "images/pexels/service/service-cybersecurity-5.jpeg",
+      "url": "https://images.pexels.com/photos/5475758/pexels-photo-5475758.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Antoni Shkraba Studio",
+      "alt": "Hands typing on a laptop with coding, phone on desk, symbolizing cybersecurity.",
+      "category": "cybersecurity",
+      "usage": "service",
+      "searchTerm": "threat detection",
+      "dimensions": {
+        "width": 4000,
+        "height": 2667
+      },
+      "downloadedAt": "2025-07-14T07:57:16.555Z"
+    },
+    "service-devops-1": {
+      "id": "service-devops-1",
+      "filename": "service-devops-1.jpeg",
+      "localPath": "images/pexels/service/service-devops-1.jpeg",
+      "url": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "ThisIsEngineering",
+      "alt": "A woman with digital code projections on her face, representing technology and future concepts.",
+      "category": "devops automation",
+      "usage": "service",
+      "searchTerm": "devops pipeline",
+      "dimensions": {
+        "width": 7330,
+        "height": 4889
+      },
+      "downloadedAt": "2025-07-14T07:57:18.087Z"
+    },
+    "service-devops-2": {
+      "id": "service-devops-2",
+      "filename": "service-devops-2.jpeg",
+      "localPath": "images/pexels/service/service-devops-2.jpeg",
+      "url": "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Kevin Ku",
+      "alt": "Eyeglasses reflecting computer code on a monitor, ideal for technology and programming themes.",
+      "category": "devops automation",
+      "usage": "service",
+      "searchTerm": "devops pipeline",
+      "dimensions": {
+        "width": 3353,
+        "height": 2514
+      },
+      "downloadedAt": "2025-07-14T07:57:18.142Z"
+    },
+    "service-devops-3": {
+      "id": "service-devops-3",
+      "filename": "service-devops-3.jpeg",
+      "localPath": "images/pexels/service/service-devops-3.jpeg",
+      "url": "https://images.pexels.com/photos/32938890/pexels-photo-32938890.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Dan Aksel Jacobsen",
+      "alt": "Open Bible with smartphone displaying scripture and hand holding marker.",
+      "category": "devops automation",
+      "usage": "service",
+      "searchTerm": "continuous integration",
+      "dimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "downloadedAt": "2025-07-14T07:57:18.506Z"
+    },
+    "service-devops-4": {
+      "id": "service-devops-4",
+      "filename": "service-devops-4.jpeg",
+      "localPath": "images/pexels/service/service-devops-4.jpeg",
+      "url": "https://images.pexels.com/photos/3184424/pexels-photo-3184424.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "A group of happy, diverse colleagues celebrating teamwork and cooperation with a group high five indoors.",
+      "category": "devops automation",
+      "usage": "service",
+      "searchTerm": "continuous integration",
+      "dimensions": {
+        "width": 6000,
+        "height": 2595
+      },
+      "downloadedAt": "2025-07-14T07:57:18.564Z"
+    },
+    "service-devops-5": {
+      "id": "service-devops-5",
+      "filename": "service-devops-5.jpeg",
+      "localPath": "images/pexels/service/service-devops-5.jpeg",
+      "url": "https://images.pexels.com/photos/3862627/pexels-photo-3862627.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "ThisIsEngineering",
+      "alt": "Engineers collaborating on a car project in a modern automotive workshop using advanced technology.",
+      "category": "devops automation",
+      "usage": "service",
+      "searchTerm": "automation development",
+      "dimensions": {
+        "width": 7937,
+        "height": 5294
+      },
+      "downloadedAt": "2025-07-14T07:57:18.925Z"
+    },
+    "service-digital-transformation-1": {
+      "id": "service-digital-transformation-1",
+      "filename": "service-digital-transformation-1.jpeg",
+      "localPath": "images/pexels/service/service-digital-transformation-1.jpeg",
+      "url": "https://images.pexels.com/photos/3782235/pexels-photo-3782235.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Polina Zimmerman",
+      "alt": "A corkboard with motivational sticky notes, ideal for planning and creativity.",
+      "category": "digital transformation",
+      "usage": "service",
+      "searchTerm": "digital transformation business",
+      "dimensions": {
+        "width": 5760,
+        "height": 3840
+      },
+      "downloadedAt": "2025-07-14T07:57:20.313Z"
+    },
+    "service-digital-transformation-2": {
+      "id": "service-digital-transformation-2",
+      "filename": "service-digital-transformation-2.jpeg",
+      "localPath": "images/pexels/service/service-digital-transformation-2.jpeg",
+      "url": "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Christina Morillo",
+      "alt": "Laptop displaying code with reflection, perfect for tech and programming themes.",
+      "category": "digital transformation",
+      "usage": "service",
+      "searchTerm": "digital transformation business",
+      "dimensions": {
+        "width": 6016,
+        "height": 4016
+      },
+      "downloadedAt": "2025-07-14T07:57:20.379Z"
+    },
+    "service-digital-transformation-3": {
+      "id": "service-digital-transformation-3",
+      "filename": "service-digital-transformation-3.jpeg",
+      "localPath": "images/pexels/service/service-digital-transformation-3.jpeg",
+      "url": "https://images.pexels.com/photos/4314674/pexels-photo-4314674.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Kureng Workx",
+      "alt": "Group of African children in a Tanzanian village using a laptop outdoors, engaged in learning.",
+      "category": "digital transformation",
+      "usage": "service",
+      "searchTerm": "technology modernization",
+      "dimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "downloadedAt": "2025-07-14T07:57:20.796Z"
+    },
+    "service-digital-transformation-4": {
+      "id": "service-digital-transformation-4",
+      "filename": "service-digital-transformation-4.jpeg",
+      "localPath": "images/pexels/service/service-digital-transformation-4.jpeg",
+      "url": "https://images.pexels.com/photos/596940/pexels-photo-596940.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Kaique Rocha",
+      "alt": "A hand holding a smartphone capturing reflections of sleek modern architecture.",
+      "category": "digital transformation",
+      "usage": "service",
+      "searchTerm": "technology modernization",
+      "dimensions": {
+        "width": 5902,
+        "height": 3935
+      },
+      "downloadedAt": "2025-07-14T07:57:21.239Z"
+    },
+    "service-digital-transformation-5": {
+      "id": "service-digital-transformation-5",
+      "filename": "service-digital-transformation-5.jpeg",
+      "localPath": "images/pexels/service/service-digital-transformation-5.jpeg",
+      "url": "https://images.pexels.com/photos/32977239/pexels-photo-32977239.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "Smartwatch with fitness data, smartphone, and health ring on a gray surface.",
+      "category": "digital transformation",
+      "usage": "service",
+      "searchTerm": "digital innovation",
+      "dimensions": {
+        "width": 4096,
+        "height": 3072
+      },
+      "downloadedAt": "2025-07-14T07:57:21.587Z"
+    },
+    "service-software-engineering-1": {
+      "id": "service-software-engineering-1",
+      "filename": "service-software-engineering-1.jpeg",
+      "localPath": "images/pexels/service/service-software-engineering-1.jpeg",
+      "url": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "luis gomes",
+      "alt": "Close-up of a computer screen displaying programming code in a dark environment.",
+      "category": "software engineering",
+      "usage": "service",
+      "searchTerm": "software engineering",
+      "dimensions": {
+        "width": 4288,
+        "height": 2848
+      },
+      "downloadedAt": "2025-07-14T07:57:23.281Z"
+    },
+    "service-software-engineering-2": {
+      "id": "service-software-engineering-2",
+      "filename": "service-software-engineering-2.jpeg",
+      "localPath": "images/pexels/service/service-software-engineering-2.jpeg",
+      "url": "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Christina Morillo",
+      "alt": "Developer working remotely, coding on a laptop with phone in hand, showcasing modern work culture.",
+      "category": "software engineering",
+      "usage": "service",
+      "searchTerm": "software engineering",
+      "dimensions": {
+        "width": 6016,
+        "height": 4016
+      },
+      "downloadedAt": "2025-07-14T07:57:23.841Z"
+    },
+    "service-software-engineering-3": {
+      "id": "service-software-engineering-3",
+      "filename": "service-software-engineering-3.jpeg",
+      "localPath": "images/pexels/service/service-software-engineering-3.jpeg",
+      "url": "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Christina Morillo",
+      "alt": "Developer working remotely, coding on a laptop with phone in hand, showcasing modern work culture.",
+      "category": "software engineering",
+      "usage": "service",
+      "searchTerm": "application development",
+      "dimensions": {
+        "width": 6016,
+        "height": 4016
+      },
+      "downloadedAt": "2025-07-14T07:57:24.332Z"
+    },
+    "service-software-engineering-4": {
+      "id": "service-software-engineering-4",
+      "filename": "service-software-engineering-4.jpeg",
+      "localPath": "images/pexels/service/service-software-engineering-4.jpeg",
+      "url": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "luis gomes",
+      "alt": "Close-up of a computer screen displaying programming code in a dark environment.",
+      "category": "software engineering",
+      "usage": "service",
+      "searchTerm": "application development",
+      "dimensions": {
+        "width": 4288,
+        "height": 2848
+      },
+      "downloadedAt": "2025-07-14T07:57:24.375Z"
+    },
+    "service-software-engineering-5": {
+      "id": "service-software-engineering-5",
+      "filename": "service-software-engineering-5.jpeg",
+      "localPath": "images/pexels/service/service-software-engineering-5.jpeg",
+      "url": "https://images.pexels.com/photos/7681302/pexels-photo-7681302.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Mikhail Nilov",
+      "alt": "A man wearing headphones works at a laptop in a modern office setting.",
+      "category": "software engineering",
+      "usage": "service",
+      "searchTerm": "custom software",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:25.360Z"
+    },
+    "service-it-support-1": {
+      "id": "service-it-support-1",
+      "filename": "service-it-support-1.jpeg",
+      "localPath": "images/pexels/service/service-it-support-1.jpeg",
+      "url": "https://images.pexels.com/photos/4145355/pexels-photo-4145355.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Julia M Cameron",
+      "alt": "A mother and her child smiling while using a computer at home, focused on learning.",
+      "category": "it support",
+      "usage": "service",
+      "searchTerm": "it support help desk",
+      "dimensions": {
+        "width": 7360,
+        "height": 4568
+      },
+      "downloadedAt": "2025-07-14T07:57:26.850Z"
+    },
+    "service-it-support-2": {
+      "id": "service-it-support-2",
+      "filename": "service-it-support-2.jpeg",
+      "localPath": "images/pexels/service/service-it-support-2.jpeg",
+      "url": "https://images.pexels.com/photos/7682340/pexels-photo-7682340.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Mikhail Nilov",
+      "alt": "Customer service agents efficiently handle calls using laptops and headsets in a modern office.",
+      "category": "it support",
+      "usage": "service",
+      "searchTerm": "it support help desk",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:27.408Z"
+    },
+    "service-it-support-3": {
+      "id": "service-it-support-3",
+      "filename": "service-it-support-3.jpeg",
+      "localPath": "images/pexels/service/service-it-support-3.jpeg",
+      "url": "https://images.pexels.com/photos/845451/pexels-photo-845451.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrea Piacquadio",
+      "alt": "A businessman sits at a desk using multiple computers and a headset in a well-lit modern office.",
+      "category": "it support",
+      "usage": "service",
+      "searchTerm": "technical support",
+      "dimensions": {
+        "width": 6100,
+        "height": 4067
+      },
+      "downloadedAt": "2025-07-14T07:57:27.981Z"
+    },
+    "service-it-support-4": {
+      "id": "service-it-support-4",
+      "filename": "service-it-support-4.jpeg",
+      "localPath": "images/pexels/service/service-it-support-4.jpeg",
+      "url": "https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Dan Cristian Pădureț",
+      "alt": "Exploded view of smartphone components showcasing intricate technological design.",
+      "category": "it support",
+      "usage": "service",
+      "searchTerm": "technical support",
+      "dimensions": {
+        "width": 4866,
+        "height": 3647
+      },
+      "downloadedAt": "2025-07-14T07:57:28.508Z"
+    },
+    "service-it-support-5": {
+      "id": "service-it-support-5",
+      "filename": "service-it-support-5.jpeg",
+      "localPath": "images/pexels/service/service-it-support-5.jpeg",
+      "url": "https://images.pexels.com/photos/32923533/pexels-photo-32923533.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Marta Branco",
+      "alt": "it support by Marta Branco",
+      "category": "it support",
+      "usage": "service",
+      "searchTerm": "it infrastructure",
+      "dimensions": {
+        "width": 6960,
+        "height": 4640
+      },
+      "downloadedAt": "2025-07-14T07:57:29.356Z"
+    },
+    "team-professional-1": {
+      "id": "team-professional-1",
+      "filename": "team-professional-1.jpeg",
+      "localPath": "images/pexels/team/team-professional-1.jpeg",
+      "url": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Close-up of professionals shaking hands over coffee in a modern office.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "professional business team",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:30.766Z"
+    },
+    "team-professional-2": {
+      "id": "team-professional-2",
+      "filename": "team-professional-2.jpeg",
+      "localPath": "images/pexels/team/team-professional-2.jpeg",
+      "url": "https://images.pexels.com/photos/5716001/pexels-photo-5716001.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Artem Podrez",
+      "alt": "Business professionals discussing data charts and graphs in a modern office setting.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "professional business team",
+      "dimensions": {
+        "width": 6144,
+        "height": 3456
+      },
+      "downloadedAt": "2025-07-14T07:57:30.825Z"
+    },
+    "team-professional-3": {
+      "id": "team-professional-3",
+      "filename": "team-professional-3.jpeg",
+      "localPath": "images/pexels/team/team-professional-3.jpeg",
+      "url": "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Diverse team collaborating in a meeting, showcasing teamwork and cooperation in a modern workplace.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "professional business team",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:31.053Z"
+    },
+    "team-professional-4": {
+      "id": "team-professional-4",
+      "filename": "team-professional-4.jpeg",
+      "localPath": "images/pexels/team/team-professional-4.jpeg",
+      "url": "https://images.pexels.com/photos/7433822/pexels-photo-7433822.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Vlada Karpovich",
+      "alt": "A diverse group of business professionals engaged in a strategic meeting.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "diverse team meeting",
+      "dimensions": {
+        "width": 6255,
+        "height": 4170
+      },
+      "downloadedAt": "2025-07-14T07:57:31.422Z"
+    },
+    "team-professional-5": {
+      "id": "team-professional-5",
+      "filename": "team-professional-5.jpeg",
+      "localPath": "images/pexels/team/team-professional-5.jpeg",
+      "url": "https://images.pexels.com/photos/3811082/pexels-photo-3811082.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "RF._.studio _",
+      "alt": "Diverse team collaborates on a project using digital and paper resources in a bright office.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "diverse team meeting",
+      "dimensions": {
+        "width": 3627,
+        "height": 2591
+      },
+      "downloadedAt": "2025-07-14T07:57:32.019Z"
+    },
+    "team-professional-6": {
+      "id": "team-professional-6",
+      "filename": "team-professional-6.jpeg",
+      "localPath": "images/pexels/team/team-professional-6.jpeg",
+      "url": "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Team collaboration in a modern office setting with computers and diverse employees working together.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "diverse team meeting",
+      "dimensions": {
+        "width": 6000,
+        "height": 4004
+      },
+      "downloadedAt": "2025-07-14T07:57:32.082Z"
+    },
+    "team-professional-7": {
+      "id": "team-professional-7",
+      "filename": "team-professional-7.jpeg",
+      "localPath": "images/pexels/team/team-professional-7.jpeg",
+      "url": "https://images.pexels.com/photos/7433822/pexels-photo-7433822.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Vlada Karpovich",
+      "alt": "A diverse group of business professionals engaged in a strategic meeting.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "consulting professionals",
+      "dimensions": {
+        "width": 6255,
+        "height": 4170
+      },
+      "downloadedAt": "2025-07-14T07:57:32.463Z"
+    },
+    "team-professional-8": {
+      "id": "team-professional-8",
+      "filename": "team-professional-8.jpeg",
+      "localPath": "images/pexels/team/team-professional-8.jpeg",
+      "url": "https://images.pexels.com/photos/2977565/pexels-photo-2977565.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "The Coach Space",
+      "alt": "Two business professionals engaging in a team meeting in a modern London office with a large window view.",
+      "category": "professional team",
+      "usage": "team",
+      "searchTerm": "consulting professionals",
+      "dimensions": {
+        "width": 5970,
+        "height": 3980
+      },
+      "downloadedAt": "2025-07-14T07:57:32.528Z"
+    },
+    "team-collaboration-1": {
+      "id": "team-collaboration-1",
+      "filename": "team-collaboration-1.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-1.jpeg",
+      "url": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Close-up of professionals shaking hands over coffee in a modern office.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "team collaboration workspace",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:33.965Z"
+    },
+    "team-collaboration-2": {
+      "id": "team-collaboration-2",
+      "filename": "team-collaboration-2.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-2.jpeg",
+      "url": "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Top view of a diverse team collaborating in an office setting with laptops and tablets, promoting cooperation.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "team collaboration workspace",
+      "dimensions": {
+        "width": 6000,
+        "height": 4004
+      },
+      "downloadedAt": "2025-07-14T07:57:34.128Z"
+    },
+    "team-collaboration-3": {
+      "id": "team-collaboration-3",
+      "filename": "team-collaboration-3.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-3.jpeg",
+      "url": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Diverse professionals unite for teamwork around a wooden table with laptops and documents.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "team collaboration workspace",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:34.731Z"
+    },
+    "team-collaboration-4": {
+      "id": "team-collaboration-4",
+      "filename": "team-collaboration-4.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-4.jpeg",
+      "url": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Close-up of professionals shaking hands over coffee in a modern office.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "business meeting discussion",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:35.164Z"
+    },
+    "team-collaboration-5": {
+      "id": "team-collaboration-5",
+      "filename": "team-collaboration-5.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-5.jpeg",
+      "url": "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Top view of a diverse team collaborating in an office setting with laptops and tablets, promoting cooperation.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "business meeting discussion",
+      "dimensions": {
+        "width": 6000,
+        "height": 4004
+      },
+      "downloadedAt": "2025-07-14T07:57:35.287Z"
+    },
+    "team-collaboration-6": {
+      "id": "team-collaboration-6",
+      "filename": "team-collaboration-6.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-6.jpeg",
+      "url": "https://images.pexels.com/photos/5716001/pexels-photo-5716001.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Artem Podrez",
+      "alt": "Business professionals discussing data charts and graphs in a modern office setting.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "business meeting discussion",
+      "dimensions": {
+        "width": 6144,
+        "height": 3456
+      },
+      "downloadedAt": "2025-07-14T07:57:35.400Z"
+    },
+    "team-collaboration-7": {
+      "id": "team-collaboration-7",
+      "filename": "team-collaboration-7.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-7.jpeg",
+      "url": "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Multicultural team engaged in a collaborative office meeting, discussing ideas around a table with laptops.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "professional teamwork",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:36.503Z"
+    },
+    "team-collaboration-8": {
+      "id": "team-collaboration-8",
+      "filename": "team-collaboration-8.jpeg",
+      "localPath": "images/pexels/team/team-collaboration-8.jpeg",
+      "url": "https://images.pexels.com/photos/3184285/pexels-photo-3184285.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "fauxels",
+      "alt": "Business professionals engaged in a collaborative meeting in a modern office setting, sharing ideas and smiling.",
+      "category": "collaboration",
+      "usage": "team",
+      "searchTerm": "professional teamwork",
+      "dimensions": {
+        "width": 5695,
+        "height": 3797
+      },
+      "downloadedAt": "2025-07-14T07:57:37.137Z"
+    },
+    "tech-general-1": {
+      "id": "tech-general-1",
+      "filename": "tech-general-1.jpeg",
+      "localPath": "images/pexels/general/tech-general-1.jpeg",
+      "url": "https://images.pexels.com/photos/32973378/pexels-photo-32973378.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "technology by Andrey Matveev",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "modern technology",
+      "dimensions": {
+        "width": 5824,
+        "height": 4368
+      },
+      "downloadedAt": "2025-07-14T07:57:38.755Z"
+    },
+    "tech-general-2": {
+      "id": "tech-general-2",
+      "filename": "tech-general-2.jpeg",
+      "localPath": "images/pexels/general/tech-general-2.jpeg",
+      "url": "https://images.pexels.com/photos/32967174/pexels-photo-32967174.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "A person holds a modern smartphone with apps displayed on screen, set against a wooden background.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "modern technology",
+      "dimensions": {
+        "width": 4000,
+        "height": 3000
+      },
+      "downloadedAt": "2025-07-14T07:57:39.394Z"
+    },
+    "tech-general-3": {
+      "id": "tech-general-3",
+      "filename": "tech-general-3.jpeg",
+      "localPath": "images/pexels/general/tech-general-3.jpeg",
+      "url": "https://images.pexels.com/photos/32975440/pexels-photo-32975440.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Jędrzej Koralewski",
+      "alt": "Sustainable landscape with tall turbines and yellow crops",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "modern technology",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:39.735Z"
+    },
+    "tech-general-4": {
+      "id": "tech-general-4",
+      "filename": "tech-general-4.jpeg",
+      "localPath": "images/pexels/general/tech-general-4.jpeg",
+      "url": "https://images.pexels.com/photos/32975423/pexels-photo-32975423.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Jędrzej Koralewski",
+      "alt": "Renewable energy turbines over European farming land",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "modern technology",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:39.828Z"
+    },
+    "tech-general-5": {
+      "id": "tech-general-5",
+      "filename": "tech-general-5.jpeg",
+      "localPath": "images/pexels/general/tech-general-5.jpeg",
+      "url": "https://images.pexels.com/photos/32977237/pexels-photo-32977237.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "A detailed view of a Huawei smartwatch with a colorful display, worn on a human wrist.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "tech innovation",
+      "dimensions": {
+        "width": 4096,
+        "height": 3072
+      },
+      "downloadedAt": "2025-07-14T07:57:40.769Z"
+    },
+    "tech-general-6": {
+      "id": "tech-general-6",
+      "filename": "tech-general-6.jpeg",
+      "localPath": "images/pexels/general/tech-general-6.jpeg",
+      "url": "https://images.pexels.com/photos/32977238/pexels-photo-32977238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "Stylish modern smartwatch with a blue strap displayed on a wooden surface, perfect for everyday wear.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "tech innovation",
+      "dimensions": {
+        "width": 4096,
+        "height": 3072
+      },
+      "downloadedAt": "2025-07-14T07:57:41.375Z"
+    },
+    "tech-general-7": {
+      "id": "tech-general-7",
+      "filename": "tech-general-7.jpeg",
+      "localPath": "images/pexels/general/tech-general-7.jpeg",
+      "url": "https://images.pexels.com/photos/32973379/pexels-photo-32973379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "Sleek tablet with keyboard displaying a screen update prompt on a vibrant yellow background.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "tech innovation",
+      "dimensions": {
+        "width": 4096,
+        "height": 3072
+      },
+      "downloadedAt": "2025-07-14T07:57:41.469Z"
+    },
+    "tech-general-8": {
+      "id": "tech-general-8",
+      "filename": "tech-general-8.jpeg",
+      "localPath": "images/pexels/general/tech-general-8.jpeg",
+      "url": "https://images.pexels.com/photos/32967175/pexels-photo-32967175.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrey Matveev",
+      "alt": "Close-up of a hand holding a smartphone on a bright yellow background.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "tech innovation",
+      "dimensions": {
+        "width": 8192,
+        "height": 6144
+      },
+      "downloadedAt": "2025-07-14T07:57:41.557Z"
+    },
+    "tech-general-9": {
+      "id": "tech-general-9",
+      "filename": "tech-general-9.jpeg",
+      "localPath": "images/pexels/general/tech-general-9.jpeg",
+      "url": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "luis gomes",
+      "alt": "Close-up of a computer screen displaying programming code in a dark environment.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "computer technology",
+      "dimensions": {
+        "width": 4288,
+        "height": 2848
+      },
+      "downloadedAt": "2025-07-14T07:57:42.079Z"
+    },
+    "tech-general-10": {
+      "id": "tech-general-10",
+      "filename": "tech-general-10.jpeg",
+      "localPath": "images/pexels/general/tech-general-10.jpeg",
+      "url": "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Markus Spiske",
+      "alt": "Abstract green matrix code background with binary style.",
+      "category": "technology",
+      "usage": "general",
+      "searchTerm": "computer technology",
+      "dimensions": {
+        "width": 5760,
+        "height": 3840
+      },
+      "downloadedAt": "2025-07-14T07:57:42.208Z"
+    },
+    "business-general-1": {
+      "id": "business-general-1",
+      "filename": "business-general-1.jpeg",
+      "localPath": "images/pexels/business/business-general-1.jpeg",
+      "url": "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Emmy E",
+      "alt": "Confident African American businesswoman smiling inside a modern office space.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "business professional",
+      "dimensions": {
+        "width": 6720,
+        "height": 4480
+      },
+      "downloadedAt": "2025-07-14T07:57:44.119Z"
+    },
+    "business-general-2": {
+      "id": "business-general-2",
+      "filename": "business-general-2.jpeg",
+      "localPath": "images/pexels/business/business-general-2.jpeg",
+      "url": "https://images.pexels.com/photos/32972333/pexels-photo-32972333.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Imtiaz Ahmed",
+      "alt": "Lifter Operator",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "business professional",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:44.735Z"
+    },
+    "business-general-3": {
+      "id": "business-general-3",
+      "filename": "business-general-3.jpeg",
+      "localPath": "images/pexels/business/business-general-3.jpeg",
+      "url": "https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Andrea Piacquadio",
+      "alt": "Confident man in a suit smiling while walking outdoors, showcasing fashion and style.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "business professional",
+      "dimensions": {
+        "width": 5760,
+        "height": 3840
+      },
+      "downloadedAt": "2025-07-14T07:57:44.815Z"
+    },
+    "business-general-4": {
+      "id": "business-general-4",
+      "filename": "business-general-4.jpeg",
+      "localPath": "images/pexels/business/business-general-4.jpeg",
+      "url": "https://images.pexels.com/photos/6077861/pexels-photo-6077861.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "KATRIN  BOLOVTSOVA",
+      "alt": "Elegant legal office with a close-up of golden scales of justice on a sleek dark desk.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "business professional",
+      "dimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "downloadedAt": "2025-07-14T07:57:44.904Z"
+    },
+    "business-general-5": {
+      "id": "business-general-5",
+      "filename": "business-general-5.jpeg",
+      "localPath": "images/pexels/business/business-general-5.jpeg",
+      "url": "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Expect Best",
+      "alt": "Low-angle view of a modern glass skyscraper against a clear sky in Poole, UK.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "corporate office",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:45.422Z"
+    },
+    "business-general-6": {
+      "id": "business-general-6",
+      "filename": "business-general-6.jpeg",
+      "localPath": "images/pexels/business/business-general-6.jpeg",
+      "url": "https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "SevenStorm JUHASZIMRUS",
+      "alt": "A striking view of a modern glass skyscraper reflecting the sky and clouds.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "corporate office",
+      "dimensions": {
+        "width": 5184,
+        "height": 3888
+      },
+      "downloadedAt": "2025-07-14T07:57:45.539Z"
+    },
+    "business-general-7": {
+      "id": "business-general-7",
+      "filename": "business-general-7.jpeg",
+      "localPath": "images/pexels/business/business-general-7.jpeg",
+      "url": "https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "AS Photography",
+      "alt": "A bustling office reception area with people walking and a receptionist at a modern desk.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "corporate office",
+      "dimensions": {
+        "width": 5357,
+        "height": 3571
+      },
+      "downloadedAt": "2025-07-14T07:57:46.127Z"
+    },
+    "business-general-8": {
+      "id": "business-general-8",
+      "filename": "business-general-8.jpeg",
+      "localPath": "images/pexels/business/business-general-8.jpeg",
+      "url": "https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Pixabay",
+      "alt": "Top view of a team working on construction plans in an office setting.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "corporate office",
+      "dimensions": {
+        "width": 5400,
+        "height": 3375
+      },
+      "downloadedAt": "2025-07-14T07:57:46.233Z"
+    },
+    "business-general-9": {
+      "id": "business-general-9",
+      "filename": "business-general-9.jpeg",
+      "localPath": "images/pexels/business/business-general-9.jpeg",
+      "url": "https://images.pexels.com/photos/3727463/pexels-photo-3727463.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Anna Shvets",
+      "alt": "A cheerful woman celebrates her success at work, looking at a document in an office setting.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "business success",
+      "dimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "downloadedAt": "2025-07-14T07:57:46.946Z"
+    },
+    "business-general-10": {
+      "id": "business-general-10",
+      "filename": "business-general-10.jpeg",
+      "localPath": "images/pexels/business/business-general-10.jpeg",
+      "url": "https://images.pexels.com/photos/327533/pexels-photo-327533.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "photographer": "Pixabay",
+      "alt": "A close-up of a man's thumbs up gesture, symbolizing success and agreement.",
+      "category": "business",
+      "usage": "business",
+      "searchTerm": "business success",
+      "dimensions": {
+        "width": 4365,
+        "height": 2734
+      },
+      "downloadedAt": "2025-07-14T07:57:47.008Z"
     }
   },
-  "lastUpdated": "2025-07-14T00:29:54.811Z",
-  "source": "pexels-api",
-  "totalImages": 0
+  "categories": {
+    "cloud computing": [
+      "hero-cloud-computing-1",
+      "hero-cloud-computing-2",
+      "hero-cloud-computing-3",
+      "service-cloud-technologies-1",
+      "service-cloud-technologies-2",
+      "service-cloud-technologies-3",
+      "service-cloud-technologies-4",
+      "service-cloud-technologies-5"
+    ],
+    "cybersecurity": [
+      "hero-cybersecurity-1",
+      "hero-cybersecurity-2",
+      "hero-cybersecurity-3",
+      "service-cybersecurity-1",
+      "service-cybersecurity-2",
+      "service-cybersecurity-3",
+      "service-cybersecurity-4",
+      "service-cybersecurity-5"
+    ],
+    "software development": [
+      "hero-devops-1",
+      "hero-devops-2",
+      "hero-devops-3"
+    ],
+    "digital innovation": [
+      "hero-innovation-1",
+      "hero-innovation-2",
+      "hero-innovation-3"
+    ],
+    "business team": [
+      "hero-team-1",
+      "hero-team-2",
+      "hero-team-3"
+    ],
+    "devops automation": [
+      "service-devops-1",
+      "service-devops-2",
+      "service-devops-3",
+      "service-devops-4",
+      "service-devops-5"
+    ],
+    "digital transformation": [
+      "service-digital-transformation-1",
+      "service-digital-transformation-2",
+      "service-digital-transformation-3",
+      "service-digital-transformation-4",
+      "service-digital-transformation-5"
+    ],
+    "software engineering": [
+      "service-software-engineering-1",
+      "service-software-engineering-2",
+      "service-software-engineering-3",
+      "service-software-engineering-4",
+      "service-software-engineering-5"
+    ],
+    "it support": [
+      "service-it-support-1",
+      "service-it-support-2",
+      "service-it-support-3",
+      "service-it-support-4",
+      "service-it-support-5"
+    ],
+    "professional team": [
+      "team-professional-1",
+      "team-professional-2",
+      "team-professional-3",
+      "team-professional-4",
+      "team-professional-5",
+      "team-professional-6",
+      "team-professional-7",
+      "team-professional-8"
+    ],
+    "collaboration": [
+      "team-collaboration-1",
+      "team-collaboration-2",
+      "team-collaboration-3",
+      "team-collaboration-4",
+      "team-collaboration-5",
+      "team-collaboration-6",
+      "team-collaboration-7",
+      "team-collaboration-8"
+    ],
+    "technology": [
+      "tech-general-1",
+      "tech-general-2",
+      "tech-general-3",
+      "tech-general-4",
+      "tech-general-5",
+      "tech-general-6",
+      "tech-general-7",
+      "tech-general-8",
+      "tech-general-9",
+      "tech-general-10"
+    ],
+    "business": [
+      "business-general-1",
+      "business-general-2",
+      "business-general-3",
+      "business-general-4",
+      "business-general-5",
+      "business-general-6",
+      "business-general-7",
+      "business-general-8",
+      "business-general-9",
+      "business-general-10"
+    ]
+  },
+  "usageMap": {
+    "hero": {
+      "cloud computing": [
+        "hero-cloud-computing-1",
+        "hero-cloud-computing-2",
+        "hero-cloud-computing-3"
+      ],
+      "cybersecurity": [
+        "hero-cybersecurity-1",
+        "hero-cybersecurity-2",
+        "hero-cybersecurity-3"
+      ],
+      "software development": [
+        "hero-devops-1",
+        "hero-devops-2",
+        "hero-devops-3"
+      ],
+      "digital innovation": [
+        "hero-innovation-1",
+        "hero-innovation-2",
+        "hero-innovation-3"
+      ],
+      "business team": [
+        "hero-team-1",
+        "hero-team-2",
+        "hero-team-3"
+      ]
+    },
+    "service": {
+      "cloud computing": [
+        "service-cloud-technologies-1",
+        "service-cloud-technologies-2",
+        "service-cloud-technologies-3",
+        "service-cloud-technologies-4",
+        "service-cloud-technologies-5"
+      ],
+      "cybersecurity": [
+        "service-cybersecurity-1",
+        "service-cybersecurity-2",
+        "service-cybersecurity-3",
+        "service-cybersecurity-4",
+        "service-cybersecurity-5"
+      ],
+      "devops automation": [
+        "service-devops-1",
+        "service-devops-2",
+        "service-devops-3",
+        "service-devops-4",
+        "service-devops-5"
+      ],
+      "digital transformation": [
+        "service-digital-transformation-1",
+        "service-digital-transformation-2",
+        "service-digital-transformation-3",
+        "service-digital-transformation-4",
+        "service-digital-transformation-5"
+      ],
+      "software engineering": [
+        "service-software-engineering-1",
+        "service-software-engineering-2",
+        "service-software-engineering-3",
+        "service-software-engineering-4",
+        "service-software-engineering-5"
+      ],
+      "it support": [
+        "service-it-support-1",
+        "service-it-support-2",
+        "service-it-support-3",
+        "service-it-support-4",
+        "service-it-support-5"
+      ]
+    },
+    "team": {
+      "professional team": [
+        "team-professional-1",
+        "team-professional-2",
+        "team-professional-3",
+        "team-professional-4",
+        "team-professional-5",
+        "team-professional-6",
+        "team-professional-7",
+        "team-professional-8"
+      ],
+      "collaboration": [
+        "team-collaboration-1",
+        "team-collaboration-2",
+        "team-collaboration-3",
+        "team-collaboration-4",
+        "team-collaboration-5",
+        "team-collaboration-6",
+        "team-collaboration-7",
+        "team-collaboration-8"
+      ]
+    },
+    "general": {
+      "technology": [
+        "tech-general-1",
+        "tech-general-2",
+        "tech-general-3",
+        "tech-general-4",
+        "tech-general-5",
+        "tech-general-6",
+        "tech-general-7",
+        "tech-general-8",
+        "tech-general-9",
+        "tech-general-10"
+      ]
+    },
+    "business": {
+      "business": [
+        "business-general-1",
+        "business-general-2",
+        "business-general-3",
+        "business-general-4",
+        "business-general-5",
+        "business-general-6",
+        "business-general-7",
+        "business-general-8",
+        "business-general-9",
+        "business-general-10"
+      ]
+    }
+  }
 }

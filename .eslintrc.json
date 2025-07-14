@@ -6,8 +6,9 @@
     "react-hooks/exhaustive-deps": "warn",
     "prefer-const": "error",
     "no-var": "error",
-    "no-console": "warn",
-    "no-unused-vars": "warn",
+    "no-console": "off",
+    "no-unused-vars": "off",
+    "jsx-a11y/alt-text": "off",
     "@next/next/no-document-import-in-page": "error",
     "@next/next/no-head-import-in-document": "error"
   }

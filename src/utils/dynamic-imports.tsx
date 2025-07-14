@@ -1,6 +1,7 @@
 // utils/dynamic-imports.ts
 // Lazy load heavy components to reduce initial bundle size
 
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { ComponentType } from 'react';
 
@@ -74,7 +75,7 @@ export const Modal = dynamic(() => import('@/components/ui/modal'), {
 // Advanced: Intersection Observer for viewport-based loading
 import { useInView } from 'react-intersection-observer';
 
-export const ViewportLazyComponent: ComponentType<{ children: ComponentType; height?: string }> = ({ 
+export const ViewportLazyComponent: React.FC<{ children: React.ComponentType; height?: string }> = ({ 
   children: Component, 
   height = 'h-64' 
 }) => {
