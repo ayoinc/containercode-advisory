@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: 'ContainerCode Advisory',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'ContainerCode Advisory',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ContainerCode Advisory | Multi-Cloud Consulting Experts',
     description: 'Expert consulting across Azure, AWS, Google Cloud, Oracle, and IBM with integrated cybersecurity and DevOps excellence.',
-    images: ['/og-image.png'],
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -74,6 +74,16 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL,
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/images/containercode-icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/apple-icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/images/containercode-icon.svg',
   },
 };
 
