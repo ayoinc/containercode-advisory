@@ -3,7 +3,7 @@ import { getBlogPosts } from '@/lib/notion';
 import { BlogCard } from '@/components/blog/blog-card';
 import { Search, Filter, TrendingUp, Calendar, User, Building2 } from 'lucide-react';
 import Link from 'next/link';
-import { GeneralImage } from '@/components/ui/images/smart-image';
+import { SmartImage } from '@/components/ui/images/smart-image';
 
 export const metadata: Metadata = {
   title: 'Insights & Thought Leadership | ContainerCode Advisory',
@@ -66,6 +66,20 @@ const categories = [
   'Industry Analysis',
   'Case Studies'
 ];
+
+// Function to map blog categories to image categories
+function getImageCategory(postCategory: string): string {
+  const categoryMap: Record<string, string> = {
+    'Cloud Strategy': 'cloud computing',
+    'Cybersecurity': 'cybersecurity',
+    'DevOps': 'software development',
+    'Digital Transformation': 'digital transformation',
+    'Industry Analysis': 'business',
+    'Case Studies': 'technology'
+  };
+  
+  return categoryMap[postCategory] || 'technology'; // fallback to technology
+}
 
 export default async function ProfessionalBlogPage() {
   let posts = fallbackFeaturedArticles;
@@ -166,7 +180,9 @@ export default async function ProfessionalBlogPage() {
                 <article key={post.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group">
                   {/* Blog Image */}
                   <div className="relative h-64">
-                    <GeneralImage 
+                    <SmartImage 
+                      category={getImageCategory(post.category)}
+                      usage="general"
                       alt={`${post.title} cover image`}
                       className="w-full h-full object-cover"
                     />
@@ -229,7 +245,9 @@ export default async function ProfessionalBlogPage() {
               <article key={post.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 {/* Blog Image */}
                 <div className="relative h-48">
-                  <GeneralImage 
+                  <SmartImage 
+                    category={getImageCategory(post.category)}
+                    usage="general"
                     alt={`${post.title} cover image`}
                     className="w-full h-full object-cover"
                   />

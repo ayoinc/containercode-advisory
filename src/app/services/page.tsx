@@ -180,7 +180,7 @@ export default function ProfessionalServicesPage() {
                       service.service === 'cloud' ? 'cloud computing' :
                       service.service === 'security' ? 'cybersecurity' :
                       service.service === 'devops' ? 'software development' :
-                      service.service === 'innovation' ? 'digital innovation' :
+                      service.service === 'innovation' ? 'digital transformation' :
                       'cloud computing' // fallback
                     }
                     alt={`${service.title} professional services`}

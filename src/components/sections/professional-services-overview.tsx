@@ -124,9 +124,9 @@ export function ProfessionalServicesOverview() {
                       service.service === 'cloud-technologies' ? 'cloud computing' :
                       service.service === 'cybersecurity' ? 'cybersecurity' :
                       service.service === 'devops' ? 'software development' :
-                      service.service === 'digital-transformation' ? 'digital innovation' :
-                      service.service === 'software-engineering' ? 'software development' :
-                      service.service === 'it-support' ? 'digital innovation' :
+                      service.service === 'digital-transformation' ? 'digital transformation' :
+                      service.service === 'software-engineering' ? 'software engineering' :
+                      service.service === 'it-support' ? 'it support' :
                       'cloud computing' // fallback
                     }
                     alt={`${service.title} professional services`}
