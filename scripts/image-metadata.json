@@ -1,0 +1,291 @@
+{
+  "generated": "2025-07-14T00:32:22.064Z",
+  "totalImages": 25,
+  "successCount": 25,
+  "errorCount": 0,
+  "imageType": "svg-placeholders",
+  "categories": [
+    "cloudComputing",
+    "cybersecurity",
+    "devops",
+    "teamwork",
+    "innovation"
+  ],
+  "images": [
+    {
+      "originalFilename": "cloud-infrastructure.jpg",
+      "newFilename": "cloud-infrastructure.svg",
+      "category": "cloudComputing",
+      "source": "svg-placeholder",
+      "description": "Cloud computing and data center imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "development-code.jpg",
+      "newFilename": "development-code.svg",
+      "category": "devops",
+      "source": "svg-placeholder",
+      "description": "DevOps and software development imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "hero-cloud-computing.jpg",
+      "newFilename": "hero-cloud-computing.svg",
+      "category": "cloudComputing",
+      "source": "svg-placeholder",
+      "description": "Cloud computing and data center imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "hero-cybersecurity.jpg",
+      "newFilename": "hero-cybersecurity.svg",
+      "category": "cybersecurity",
+      "source": "svg-placeholder",
+      "description": "Cybersecurity and data protection imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "hero-devops.jpg",
+      "newFilename": "hero-devops.svg",
+      "category": "devops",
+      "source": "svg-placeholder",
+      "description": "DevOps and software development imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "hero-main.jpg",
+      "newFilename": "hero-main.svg",
+      "category": "innovation",
+      "source": "svg-placeholder",
+      "description": "Innovation and future technology imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "innovation-ai.jpg",
+      "newFilename": "innovation-ai.svg",
+      "category": "innovation",
+      "source": "svg-placeholder",
+      "description": "Innovation and future technology imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "placeholder-tech.jpg",
+      "newFilename": "placeholder-tech.svg",
+      "category": "innovation",
+      "source": "svg-placeholder",
+      "description": "Innovation and future technology imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "security-shield.jpg",
+      "newFilename": "security-shield.svg",
+      "category": "cybersecurity",
+      "source": "svg-placeholder",
+      "description": "Cybersecurity and data protection imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "service-cloud-technologies.jpg",
+      "newFilename": "service-cloud-technologies.svg",
+      "category": "cloudComputing",
+      "source": "svg-placeholder",
+      "description": "Cloud computing and data center imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "service-cybersecurity.jpg",
+      "newFilename": "service-cybersecurity.svg",
+      "category": "cybersecurity",
+      "source": "svg-placeholder",
+      "description": "Cybersecurity and data protection imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "service-devops.jpg",
+      "newFilename": "service-devops.svg",
+      "category": "devops",
+      "source": "svg-placeholder",
+      "description": "DevOps and software development imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "service-digital-transformation.jpg",
+      "newFilename": "service-digital-transformation.svg",
+      "category": "cloudComputing",
+      "source": "svg-placeholder",
+      "description": "Cloud computing and data center imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "service-it-support.jpg",
+      "newFilename": "service-it-support.svg",
+      "category": "teamwork",
+      "source": "svg-placeholder",
+      "description": "Teamwork and collaboration imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "service-software-engineering.jpg",
+      "newFilename": "service-software-engineering.svg",
+      "category": "devops",
+      "source": "svg-placeholder",
+      "description": "DevOps and software development imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "team-collaboration.jpg",
+      "newFilename": "team-collaboration.svg",
+      "category": "teamwork",
+      "source": "svg-placeholder",
+      "description": "Teamwork and collaboration imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": "team-professional.jpg",
+      "newFilename": "team-professional.svg",
+      "category": "teamwork",
+      "source": "svg-placeholder",
+      "description": "Teamwork and collaboration imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "hero-cloud-computing.svg",
+      "category": "cloudComputing",
+      "source": "svg-placeholder",
+      "description": "Cloud computing and data center imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "hero-cybersecurity.svg",
+      "category": "cybersecurity",
+      "source": "svg-placeholder",
+      "description": "Cybersecurity and data protection imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "hero-devops.svg",
+      "category": "devops",
+      "source": "svg-placeholder",
+      "description": "DevOps and software development imagery",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "team-collaboration.svg",
+      "category": "teamwork",
+      "source": "svg-placeholder",
+      "description": "Teamwork and collaboration imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "innovation-ai.svg",
+      "category": "innovation",
+      "source": "svg-placeholder",
+      "description": "Innovation and future technology imagery",
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "cloud-infrastructure.svg",
+      "category": "cloudComputing",
+      "source": "svg-placeholder",
+      "description": "Cloud computing and data center imagery",
+      "dimensions": {
+        "width": 600,
+        "height": 400
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "security-shield.svg",
+      "category": "cybersecurity",
+      "source": "svg-placeholder",
+      "description": "Cybersecurity and data protection imagery",
+      "dimensions": {
+        "width": 600,
+        "height": 400
+      }
+    },
+    {
+      "originalFilename": null,
+      "newFilename": "development-code.svg",
+      "category": "devops",
+      "source": "svg-placeholder",
+      "description": "DevOps and software development imagery",
+      "dimensions": {
+        "width": 600,
+        "height": 400
+      }
+    }
+  ]
+}

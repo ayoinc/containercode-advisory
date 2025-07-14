@@ -32,54 +32,90 @@
       "placeholder-tech": {
         "path": "/images/team-professional.jpg",
         "alt": "Technology placeholder",
-        "dimensions": { "width": 800, "height": 600 },
-        "metadata": { "category": "placeholder" }
+        "dimensions": {
+          "width": 800,
+          "height": 600
+        },
+        "metadata": {
+          "category": "placeholder"
+        }
       }
     },
     "branding": {
       "containercode-logo-horizontal": {
         "path": "/images/containercode-logo-horizontal.svg",
         "alt": "ContainerCode Advisory horizontal logo",
-        "dimensions": { "width": 300, "height": 80 },
-        "metadata": { "category": "branding", "type": "logo" }
+        "dimensions": {
+          "width": 300,
+          "height": 80
+        },
+        "metadata": {
+          "category": "branding",
+          "type": "logo"
+        }
       },
       "containercode-icon": {
         "path": "/images/containercode-icon.svg",
         "alt": "ContainerCode Advisory icon",
-        "dimensions": { "width": 64, "height": 64 },
-        "metadata": { "category": "branding", "type": "icon" }
+        "dimensions": {
+          "width": 64,
+          "height": 64
+        },
+        "metadata": {
+          "category": "branding",
+          "type": "icon"
+        }
       }
     }
   },
   "dynamicImages": {
     "categories": {
-      "hero": { "fallback": "hero-main.jpg" },
-      "services": { "fallback": "service-cloud-technologies.jpg" },
-      "team": { "fallback": "team-professional.jpg" }
+      "hero": {
+        "fallback": "hero-main.jpg"
+      },
+      "services": {
+        "fallback": "service-cloud-technologies.jpg"
+      },
+      "team": {
+        "fallback": "team-professional.jpg"
+      }
     }
   },
   "optimizationSettings": {
     "sizes": {
       "card": {
-        "medium": { "width": 400, "height": 300 }
+        "medium": {
+          "width": 400,
+          "height": 300
+        }
       }
     }
   },
   "locationMapping": {
     "pages": {
       "home": {
-        "hero": { "category": "hero" }
+        "hero": {
+          "category": "hero"
+        }
       },
       "services": {
-        "hero": { "category": "services" }
+        "hero": {
+          "category": "services"
+        }
       },
       "team": {
-        "hero": { "category": "team" }
+        "hero": {
+          "category": "team"
+        }
       }
     },
     "components": {
-      "ServiceCard": { "category": "services" },
-      "TeamCard": { "category": "team" }
+      "ServiceCard": {
+        "category": "services"
+      },
+      "TeamCard": {
+        "category": "team"
+      }
     }
   },
   "images": {
@@ -227,5 +263,8 @@
         }
       }
     }
-  }
+  },
+  "lastUpdated": "2025-07-14T00:29:54.811Z",
+  "source": "pexels-api",
+  "totalImages": 0
 }

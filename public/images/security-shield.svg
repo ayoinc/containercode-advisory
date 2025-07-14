@@ -1,0 +1,17 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradcybersecurity" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f87171;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="patterncybersecurity" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <circle cx="25" cy="25" r="3" fill="rgba(255,255,255,0.1)"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#gradcybersecurity)"/>
+  <rect width="100%" height="100%" fill="url(#patterncybersecurity)"/>
+  <text x="50%" y="50%" text-anchor="middle" dy=".35em" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold" opacity="0.8">
+    CYBERSECURITY
+  </text>
+</svg>

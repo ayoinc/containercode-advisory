@@ -25,7 +25,7 @@ export function SmartImage({
   height = 600,
   priority = false,
   fill = false,
-  fallbackSrc = '/images/hero-main.jpg',
+  fallbackSrc = '/images/hero-main.svg',
   showAttribution = true,
   ...props
 }: SmartImageProps) {
@@ -137,19 +137,19 @@ export function ServiceImage({
   ...props 
 }: Omit<SmartImageProps, 'category'> & { service: 'cloud' | 'security' | 'devops' | 'team' | 'innovation' | 'cloud-technologies' | 'cybersecurity' | 'digital-transformation' | 'software-engineering' | 'it-support' }) {
   const serviceImageMap = {
-    cloud: '/images/service-cloud-technologies.jpg',
-    'cloud-technologies': '/images/service-cloud-technologies.jpg',
-    security: '/images/service-cybersecurity.jpg',
-    cybersecurity: '/images/service-cybersecurity.jpg',
-    devops: '/images/service-devops.jpg',
-    'digital-transformation': '/images/service-digital-transformation.jpg',
-    'software-engineering': '/images/service-software-engineering.jpg',
-    'it-support': '/images/service-it-support.jpg',
-    team: '/images/team-professional.jpg',
-    innovation: '/images/service-digital-transformation.jpg'
+    cloud: '/images/service-cloud-technologies.svg',
+    'cloud-technologies': '/images/service-cloud-technologies.svg',
+    security: '/images/service-cybersecurity.svg',
+    cybersecurity: '/images/service-cybersecurity.svg',
+    devops: '/images/service-devops.svg',
+    'digital-transformation': '/images/service-digital-transformation.svg',
+    'software-engineering': '/images/service-software-engineering.svg',
+    'it-support': '/images/service-it-support.svg',
+    team: '/images/team-professional.svg',
+    innovation: '/images/innovation-ai.svg'
   };
 
-  const imageSrc = serviceImageMap[service] || '/images/hero-main.jpg';
+  const imageSrc = serviceImageMap[service] || '/images/hero-main.svg';
 
   return (
     <Image

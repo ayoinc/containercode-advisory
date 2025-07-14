@@ -26,7 +26,7 @@ export function PexelsImage({
   className,
   alt,
   priority = false,
-  fallbackSrc = '/images/pexels/placeholder-technology-modern.jpg',
+  fallbackSrc = '/images/placeholder-tech.svg',
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   fill = false,
   width,

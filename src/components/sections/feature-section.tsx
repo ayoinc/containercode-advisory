@@ -86,7 +86,7 @@ export function FeatureSection() {
             
             <div className="rounded-lg overflow-hidden h-[300px]">
               <img 
-                src="/images/pexels/hero-digital-transformation.jpg"
+                src="/images/service-digital-transformation.svg"
                 alt="Digital transformation and modern technology"
                 className="w-full h-full object-cover"
               />
