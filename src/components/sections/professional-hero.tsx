@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Star, Shield, Award, Users, TrendingUp, Clock } from 'lucide-react';
-import { HeroImage } from '@/components/ui/smart-image';
+import { HeroImage } from '@/components/ui/images/smart-image';
 
 export function ProfessionalHero() {
   const trustMetrics = [

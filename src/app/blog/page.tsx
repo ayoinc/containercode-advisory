@@ -3,7 +3,7 @@ import { getBlogPosts } from '@/lib/notion';
 import { BlogCard } from '@/components/blog/blog-card';
 import { Search, Filter, TrendingUp, Calendar, User, Building2 } from 'lucide-react';
 import Link from 'next/link';
-import { BlogImage } from '@/components/ui/pexels-image';
+import { GeneralImage } from '@/components/ui/images/smart-image';
 
 export const metadata: Metadata = {
   title: 'Insights & Thought Leadership | ContainerCode Advisory',
@@ -166,7 +166,7 @@ export default async function ProfessionalBlogPage() {
                 <article key={post.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group">
                   {/* Blog Image */}
                   <div className="relative h-64">
-                    <BlogImage 
+                    <GeneralImage 
                       alt={`${post.title} cover image`}
                       className="w-full h-full object-cover"
                     />
@@ -229,7 +229,7 @@ export default async function ProfessionalBlogPage() {
               <article key={post.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                 {/* Blog Image */}
                 <div className="relative h-48">
-                  <BlogImage 
+                  <GeneralImage 
                     alt={`${post.title} cover image`}
                     className="w-full h-full object-cover"
                   />

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Cloud, Shield, Code, Database, Zap, Settings, CheckCircle, Users, Award, Clock, Target, Building2 } from 'lucide-react';
-import { ServiceImage, HeroImage } from '@/components/ui/smart-image';
+import { ServiceImage, HeroImage } from '@/components/ui/images/smart-image';
 
 const professionalServices = [
   {
@@ -176,7 +176,13 @@ export default function ProfessionalServicesPage() {
                 {/* Service Image */}
                 <div className="relative h-48">
                   <ServiceImage 
-                    service={service.service}
+                    category={
+                      service.service === 'cloud' ? 'cloud computing' :
+                      service.service === 'security' ? 'cybersecurity' :
+                      service.service === 'devops' ? 'software development' :
+                      service.service === 'innovation' ? 'digital innovation' :
+                      'cloud computing' // fallback
+                    }
                     alt={`${service.title} professional services`}
                     className="w-full h-full object-cover"
                   />

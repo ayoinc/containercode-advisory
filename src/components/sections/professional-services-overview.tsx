@@ -15,7 +15,7 @@ import {
   Users,
   Award
 } from 'lucide-react';
-import { ServiceImage } from '@/components/ui/pexels-image';
+import { ServiceImage } from '@/components/ui/images/smart-image';
 
 export function ProfessionalServicesOverview() {
   const services = [
@@ -120,7 +120,15 @@ export function ProfessionalServicesOverview() {
                 {/* Service Image */}
                 <div className="relative h-48">
                   <ServiceImage 
-                    service={service.service as any}
+                    category={
+                      service.service === 'cloud-technologies' ? 'cloud computing' :
+                      service.service === 'cybersecurity' ? 'cybersecurity' :
+                      service.service === 'devops' ? 'software development' :
+                      service.service === 'digital-transformation' ? 'digital innovation' :
+                      service.service === 'software-engineering' ? 'software development' :
+                      service.service === 'it-support' ? 'digital innovation' :
+                      'cloud computing' // fallback
+                    }
                     alt={`${service.title} professional services`}
                     className="w-full h-full object-cover"
                   />
