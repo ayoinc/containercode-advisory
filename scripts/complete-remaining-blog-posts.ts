@@ -282,7 +282,7 @@ async function enhanceExistingPost(pageId: string, title: string): Promise<boole
     for (const chunk of chunks) {
       await notion.blocks.children.append({
         block_id: pageId,
-        children: chunk,
+        children: chunk as any, // Type assertion to avoid TypeScript compilation issues
       });
     }
 

@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { PageHeader } from '@/components/ui/page-header';
 import { Section, Container, Card, CardContent } from '@/components/ui';
-import { CheckCircle, ArrowRight, Star, Clock, Users, Award } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import { HeroImage } from '@/components/ui/images';
 import Link from 'next/link';
 
