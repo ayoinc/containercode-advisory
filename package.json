@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:performance": "ANALYZE=true next dev",
-    "build": "next build",
+    "build": "node scripts/cloudflare-build.js",
     "build:next": "next build && node scripts/copy-static-files.js",
     "build:cloudflare": "opennextjs-cloudflare build",
     "build:pages": "npm run build:cloudflare",
