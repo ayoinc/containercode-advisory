@@ -9,7 +9,6 @@ import type { NextRequest } from 'next/server';
 import { getSecurityHeaders } from './src/lib/security/csp-policy';
 import { analyzeRequest } from './src/lib/security/monitoring';
 import { isGDPRApplicable } from './src/lib/security/gdpr-compliance';
-import { handleStaticAsset } from './src/lib/static-assets';
 
 // Enhanced cache control configurations
 const ENHANCED_CACHE_CONTROL = {
