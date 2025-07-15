@@ -1,0 +1,45 @@
+{
+  "name": "containercode-newsletter-automation",
+  "version": "1.0.0",
+  "description": "Automated newsletter system with RSS feed parsing, AI content generation, and email distribution",
+  "type": "module",
+  "scripts": {
+    "deploy": "./deploy.sh",
+    "test:article-generator": "wrangler dev workers/article-generator.js",
+    "test:newsletter-generator": "wrangler dev workers/newsletter-generator.js",
+    "logs:article": "wrangler tail article-generator",
+    "logs:newsletter": "wrangler tail newsletter-generator",
+    "db:create": "wrangler d1 create newsletter-automation-db",
+    "db:schema": "wrangler d1 execute newsletter-automation-db --file=../database/schema.sql",
+    "db:query": "wrangler d1 execute newsletter-automation-db --command",
+    "trigger:articles": "curl https://article-generator.containercode.workers.dev/generate -X POST -H 'Content-Type: application/json' -d '{\"rss_url\": \"https://feeds.feedburner.com/oreilly/radar/ai\", \"category\": \"ai\"}'",
+    "trigger:newsletter": "curl https://newsletter-generator.containercode.workers.dev/test -X POST -H 'Content-Type: application/json' -d '{\"email\": \"test@containercode.club\"}'",
+    "preview:newsletter": "curl https://newsletter-generator.containercode.workers.dev/preview",
+    "stats": "curl https://newsletter-generator.containercode.workers.dev/stats",
+    "monitor": "./monitor.sh"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.3.2"
+  },
+  "devDependencies": {
+    "wrangler": "^3.22.1"
+  },
+  "keywords": [
+    "newsletter",
+    "automation",
+    "rss",
+    "ai",
+    "cloudflare-workers",
+    "notion",
+    "email-marketing"
+  ],
+  "author": "ContainerCode Advisory",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/containercode/newsletter-automation"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
