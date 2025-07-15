@@ -64,11 +64,30 @@ function copyToStandalone() {
   }
 }
 
+// Copy to OpenNext assets directory for Cloudflare deployment
+function copyToOpenNext() {
+  const publicDir = path.join(__dirname, '..', 'public');
+  const openNextDir = path.join(__dirname, '..', '.open-next');
+  
+  if (!fs.existsSync(openNextDir)) {
+    console.warn('⚠️  OpenNext directory not found, skipping copy');
+    return;
+  }
+  
+  const assetsDir = path.join(openNextDir, 'assets');
+  
+  if (fs.existsSync(publicDir)) {
+    copyDirectoryRecursive(publicDir, assetsDir);
+    console.log('✓ Static files copied to OpenNext assets');
+  }
+}
+
 if (require.main === module) {
   console.log('📦 Copying static files for production build...');
   copyStaticFiles();
   copyToStandalone();
+  copyToOpenNext();
   console.log('✅ Static files copy completed');
 }
 
-module.exports = { copyStaticFiles, copyToStandalone };
+module.exports = { copyStaticFiles, copyToStandalone, copyToOpenNext };

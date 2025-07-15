@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:performance": "ANALYZE=true next dev",
-    "build": "npx @opennextjs/cloudflare@latest build",
-    "build:cloudflare": "npx @opennextjs/cloudflare@latest build",
+    "build": "npx @opennextjs/cloudflare@latest build && node scripts/copy-static-files.js",
+    "build:cloudflare": "npx @opennextjs/cloudflare@latest build && node scripts/copy-static-files.js",
     "build:pages": "npm run build",
     "deploy:cloudflare": "bash scripts/deploy-cloudflare.sh",
     "build:analyze": "ANALYZE=true next build",
