@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# worker dependencies
+workers/node_modules/
+
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
