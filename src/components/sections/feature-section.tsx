@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export function FeatureSection() {
@@ -134,10 +135,12 @@ export function FeatureSection() {
             </div>
             
             <div className="rounded-lg overflow-hidden h-[300px]">
-              <img 
+              <Image 
                 src="/images/service-digital-transformation.svg"
                 alt="Digital transformation and modern technology"
                 className="w-full h-full object-cover"
+                width={400}
+                height={300}
               />
             </div>
           </div>
