@@ -359,15 +359,15 @@ const nextConfig = {
 // Apply configurations with PWA and Bundle Analyzer
 const finalConfig = withPWA(withBundleAnalyzer(nextConfig));
 
-// Initialize OpenNext for Cloudflare development
-if (process.env.NODE_ENV === 'development') {
-  try {
-    const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare');
-    initOpenNextCloudflareForDev();
-  } catch (error) {
-    // Silently fail if OpenNext is not available (e.g., during initial npm install)
-    console.log('OpenNext not available for dev initialization');
-  }
-}
+// Initialize OpenNext for Cloudflare development - disabled to prevent infinite loops during build
+// if (process.env.NODE_ENV === 'development') {
+//   try {
+//     const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare');
+//     initOpenNextCloudflareForDev();
+//   } catch (error) {
+//     // Silently fail if OpenNext is not available (e.g., during initial npm install)
+//     console.log('OpenNext not available for dev initialization');
+//   }
+// }
 
 module.exports = finalConfig;

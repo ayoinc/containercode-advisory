@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev:performance": "ANALYZE=true next dev",
     "build": "npx @opennextjs/cloudflare@latest build",
-    "build:cloudflare-disabled": "echo 'OpenNext disabled for deployment compatibility'",
+    "build:cloudflare": "npx @opennextjs/cloudflare@latest build",
     "build:pages": "npm run build",
     "deploy:cloudflare": "bash scripts/deploy-cloudflare.sh",
     "build:analyze": "ANALYZE=true next build",
