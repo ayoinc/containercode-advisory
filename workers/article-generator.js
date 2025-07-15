@@ -209,9 +209,89 @@ export default {
         // Validate article
         const validation = await validateArticle(generatedArticle);
         
+        let articleId = null;
+        let notionPage = null;
+        
+        // Save to database if requested
+        if (body.save_to_db || body.publish_to_notion) {
+          console.log('💾 Saving article to database...');
+          
+          // Auto-fix article if needed
+          const finalArticle = validation.isValid ? generatedArticle : await autoFixArticle(generatedArticle, validation);
+          
+          // Generate image if requested
+          let imageUrl = null;
+          if (body.generate_image) {
+            console.log('🎨 Generating article image...');
+            try {
+              const imageGenerator = new (await import('./utils/image-generator.js')).ImageGenerator(env.AI, env.IMAGES);
+              imageUrl = await imageGenerator.generateArticleImage(finalArticle);
+            } catch (imageError) {
+              console.error('Error generating image:', imageError);
+            }
+          }
+          
+          // Insert into database
+          const dbResult = await env.DB.prepare(`
+            INSERT INTO articles (
+              title, content, summary, excerpt, slug, image_url, category, tags, author,
+              word_count, reading_time, source_url, source_feed, seo_title, seo_description,
+              status, validation_status, created_at, updated_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          `).bind(
+            finalArticle.title,
+            finalArticle.content,
+            finalArticle.summary,
+            finalArticle.excerpt,
+            finalArticle.slug,
+            imageUrl,
+            finalArticle.category,
+            JSON.stringify(finalArticle.tags || []),
+            finalArticle.author,
+            finalArticle.word_count,
+            finalArticle.reading_time,
+            finalArticle.source_url,
+            finalArticle.source_feed,
+            finalArticle.seo_title,
+            finalArticle.seo_description,
+            body.test ? 'draft' : 'published',
+            validation.isValid ? 'valid' : 'pending',
+            new Date().toISOString(),
+            new Date().toISOString()
+          ).run();
+
+          articleId = dbResult.meta.last_row_id;
+          console.log(`📝 Article saved to database with ID: ${articleId}`);
+          
+          // Create Notion page if requested
+          if (body.publish_to_notion) {
+            console.log('📋 Creating Notion page...');
+            try {
+              notionPage = await createNotionArticle(
+                { ...finalArticle, id: articleId },
+                env.NOTION_DATABASE_GENERATED_ARTICLES,
+                imageUrl,
+                env.NOTION_TOKEN
+              );
+
+              // Update article with Notion page ID
+              await env.DB.prepare(`
+                UPDATE articles SET notion_page_id = ? WHERE id = ?
+              `).bind(notionPage.id, articleId).run();
+              
+              console.log(`📋 Notion page created: ${notionPage.url}`);
+            } catch (notionError) {
+              console.error('Error creating Notion page:', notionError);
+            }
+          }
+        }
+        
         return new Response(JSON.stringify({
           article: generatedArticle,
-          validation: validation
+          validation: validation,
+          saved: !!articleId,
+          articleId: articleId,
+          notionPage: notionPage
         }), {
           headers: { 'Content-Type': 'application/json' }
         });
