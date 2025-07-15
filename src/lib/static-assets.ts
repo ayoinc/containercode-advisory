@@ -14,14 +14,14 @@ export async function handleStaticAsset(request: Request, env: any): Promise<Res
       pathname === '/robots.txt' ||
       pathname === '/sitemap.xml') {
     
-    // Check if we have the STATIC_ASSETS binding
-    if (env.STATIC_ASSETS && typeof env.STATIC_ASSETS.fetch === 'function') {
+    // Check if we have the ASSETS binding (used by OpenNext)
+    if (env.ASSETS && typeof env.ASSETS.fetch === 'function') {
       try {
         // Create a new URL for the static asset
         const assetUrl = new URL(pathname, request.url);
         
-        // Fetch from the STATIC_ASSETS binding
-        const response = await env.STATIC_ASSETS.fetch(assetUrl);
+        // Fetch from the ASSETS binding
+        const response = await env.ASSETS.fetch(assetUrl);
         
         if (response.ok) {
           // Clone the response and add appropriate headers
