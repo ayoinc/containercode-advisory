@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:performance": "ANALYZE=true next dev",
-    "build": "node scripts/cloudflare-build.js",
-    "build:next": "next build && node scripts/copy-static-files.js",
+    "build": "npx @opennextjs/cloudflare@latest build",
     "build:cloudflare-disabled": "echo 'OpenNext disabled for deployment compatibility'",
     "build:pages": "npm run build",
     "deploy:cloudflare": "bash scripts/deploy-cloudflare.sh",
