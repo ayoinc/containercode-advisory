@@ -31,6 +31,27 @@ GEMINI_API_KEY = "AIzaSyBNZ1FRkh3H-zA-OXXrkVpgVDae553zlKc"
 directory = ".open-next/assets"
 binding = "STATIC_ASSETS"
 
+# Newsletter automation bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "newsletter_db"
+database_id = "newsletter-db-id"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "blog-images"
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "newsletter-assets"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "newsletter-cache"
+
+[[ai]]
+binding = "AI"
+
 [[services]]
 binding = "WORKER_SELF_REFERENCE"
 service = "containercode"
