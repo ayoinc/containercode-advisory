@@ -52,7 +52,7 @@
       "bucket_name": "blog-images"
     },
     {
-      "binding": "ASSETS",
+      "binding": "R2_ASSETS",
       "bucket_name": "newsletter-assets"
     }
   ],
