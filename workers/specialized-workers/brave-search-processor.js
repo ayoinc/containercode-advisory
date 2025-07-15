@@ -697,7 +697,7 @@ class SearchStrategies {
     };
   }
 
-  getStrategy(domain, targetAudience) {
+  getStrategy(domain, _targetAudience) {
     return this.strategies[domain] || this.strategies.technology;
   }
 }
