@@ -72,7 +72,7 @@ function getImageCategory(postCategory: string): string {
   const categoryMap: Record<string, string> = {
     'Cloud Strategy': 'cloud computing',
     'Cybersecurity': 'cybersecurity',
-    'DevOps': 'software development',
+    'DevOps': 'technology',
     'Digital Transformation': 'digital transformation',
     'Industry Analysis': 'business',
     'Case Studies': 'technology'

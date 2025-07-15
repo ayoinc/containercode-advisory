@@ -179,7 +179,7 @@ export default function ProfessionalServicesPage() {
                     category={
                       service.service === 'cloud' ? 'cloud computing' :
                       service.service === 'security' ? 'cybersecurity' :
-                      service.service === 'devops' ? 'software development' :
+                      service.service === 'devops' ? 'devops automation' :
                       service.service === 'innovation' ? 'digital transformation' :
                       'cloud computing' // fallback
                     }

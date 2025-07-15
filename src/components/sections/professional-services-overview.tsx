@@ -123,7 +123,7 @@ export function ProfessionalServicesOverview() {
                     category={
                       service.service === 'cloud-technologies' ? 'cloud computing' :
                       service.service === 'cybersecurity' ? 'cybersecurity' :
-                      service.service === 'devops' ? 'software development' :
+                      service.service === 'devops' ? 'devops automation' :
                       service.service === 'digital-transformation' ? 'digital transformation' :
                       service.service === 'software-engineering' ? 'software engineering' :
                       service.service === 'it-support' ? 'it support' :
