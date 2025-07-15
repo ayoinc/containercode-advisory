@@ -142,33 +142,12 @@ interface RequestMetrics {
 // In-memory metrics storage (in production, use Redis or similar)
 const metricsBuffer: RequestMetrics[] = [];
 
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const startTime = Date.now();
   const { pathname, search } = request.nextUrl;
   const userAgent = request.headers.get('user-agent') || '';
   const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
   const country = request.geo?.country || 'unknown';
-  
-  // Handle static assets for Cloudflare Workers
-  if (pathname.startsWith('/images/') || pathname.startsWith('/_next/static/') || 
-      pathname === '/favicon.ico' || pathname === '/robots.txt' || pathname === '/sitemap.xml') {
-    
-    // Check if we're in Cloudflare Workers environment
-    const env = (globalThis as any).process?.env || (globalThis as any);
-    
-    // Try to handle static asset
-    try {
-      const staticResponse = await handleStaticAsset(request, env);
-      if (staticResponse) {
-        return staticResponse;
-      }
-    } catch (error) {
-      console.error('Error serving static asset:', error);
-    }
-    
-    // If static asset handling fails, continue with normal processing
-    // This allows fallback to Next.js static serving in development
-  }
   
   // Create response object
   const response = NextResponse.next();
