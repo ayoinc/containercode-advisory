@@ -32,6 +32,9 @@ export const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  
+  // Check if image is SVG
+  const isSVG = src.endsWith('.svg');
 
   // Generate blur data URL for placeholder
   const generateBlurDataURL = (width: number, height: number) => {
@@ -82,6 +85,7 @@ export const OptimizedImage = ({
         blurDataURL={blurDataURL}
         onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
+        unoptimized={isSVG} // Disable optimization for SVGs
         {...props}
       />
       {!isLoaded && (

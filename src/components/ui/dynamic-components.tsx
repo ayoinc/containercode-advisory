@@ -27,6 +27,9 @@ export const AnimatePresence = dynamic(
   }
 );
 
+// Heavy form components can be loaded dynamically when needed
+// For now, focus on framer-motion components which are the largest bundle impact
+
 // Wrapper component with Suspense
 export const LazyMotionWrapper = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<div className="animate-pulse h-32" />}>

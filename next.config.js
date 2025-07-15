@@ -157,7 +157,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256], // Removed larger sizes
     // Add development optimizations
     ...(process.env.NODE_ENV === 'development' && {
-      unoptimized: false, // Keep optimization but with simpler settings
+      unoptimized: true, // Disable optimization in development for SVG issues
       loader: 'default',
     }),
   },

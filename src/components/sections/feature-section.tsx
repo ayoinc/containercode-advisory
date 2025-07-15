@@ -148,6 +148,8 @@ export function FeatureSection() {
                 width={400}
                 height={300}
                 quality={85}
+                priority
+                unoptimized
               />
             </div>
           </div>
