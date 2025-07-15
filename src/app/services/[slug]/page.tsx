@@ -231,7 +231,7 @@ const services = {
   'it-support': {
     title: 'Managed IT Support & Operations',
     description: 'Comprehensive IT infrastructure management encompassing 24/7 monitoring, proactive maintenance, help desk services, and strategic technology planning for operational excellence.',
-    longDescription: 'Ensure optimal IT performance with our comprehensive managed services and support solutions. Our experienced team provides 24/7 infrastructure monitoring, proactive maintenance, expert help desk support, and strategic technology planning. We maintain 99.9% uptime whilst reducing IT costs by up to 40% through proactive management and optimised resource allocation.'
+    longDescription: 'Ensure optimal IT performance with our comprehensive managed services and support solutions. Our experienced team provides 24/7 infrastructure monitoring, proactive maintenance, expert help desk support, and strategic technology planning. We maintain 99.9% uptime whilst reducing IT costs by up to 40% through proactive management and optimised resource allocation.',
     hero: {
       title: 'Reliable IT Operations, Always On',
       subtitle: 'Comprehensive IT support and management that keeps your systems running smoothly while you focus on your business.'
