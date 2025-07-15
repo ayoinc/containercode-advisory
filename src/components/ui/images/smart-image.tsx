@@ -118,123 +118,123 @@ function getDirectImagePath(category?: string, usage?: string): string | null {
   const imageMap: Record<string, Record<string, string[]>> = {
       "hero": {
             "cloud computing": [
-                  "/images/pexels/hero/hero-cloud-computing-1.jpeg",
-                  "/images/pexels/hero/hero-cloud-computing-2.jpeg",
-                  "/images/pexels/hero/hero-cloud-computing-3.jpeg"
+                  "/images/hero-cloud-computing-1.jpeg",
+                  "/images/hero-cloud-computing-2.jpeg",
+                  "/images/hero-cloud-computing-3.jpeg"
             ],
             "cybersecurity": [
-                  "/images/pexels/hero/hero-cybersecurity-1.jpeg",
-                  "/images/pexels/hero/hero-cybersecurity-2.jpeg",
-                  "/images/pexels/hero/hero-cybersecurity-3.jpeg"
+                  "/images/hero-cybersecurity-1.jpeg",
+                  "/images/hero-cybersecurity-2.jpeg",
+                  "/images/hero-cybersecurity-3.jpeg"
             ],
             "software development": [
-                  "/images/pexels/hero/hero-devops-1.jpeg",
-                  "/images/pexels/hero/hero-devops-2.jpeg",
-                  "/images/pexels/hero/hero-devops-3.jpeg"
+                  "/images/hero-devops-1.jpeg",
+                  "/images/hero-devops-2.jpeg",
+                  "/images/hero-devops-3.jpeg"
             ],
             "digital innovation": [
-                  "/images/pexels/hero/hero-innovation-1.jpeg",
-                  "/images/pexels/hero/hero-innovation-2.jpeg",
-                  "/images/pexels/hero/hero-innovation-3.jpeg"
+                  "/images/hero-innovation-1.jpeg",
+                  "/images/hero-innovation-2.jpeg",
+                  "/images/hero-innovation-3.jpeg"
             ],
             "business team": [
-                  "/images/pexels/hero/hero-team-1.jpeg",
-                  "/images/pexels/hero/hero-team-2.jpeg",
-                  "/images/pexels/hero/hero-team-3.jpeg"
+                  "/images/hero-team-1.jpeg",
+                  "/images/hero-team-2.jpeg",
+                  "/images/hero-team-3.jpeg"
             ]
       },
       "service": {
             "cloud computing": [
-                  "/images/pexels/service/service-cloud-technologies-1.jpeg",
-                  "/images/pexels/service/service-cloud-technologies-2.jpeg",
-                  "/images/pexels/service/service-cloud-technologies-3.jpeg",
-                  "/images/pexels/service/service-cloud-technologies-4.jpeg",
-                  "/images/pexels/service/service-cloud-technologies-5.jpeg"
+                  "/images/service-cloud-technologies-1.jpeg",
+                  "/images/service-cloud-technologies-2.jpeg",
+                  "/images/service-cloud-technologies-3.jpeg",
+                  "/images/service-cloud-technologies-4.jpeg",
+                  "/images/service-cloud-technologies-5.jpeg"
             ],
             "cybersecurity": [
-                  "/images/pexels/service/service-cybersecurity-1.jpeg",
-                  "/images/pexels/service/service-cybersecurity-2.jpeg",
-                  "/images/pexels/service/service-cybersecurity-3.jpeg",
-                  "/images/pexels/service/service-cybersecurity-4.jpeg",
-                  "/images/pexels/service/service-cybersecurity-5.jpeg"
+                  "/images/service-cybersecurity-1.jpeg",
+                  "/images/service-cybersecurity-2.jpeg",
+                  "/images/service-cybersecurity-3.jpeg",
+                  "/images/service-cybersecurity-4.jpeg",
+                  "/images/service-cybersecurity-5.jpeg"
             ],
             "devops automation": [
-                  "/images/pexels/service/service-devops-1.jpeg",
-                  "/images/pexels/service/service-devops-2.jpeg",
-                  "/images/pexels/service/service-devops-3.jpeg",
-                  "/images/pexels/service/service-devops-4.jpeg",
-                  "/images/pexels/service/service-devops-5.jpeg"
+                  "/images/service-devops-1.jpeg",
+                  "/images/service-devops-2.jpeg",
+                  "/images/service-devops-3.jpeg",
+                  "/images/service-devops-4.jpeg",
+                  "/images/service-devops-5.jpeg"
             ],
             "digital transformation": [
-                  "/images/pexels/service/service-digital-transformation-1.jpeg",
-                  "/images/pexels/service/service-digital-transformation-2.jpeg",
-                  "/images/pexels/service/service-digital-transformation-3.jpeg",
-                  "/images/pexels/service/service-digital-transformation-4.jpeg",
-                  "/images/pexels/service/service-digital-transformation-5.jpeg"
+                  "/images/service-digital-transformation-1.jpeg",
+                  "/images/service-digital-transformation-2.jpeg",
+                  "/images/service-digital-transformation-3.jpeg",
+                  "/images/service-digital-transformation-4.jpeg",
+                  "/images/service-digital-transformation-5.jpeg"
             ],
             "software engineering": [
-                  "/images/pexels/service/service-software-engineering-1.jpeg",
-                  "/images/pexels/service/service-software-engineering-2.jpeg",
-                  "/images/pexels/service/service-software-engineering-3.jpeg",
-                  "/images/pexels/service/service-software-engineering-4.jpeg",
-                  "/images/pexels/service/service-software-engineering-5.jpeg"
+                  "/images/service-software-engineering-1.jpeg",
+                  "/images/service-software-engineering-2.jpeg",
+                  "/images/service-software-engineering-3.jpeg",
+                  "/images/service-software-engineering-4.jpeg",
+                  "/images/service-software-engineering-5.jpeg"
             ],
             "it support": [
-                  "/images/pexels/service/service-it-support-1.jpeg",
-                  "/images/pexels/service/service-it-support-2.jpeg",
-                  "/images/pexels/service/service-it-support-3.jpeg",
-                  "/images/pexels/service/service-it-support-4.jpeg",
-                  "/images/pexels/service/service-it-support-5.jpeg"
+                  "/images/service-it-support-1.jpeg",
+                  "/images/service-it-support-2.jpeg",
+                  "/images/service-it-support-3.jpeg",
+                  "/images/service-it-support-4.jpeg",
+                  "/images/service-it-support-5.jpeg"
             ]
       },
       "team": {
             "professional team": [
-                  "/images/pexels/team/team-professional-1.jpeg",
-                  "/images/pexels/team/team-professional-2.jpeg",
-                  "/images/pexels/team/team-professional-3.jpeg",
-                  "/images/pexels/team/team-professional-4.jpeg",
-                  "/images/pexels/team/team-professional-5.jpeg",
-                  "/images/pexels/team/team-professional-6.jpeg",
-                  "/images/pexels/team/team-professional-7.jpeg",
-                  "/images/pexels/team/team-professional-8.jpeg"
+                  "/images/team-professional-1.jpeg",
+                  "/images/team-professional-2.jpeg",
+                  "/images/team-professional-3.jpeg",
+                  "/images/team-professional-4.jpeg",
+                  "/images/team-professional-5.jpeg",
+                  "/images/team-professional-6.jpeg",
+                  "/images/team-professional-7.jpeg",
+                  "/images/team-professional-8.jpeg"
             ],
             "collaboration": [
-                  "/images/pexels/team/team-collaboration-1.jpeg",
-                  "/images/pexels/team/team-collaboration-2.jpeg",
-                  "/images/pexels/team/team-collaboration-3.jpeg",
-                  "/images/pexels/team/team-collaboration-4.jpeg",
-                  "/images/pexels/team/team-collaboration-5.jpeg",
-                  "/images/pexels/team/team-collaboration-6.jpeg",
-                  "/images/pexels/team/team-collaboration-7.jpeg",
-                  "/images/pexels/team/team-collaboration-8.jpeg"
+                  "/images/team-collaboration-1.jpeg",
+                  "/images/team-collaboration-2.jpeg",
+                  "/images/team-collaboration-3.jpeg",
+                  "/images/team-collaboration-4.jpeg",
+                  "/images/team-collaboration-5.jpeg",
+                  "/images/team-collaboration-6.jpeg",
+                  "/images/team-collaboration-7.jpeg",
+                  "/images/team-collaboration-8.jpeg"
             ]
       },
       "general": {
             "technology": [
-                  "/images/pexels/general/tech-general-1.jpeg",
-                  "/images/pexels/general/tech-general-2.jpeg",
-                  "/images/pexels/general/tech-general-3.jpeg",
-                  "/images/pexels/general/tech-general-4.jpeg",
-                  "/images/pexels/general/tech-general-5.jpeg",
-                  "/images/pexels/general/tech-general-6.jpeg",
-                  "/images/pexels/general/tech-general-7.jpeg",
-                  "/images/pexels/general/tech-general-8.jpeg",
-                  "/images/pexels/general/tech-general-9.jpeg",
-                  "/images/pexels/general/tech-general-10.jpeg"
+                  "/images/tech-general-1.jpeg",
+                  "/images/tech-general-2.jpeg",
+                  "/images/tech-general-3.jpeg",
+                  "/images/tech-general-4.jpeg",
+                  "/images/tech-general-5.jpeg",
+                  "/images/tech-general-6.jpeg",
+                  "/images/tech-general-7.jpeg",
+                  "/images/tech-general-8.jpeg",
+                  "/images/tech-general-9.jpeg",
+                  "/images/tech-general-10.jpeg"
             ]
       },
       "business": {
             "business": [
-                  "/images/pexels/business/business-general-1.jpeg",
-                  "/images/pexels/business/business-general-2.jpeg",
-                  "/images/pexels/business/business-general-3.jpeg",
-                  "/images/pexels/business/business-general-4.jpeg",
-                  "/images/pexels/business/business-general-5.jpeg",
-                  "/images/pexels/business/business-general-6.jpeg",
-                  "/images/pexels/business/business-general-7.jpeg",
-                  "/images/pexels/business/business-general-8.jpeg",
-                  "/images/pexels/business/business-general-9.jpeg",
-                  "/images/pexels/business/business-general-10.jpeg"
+                  "/images/business-general-1.jpeg",
+                  "/images/business-general-2.jpeg",
+                  "/images/business-general-3.jpeg",
+                  "/images/business-general-4.jpeg",
+                  "/images/business-general-5.jpeg",
+                  "/images/business-general-6.jpeg",
+                  "/images/business-general-7.jpeg",
+                  "/images/business-general-8.jpeg",
+                  "/images/business-general-9.jpeg",
+                  "/images/business-general-10.jpeg"
             ]
       }
 };

@@ -24,14 +24,7 @@ function copyStaticFiles() {
     console.warn('⚠️  Source images directory not found at:', imagesSource);
   }
   
-  // Copy other static assets
-  const assetsSource = path.join(publicDir, 'media');
-  const assetsTarget = path.join(staticDir, 'media');
-  
-  if (fs.existsSync(assetsSource)) {
-    copyDirectoryRecursive(assetsSource, assetsTarget);
-    console.log('✓ Static media copied to .next/static/media');
-  }
+  // Copy other static assets (removed media directory as it was deleted)
 }
 
 function copyDirectoryRecursive(source, target) {
