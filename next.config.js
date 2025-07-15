@@ -155,11 +155,9 @@ const nextConfig = {
     // Optimized for faster development
     deviceSizes: [640, 828, 1200, 1920], // Reduced sizes for faster processing
     imageSizes: [16, 32, 48, 64, 96, 128, 256], // Removed larger sizes
-    // Add development optimizations
-    ...(process.env.NODE_ENV === 'development' && {
-      unoptimized: true, // Disable optimization in development for SVG issues
-      loader: 'default',
-    }),
+    // Disable optimization for SVGs to prevent Promise resolution errors
+    unoptimized: true,
+    loader: 'default',
   },
 
   // Experimental features for better performance

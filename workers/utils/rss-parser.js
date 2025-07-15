@@ -18,14 +18,10 @@ export class RSSParser {
       ignoreNameSpace: false,
       removeNSPrefix: false,
       allowBooleanAttributes: true,
-      parseAttributeValue: false,
-      trimValues: true,
       cdataPropName: '__cdata',
       textNodeName: '#text',
       ignoreDeclaration: true,
       ignorePiTags: true,
-      parseAttributeValue: true,
-      removeNSPrefix: false,
     });
   }
 

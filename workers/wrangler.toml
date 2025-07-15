@@ -1,0 +1,47 @@
+# Newsletter Automation Workers Configuration
+account_id = "d07903da138803a2876c5ef29d6eb808"
+compatibility_date = "2024-12-30"
+compatibility_flags = ["nodejs_compat"]
+
+# Environment variables shared across workers
+[vars]
+DEEPSEEK_API_KEY = "sk-b38df53d479a4035a9d46deb665a9404"
+BRAVE_API_KEY = "BSAfxj3FizWR4egy5Cv61FQNXlEB6Fi"
+PEXELS_API_KEY = "vItppRQs2ePF4KaTb7ugqEjTCi8KiziBkOaASfNdJKXP6LSaywsFF9QF"
+RESEND_API_KEY = "re_gb5V7GVc_6AG9FpvJVFk6q4jdfh7r1yqt"
+RESEND_DOMAIN = "containercode.club"
+RESEND_EMAIL_FROM = "ContainerCode Advisory <hello@containercode.club>"
+ADMIN_EMAIL = "ayoinc@me.com"
+NOTION_TOKEN = "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"
+NOTION_DATABASE_SERVICES = "22ef9e48-4512-816b-8cdd-e9d1e0150946"
+NOTION_DATABASE_BLOG_POSTS = "22ef9e48-4512-8116-91c3-fd6cd65520a1"
+NOTION_DATABASE_NEWSLETTERS = "22ff9e48-4512-818e-bf90-c1d630503f2e"
+NOTION_DATABASE_SUBSCRIBERS = "22ff9e48-4512-818c-8120-e37c3c296442"
+NOTION_DATABASE_GENERATED_ARTICLES = "22ff9e48-4512-8153-80bd-fe94d869ff00"
+NOTION_DATABASE_WEBSITE_PAGES = "22ff9e48-4512-81c2-9b40-ff7ae702a424"
+NOTION_DATABASE_TRENDING_TOPICS = "22ff9e48-4512-81fc-9187-d5728a6f178e"
+NOTION_DATABASE_EMAIL_CAMPAIGNS = "22ff9e48-4512-8171-b609-c88d8f0fff23"
+NEXT_PUBLIC_SITE_URL = "https://containercode.club"
+REVALIDATION_SECRET = "MNUBj7PW0JMFkyIYFdq23eBn"
+GEMINI_API_KEY = "AIzaSyBNZ1FRkh3H-zA-OXXrkVpgVDae553zlKc"
+
+# Shared bindings for both workers
+[[d1_databases]]
+binding = "DB"
+database_name = "newsletter-automation-db"
+database_id = "e333d4a6-7442-47eb-b031-f01772d4a68b"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "blog-images"
+
+[[r2_buckets]]
+binding = "R2_ASSETS"
+bucket_name = "newsletter-assets"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "ca3f3cbafbbc42c38c93c6b62b854ba1"
+
+[ai]
+binding = "AI"
