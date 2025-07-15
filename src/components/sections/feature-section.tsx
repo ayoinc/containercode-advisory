@@ -3,7 +3,13 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export function FeatureSection() {
-  const features = [
+  const features: {
+    title: string;
+    description: string;
+    stats: string;
+    learnMoreUrl: string;
+    highlights: string[];
+  }[] = [
     {
       title: "Multi-Cloud Expertise",
       description: "Specialised consulting across all major cloud platforms to prevent vendor lock-in and optimise resources whilst ensuring UK regulatory compliance.",
@@ -78,7 +84,7 @@ export function FeatureSection() {
               
               {/* Learn More button */}
               <Link 
-                href={feature.learnMoreUrl}
+                href={feature.learnMoreUrl as any}
                 className="inline-flex items-center text-aqua-400 hover:text-aqua-300 font-medium transition-colors group"
               >
                 Learn More About Our {feature.title}

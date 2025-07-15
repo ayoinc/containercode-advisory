@@ -256,9 +256,9 @@ function parseContentToBlocks(content: string, topic: any): any {
 
   // Generate excerpt from first paragraph
   const firstParagraph = blocks.find(block => block.type === 'paragraph');
-  const excerpt = firstParagraph ? 
-    firstParagraph.paragraph.rich_text[0].text.content.substring(0, 200) + '...' :
-    `Comprehensive guide to ${topic.title.toLowerCase()} for UK enterprises.`;
+  const excerpt = firstParagraph?.paragraph?.rich_text?.[0]?.text?.content
+    ? firstParagraph.paragraph.rich_text[0].text.content.substring(0, 200) + '...'
+    : `Comprehensive guide to ${topic.title.toLowerCase()} for UK enterprises.`;
 
   return {
     title: topic.title,
