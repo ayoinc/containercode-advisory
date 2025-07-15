@@ -5,6 +5,7 @@ compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
 [observability.logs]
 enabled = true
+head_sample_rate = 100
 
 [vars]
 DEEPSEEK_API_KEY = "sk-b38df53d479a4035a9d46deb665a9404"
