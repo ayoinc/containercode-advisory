@@ -1,4 +1,11 @@
+import { Metadata } from 'next';
 import { Section, Container, Card, CardContent } from '@/components/ui';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions | ContainerCode Advisory',
+  description: 'ContainerCode Advisory terms and conditions covering website usage, service agreements, intellectual property, and legal obligations. Review our terms of service and conditions.',
+  keywords: ['terms of service', 'conditions', 'legal terms', 'service agreement', 'website usage'],
+};
 
 export default function TermsPage() {
   return (

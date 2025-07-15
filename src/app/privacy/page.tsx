@@ -1,4 +1,11 @@
+import { Metadata } from 'next';
 import { Section, Container, Card, CardContent } from '@/components/ui';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | ContainerCode Advisory',
+  description: 'ContainerCode Advisory privacy policy covering data collection, usage, storage, and your rights regarding personal information. Learn how we protect your privacy and data security.',
+  keywords: ['privacy policy', 'data protection', 'GDPR compliance', 'data security', 'personal information'],
+};
 
 export default function PrivacyPage() {
   return (

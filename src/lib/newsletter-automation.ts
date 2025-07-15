@@ -11,7 +11,7 @@ const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
 // Cloudflare KV configuration
-const CLOUDFLARE_KV_NAMESPACE_ID = '137e4efd34d240a498369c0cc273d5e3';
+const CLOUDFLARE_KV_NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID || 'ca3f3cbafbbc42c38c93c6b62b854ba1';
 const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 

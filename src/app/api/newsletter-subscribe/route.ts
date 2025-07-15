@@ -4,29 +4,32 @@ import { z } from 'zod';
 
 const subscribeSchema = z.object({
   email: z.string().email('Valid email address required'),
-  name: z.string().optional(),
-  preferences: z.object({
-    frequency: z.enum(['weekly', 'monthly']).default('weekly'),
-    topics: z.array(z.string()).default([])
-  }).optional()
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  frequency: z.enum(['daily', 'weekly', 'monthly']).default('weekly'),
+  interests: z.array(z.string()).default([]),
+  source: z.string().default('website_newsletter_form')
 });
 
 interface Subscriber {
   email: string;
+  firstName?: string;
+  lastName?: string;
   name?: string;
   subscribed_at: string;
   preferences: {
-    frequency: 'weekly' | 'monthly';
+    frequency: 'daily' | 'weekly' | 'monthly';
     topics: string[];
   };
   status: 'active' | 'unsubscribed';
   confirmation_token?: string;
+  source: string;
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, name, preferences } = subscribeSchema.parse(body);
+    const { email, firstName, lastName, frequency, interests, source } = subscribeSchema.parse(body);
 
     // Check if already subscribed
     const existingSubscriber = await getSubscriberFromKV(email);
@@ -40,14 +43,17 @@ export async function POST(request: Request) {
     // Create new subscriber
     const subscriber: Subscriber = {
       email,
-      name,
+      firstName,
+      lastName,
+      name: firstName && lastName ? `${firstName} ${lastName}` : (firstName || lastName || ''),
       subscribed_at: new Date().toISOString(),
       preferences: {
-        frequency: preferences?.frequency || 'weekly',
-        topics: preferences?.topics || []
+        frequency: frequency || 'weekly',
+        topics: interests || []
       },
       status: 'active',
-      confirmation_token: generateConfirmationToken()
+      confirmation_token: generateConfirmationToken(),
+      source: source || 'website_newsletter_form'
     };
 
     // Store in Cloudflare KV
@@ -55,6 +61,9 @@ export async function POST(request: Request) {
 
     // Add to subscriber list
     await addToSubscriberList(email);
+
+    // Also store in Notion database
+    await storeSubscriberInNotion(subscriber);
 
     // Send welcome email
     await sendWelcomeEmail(subscriber);
@@ -72,8 +81,11 @@ export async function POST(request: Request) {
       message: 'Successfully subscribed to our newsletter! Please check your email for confirmation.',
       subscriber: {
         email: subscriber.email,
+        firstName: subscriber.firstName,
+        lastName: subscriber.lastName,
         name: subscriber.name,
-        preferences: subscriber.preferences
+        preferences: subscriber.preferences,
+        source: subscriber.source
       }
     });
 
@@ -165,7 +177,7 @@ export async function GET() {
 async function getSubscriberFromKV(email: string): Promise<Subscriber | null> {
   try {
     const response = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscriber_${btoa(email)}`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscriber_${btoa(email)}`,
       {
         headers: {
           'Authorization': `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`
@@ -186,7 +198,7 @@ async function getSubscriberFromKV(email: string): Promise<Subscriber | null> {
 async function storeSubscriberInKV(subscriber: Subscriber): Promise<void> {
   try {
     await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscriber_${btoa(subscriber.email)}`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscriber_${btoa(subscriber.email)}`,
       {
         method: 'PUT',
         headers: {
@@ -206,7 +218,7 @@ async function addToSubscriberList(email: string): Promise<void> {
   try {
     // Get current subscriber list
     const listResponse = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscribers`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscribers`,
       {
         headers: {
           'Authorization': `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`
@@ -226,7 +238,7 @@ async function addToSubscriberList(email: string): Promise<void> {
 
       // Update the list
       await fetch(
-        `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscribers`,
+        `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscribers`,
         {
           method: 'PUT',
           headers: {
@@ -246,7 +258,7 @@ async function removeFromSubscriberList(email: string): Promise<void> {
   try {
     // Get current subscriber list
     const listResponse = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscribers`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscribers`,
       {
         headers: {
           'Authorization': `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`
@@ -263,7 +275,7 @@ async function removeFromSubscriberList(email: string): Promise<void> {
 
       // Update the list
       await fetch(
-        `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscribers`,
+        `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscribers`,
         {
           method: 'PUT',
           headers: {
@@ -330,7 +342,7 @@ async function sendWelcomeEmail(subscriber: Subscriber): Promise<void> {
 async function logSubscriptionActivity(activity: any): Promise<void> {
   try {
     await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/subscription_log_${Date.now()}`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/subscription_log_${Date.now()}`,
       {
         method: 'PUT',
         headers: {
@@ -347,4 +359,95 @@ async function logSubscriptionActivity(activity: any): Promise<void> {
 
 function generateConfirmationToken(): string {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+
+async function storeSubscriberInNotion(subscriber: Subscriber): Promise<void> {
+  try {
+    const notionDatabaseId = process.env.NOTION_DATABASE_SUBSCRIBERS;
+    const notionToken = process.env.NOTION_TOKEN;
+    
+    if (!notionDatabaseId || !notionToken) {
+      console.warn('Notion database ID or token not configured for subscribers');
+      return;
+    }
+
+    const pageData = {
+      parent: {
+        database_id: notionDatabaseId
+      },
+      properties: {
+        'Subscriber': {
+          title: [
+            {
+              text: {
+                content: subscriber.name || subscriber.email || 'New Subscriber'
+              }
+            }
+          ]
+        },
+        'Email': {
+          email: subscriber.email
+        },
+        'Name': {
+          rich_text: [
+            {
+              text: {
+                content: subscriber.name || ''
+              }
+            }
+          ]
+        },
+        'Status': {
+          select: {
+            name: subscriber.status === 'active' ? 'Active' : 'Unsubscribed'
+          }
+        },
+        'Interests': {
+          multi_select: subscriber.preferences.topics.map(topic => ({ name: topic }))
+        },
+        'SubscribedDate': {
+          date: {
+            start: subscriber.subscribed_at.split('T')[0]
+          }
+        },
+        'Company': {
+          rich_text: [
+            {
+              text: {
+                content: subscriber.source === 'website_newsletter_form' ? 'Website' : 
+                        subscriber.source === 'social_media' ? 'Social Media' :
+                        subscriber.source === 'referral' ? 'Referral' :
+                        subscriber.source === 'api' ? 'API' : 'Website'
+              }
+            }
+          ]
+        },
+        'LastEngagement': {
+          date: {
+            start: subscriber.subscribed_at.split('T')[0]
+          }
+        }
+      }
+    };
+
+    const response = await fetch('https://api.notion.com/v1/pages', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${notionToken}`,
+        'Content-Type': 'application/json',
+        'Notion-Version': '2022-06-28'
+      },
+      body: JSON.stringify(pageData)
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Failed to store subscriber in Notion:', error);
+    } else {
+      console.log(`✅ Successfully stored subscriber ${subscriber.email} in Notion`);
+    }
+  } catch (error) {
+    console.error('Error storing subscriber in Notion:', error);
+    // Don't throw error to avoid breaking the subscription process
+  }
 }

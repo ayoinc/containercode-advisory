@@ -107,6 +107,7 @@
     "openai": "^5.9.0",
     "pexels": "^1.4.0",
     "prisma": "^6.11.1",
+    "puppeteer": "^24.13.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.49.2",

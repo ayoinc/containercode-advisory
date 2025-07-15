@@ -55,8 +55,8 @@ export class NotionClient {
    * @returns {Object} Notion page properties
    */
   buildPageProperties(article) {
-    return {
-      'Name': {
+    const properties = {
+      'Title': {
         title: [
           {
             text: {
@@ -64,72 +64,117 @@ export class NotionClient {
             }
           }
         ]
-      },
-      'Status': {
-        select: {
-          name: article.status === 'published' ? 'Published' : 'Draft'
-        }
-      },
-      'Category': {
-        select: {
-          name: this.capitalizeCategory(article.category)
-        }
-      },
-      'Tags': {
-        multi_select: (article.tags || []).map(tag => ({
-          name: tag
-        }))
-      },
-      'Author': {
-        rich_text: [
-          {
-            text: {
-              content: article.author || 'ContainerCode Advisory Team'
-            }
-          }
-        ]
-      },
-      'Published Date': {
-        date: {
-          start: article.published_at || new Date().toISOString()
-        }
-      },
-      'Word Count': {
-        number: article.word_count || 0
-      },
-      'Reading Time': {
-        number: article.reading_time || 0
-      },
-      'SEO Title': {
-        rich_text: [
-          {
-            text: {
-              content: article.seo_title || article.title || ''
-            }
-          }
-        ]
-      },
-      'SEO Description': {
-        rich_text: [
-          {
-            text: {
-              content: article.seo_description || article.summary || ''
-            }
-          }
-        ]
-      },
-      'Source URL': {
-        url: article.source_url || null
-      },
-      'Featured': {
-        checkbox: article.featured || false
-      },
-      'Validation Status': {
-        select: {
-          name: article.validation_status || 'Pending'
-        }
       }
     };
+
+    // Content will be added to page body as blocks, not as a property
+    // This ensures the content appears in the actual page body, not in the database properties
+
+    // Add Category
+    if (article.category) {
+      const categoryMapping = {
+        'ai': 'Technology',
+        'devops': 'DevOps', 
+        'cybersecurity': 'Security',
+        'cloud': 'Cloud',
+        'software_engineering': 'Software Engineering',
+        'technology': 'Technology',
+        'digital_transformation': 'Digital Transformation'
+      };
+      
+      const categoryName = categoryMapping[article.category] || 'Technology';
+      properties['Category'] = {
+        select: {
+          name: categoryName
+        }
+      };
+    }
+
+    // Add Keywords/Tags
+    if (article.tags && Array.isArray(article.tags)) {
+      const keywordMapping = {
+        'aws': 'AWS',
+        'azure': 'Azure', 
+        'gcp': 'Google Cloud',
+        'google cloud': 'Google Cloud',
+        'kubernetes': 'Kubernetes',
+        'devops': 'DevOps',
+        'security': 'Security',
+        'cybersecurity': 'Security',
+        'ai': 'AI',
+        'artificial intelligence': 'AI',
+        'generative': 'Generative',
+        'cloud-native': 'Cloud-Native',
+        'application': 'Application',
+        'development': 'Development',
+        'zero trust': 'Zero',
+        'trust': 'Trust',
+        'infrastructure': 'Infrastructure',
+        'data': 'Data',
+        'implementation': 'Implementation'
+      };
+
+      const mappedKeywords = article.tags
+        .map(tag => keywordMapping[tag.toLowerCase()] || null)
+        .filter(keyword => keyword !== null)
+        .slice(0, 5); // Limit to 5 keywords
+
+      if (mappedKeywords.length > 0) {
+        properties['Keywords'] = {
+          multi_select: mappedKeywords.map(name => ({ name }))
+        };
+      }
+    }
+
+    // Add Status
+    properties['Status'] = {
+      select: {
+        name: 'Generated'
+      }
+    };
+
+    // Add WordCount
+    if (article.word_count) {
+      properties['WordCount'] = {
+        number: article.word_count
+      };
+    }
+
+    // Add GeneratedDate
+    properties['GeneratedDate'] = {
+      date: {
+        start: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+      }
+    };
+
+    // Add AIModel
+    properties['AIModel'] = {
+      rich_text: [
+        {
+          text: {
+            content: '@cf/meta/llama-3.1-8b-instruct'
+          }
+        }
+      ]
+    };
+
+    return properties;
+  }
+
+  /**
+   * Parse tags from string or array
+   * @param {string|Array} tags - Tags data
+   * @returns {Array} Array of tag strings
+   */
+  parseTags(tags) {
+    if (!tags) return [];
+    if (Array.isArray(tags)) return tags;
+    try {
+      const parsed = JSON.parse(tags);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
   }
 
   /**
@@ -163,8 +208,17 @@ export class NotionClient {
       });
     }
 
-    // Add article summary/excerpt
+    // Add executive summary callout
     if (article.summary) {
+      // Clean the summary to remove any AI prompt artifacts
+      let cleanSummary = article.summary;
+      if (cleanSummary.includes('Here is a concise, professional summary')) {
+        const summaryStart = cleanSummary.indexOf(':\n\n') + 3;
+        if (summaryStart > 2) {
+          cleanSummary = cleanSummary.substring(summaryStart);
+        }
+      }
+      
       blocks.push({
         object: 'block',
         type: 'callout',
@@ -173,12 +227,12 @@ export class NotionClient {
             {
               type: 'text',
               text: {
-                content: article.summary
+                content: cleanSummary.trim()
               }
             }
           ],
           icon: {
-            emoji: '💡'
+            emoji: '📋'
           },
           color: 'blue_background'
         }
@@ -355,11 +409,36 @@ export class NotionClient {
    * @returns {Object} Notion paragraph block
    */
   createParagraphBlock(text) {
+    const MAX_PARAGRAPH_LENGTH = 1900;
+    
+    // If text is short enough, create single block
+    if (text.length <= MAX_PARAGRAPH_LENGTH) {
+      return {
+        object: 'block',
+        type: 'paragraph',
+        paragraph: {
+          rich_text: this.parseRichText(text)
+        }
+      };
+    }
+    
+    // For long text, we'll return the first chunk and let the caller handle splitting
+    const firstChunk = text.substring(0, MAX_PARAGRAPH_LENGTH);
+    const lastSpace = firstChunk.lastIndexOf(' ');
+    const actualChunk = lastSpace > 0 ? firstChunk.substring(0, lastSpace) : firstChunk;
+    
     return {
       object: 'block',
       type: 'paragraph',
       paragraph: {
-        rich_text: this.parseRichText(text)
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: actualChunk.trim()
+            }
+          }
+        ]
       }
     };
   }
@@ -422,16 +501,46 @@ export class NotionClient {
   parseRichText(text) {
     if (!text) return [];
 
-    // For now, return simple text
-    // TODO: Add support for **bold**, *italic*, etc.
-    return [
-      {
-        type: 'text',
-        text: {
-          content: text
+    // Notion has a 2000 character limit per rich text block
+    const MAX_LENGTH = 1900; // Leave some buffer
+    
+    if (text.length <= MAX_LENGTH) {
+      return [
+        {
+          type: 'text',
+          text: {
+            content: text
+          }
+        }
+      ];
+    }
+
+    // Split long text into multiple blocks
+    const chunks = [];
+    let currentPos = 0;
+    
+    while (currentPos < text.length) {
+      let endPos = currentPos + MAX_LENGTH;
+      
+      // Try to break at a word boundary
+      if (endPos < text.length) {
+        const lastSpace = text.lastIndexOf(' ', endPos);
+        if (lastSpace > currentPos) {
+          endPos = lastSpace;
         }
       }
-    ];
+      
+      chunks.push({
+        type: 'text',
+        text: {
+          content: text.substring(currentPos, endPos).trim()
+        }
+      });
+      
+      currentPos = endPos;
+    }
+    
+    return chunks;
   }
 
   /**

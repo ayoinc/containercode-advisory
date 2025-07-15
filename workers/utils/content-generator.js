@@ -12,12 +12,19 @@ export class ContentGenerator {
    * Generate a comprehensive article from RSS feed item
    * @param {Object} rssItem - RSS feed item
    * @param {string} category - Article category
+   * @param {Object} options - Generation options
    * @returns {Promise<Object>} Generated article
    */
-  async generateArticle(rssItem, category) {
+  async generateArticle(rssItem, category, options = {}) {
     try {
-      // Generate article content using AI
-      const articleContent = await this.generateArticleContent(rssItem, category);
+      // Research current trends using BraveSearch if enabled
+      let researchData = null;
+      if (options.useBraveSearch && options.braveApiKey) {
+        researchData = await this.researchWithBraveSearch(rssItem, category, options.braveApiKey);
+      }
+      
+      // Generate article content using AI (enhanced with research)
+      const articleContent = await this.generateArticleContent(rssItem, category, researchData);
       
       // Generate SEO-optimized title and description
       const seoContent = await this.generateSEOContent(articleContent.title, articleContent.content);
@@ -58,40 +65,232 @@ export class ContentGenerator {
   }
 
   /**
+   * Research current trends using BraveSearch API
+   * @param {Object} rssItem - RSS feed item
+   * @param {string} category - Article category
+   * @param {string} apiKey - BraveSearch API key
+   * @returns {Promise<Object>} Research data
+   */
+  async researchWithBraveSearch(rssItem, category, apiKey) {
+    try {
+      // Build search query focused on consulting and ContainerCode services
+      const consultingKeywords = [
+        'cloud consulting', 'devops transformation', 'digital transformation consulting',
+        'kubernetes consulting', 'cybersecurity consulting', 'enterprise architecture',
+        'technology advisory', 'cloud migration services', 'infrastructure consulting'
+      ];
+      
+      const searchQuery = `${rssItem.title} ${consultingKeywords.join(' ')} best practices 2024`;
+      
+      console.log('🔍 Researching with BraveSearch:', searchQuery);
+      
+      const params = new URLSearchParams({
+        q: searchQuery,
+        count: '10',
+        search_lang: 'en',
+        country: 'GB',
+        safesearch: 'moderate',
+        freshness: 'py'
+      });
+      
+      const response = await fetch(`https://api.search.brave.com/res/v1/web/search?${params}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Accept-Encoding': 'gzip',
+          'X-Subscription-Token': apiKey
+        }
+      });
+      
+      if (!response.ok) {
+        console.error('BraveSearch API error:', response.status);
+        return null;
+      }
+      
+      const data = await response.json();
+      
+      // Extract relevant insights from search results
+      const insights = this.extractConsultingInsights(data.web?.results || [], category);
+      
+      return {
+        searchQuery,
+        insights,
+        trends: this.identifyTrends(data.web?.results || []),
+        bestPractices: this.extractBestPractices(data.web?.results || [])
+      };
+      
+    } catch (error) {
+      console.error('Error in BraveSearch research:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Extract consulting-focused insights from search results
+   * @param {Array} results - Search results
+   * @param {string} category - Article category
+   * @returns {Array} Consulting insights
+   */
+  extractConsultingInsights(results, category) {
+    const consultingTerms = [
+      'implementation strategy', 'best practices', 'enterprise adoption',
+      'digital transformation', 'cost optimization', 'security framework',
+      'scalability considerations', 'compliance requirements', 'roi analysis',
+      'change management', 'risk assessment', 'vendor selection'
+    ];
+    
+    return results.slice(0, 5).map(result => {
+      const relevantSnippets = consultingTerms.filter(term => 
+        result.description?.toLowerCase().includes(term.toLowerCase())
+      );
+      
+      return {
+        title: result.title,
+        url: result.url,
+        description: result.description,
+        relevantInsights: relevantSnippets,
+        domain: new URL(result.url).hostname
+      };
+    }).filter(insight => insight.relevantInsights.length > 0);
+  }
+
+  /**
+   * Identify current trends from search results
+   * @param {Array} results - Search results
+   * @returns {Array} Current trends
+   */
+  identifyTrends(results) {
+    const trendKeywords = [
+      '2024', '2025', 'latest', 'new', 'emerging', 'trending',
+      'future', 'next-generation', 'modern', 'innovative'
+    ];
+    
+    return results.filter(result => 
+      trendKeywords.some(keyword => 
+        result.title?.toLowerCase().includes(keyword) ||
+        result.description?.toLowerCase().includes(keyword)
+      )
+    ).slice(0, 3).map(result => ({
+      title: result.title,
+      insight: result.description
+    }));
+  }
+
+  /**
+   * Extract best practices from search results
+   * @param {Array} results - Search results
+   * @returns {Array} Best practices
+   */
+  extractBestPractices(results) {
+    const practiceKeywords = [
+      'best practice', 'recommended approach', 'proven strategy',
+      'industry standard', 'framework', 'methodology', 'guidelines'
+    ];
+    
+    return results.filter(result =>
+      practiceKeywords.some(keyword =>
+        result.description?.toLowerCase().includes(keyword)
+      )
+    ).slice(0, 3).map(result => ({
+      practice: result.title,
+      description: result.description
+    }));
+  }
+
+  /**
    * Generate comprehensive article content using AI
    * @param {Object} rssItem - RSS feed item
    * @param {string} category - Article category
+   * @param {Object} researchData - BraveSearch research data
    * @returns {Promise<Object>} Generated content
    */
-  async generateArticleContent(rssItem, category) {
+  async generateArticleContent(rssItem, category, researchData = null) {
+    // Build research context if available
+    let researchContext = '';
+    if (researchData) {
+      researchContext = `
+
+CURRENT MARKET RESEARCH:
+${researchData.insights.length > 0 ? `
+Industry Insights:
+${researchData.insights.map(insight => `- ${insight.title}: ${insight.description}`).join('\n')}
+` : ''}
+${researchData.trends.length > 0 ? `
+Current Trends:
+${researchData.trends.map(trend => `- ${trend.title}: ${trend.insight}`).join('\n')}
+` : ''}
+${researchData.bestPractices.length > 0 ? `
+Best Practices:
+${researchData.bestPractices.map(practice => `- ${practice.practice}: ${practice.description}`).join('\n')}
+` : ''}`;
+    }
+
     const prompt = `
-You are a senior technology consultant writing for ContainerCode Advisory, a UK-based technology consulting firm specializing in cloud technologies, cybersecurity, DevOps, and digital transformation.
+You are a senior technology consultant writing for ContainerCode Advisory, a UK-based technology consulting firm specialising in cloud technologies, cybersecurity, DevOps, and digital transformation.
 
-Based on the following RSS feed item, create a comprehensive, professional article that provides valuable insights to enterprise technology decision-makers:
+CONTAINERCODE ADVISORY CONTEXT:
+ContainerCode Advisory is a premier UK technology consulting firm that specialises in:
+- Cloud Infrastructure & Migration (AWS, Azure, GCP, Kubernetes, Docker)
+- Cybersecurity & Compliance (Zero Trust, SOC 2, GDPR, ISO 27001)
+- DevOps & Automation (CI/CD, Infrastructure as Code, Monitoring)
+- Digital Transformation Strategy (Enterprise Architecture, Change Management)
+- Data & Analytics (Data Lakes, AI/ML Implementation, Business Intelligence)
 
-RSS Item:
+Our methodology focuses on:
+1. Strategic Assessment & Roadmap Development
+2. Risk-Based Implementation Planning
+3. Vendor-Agnostic Technology Selection
+4. Compliance-First Security Framework
+5. Scalable Architecture Design
+6. Knowledge Transfer & Training
+7. Ongoing Support & Optimisation
+
+Based on the following RSS feed item and market research, create a comprehensive, professional article that provides valuable insights to enterprise technology decision-makers:
+
+RSS ITEM:
 - Title: ${rssItem.title}
 - Description: ${rssItem.description}
 - Content: ${rssItem.content.substring(0, 2000)}
 - Category: ${category}
 - Source: ${rssItem.source}
+${researchContext}
 
-Requirements:
-1. Write in British English (use "colour", "realise", "centre", etc.)
+ARTICLE REQUIREMENTS:
+1. Write in British English (use "colour", "realise", "centre", "optimise", etc.)
 2. Target audience: CTOs, IT Directors, and senior technology managers
 3. Focus on practical business implications and strategic considerations
-4. Include actionable insights and recommendations
-5. Maintain a professional, authoritative tone
-6. Length: 1500-2500 words
+4. Include actionable insights and recommendations from ContainerCode's perspective
+5. Maintain a professional, authoritative tone befitting a senior consultant
+6. Length: 1500-2500 words with substantial depth
 7. Structure with clear headings and subheadings
 8. Include relevant technical depth without being overly complex
-9. Reference current industry trends and best practices
-10. Conclude with specific next steps or recommendations
+9. Reference current industry trends and best practices from the research
+10. Integrate ContainerCode's consulting methodology and service offerings naturally
+11. Address common enterprise challenges and how ContainerCode solves them
+12. Include specific next steps that align with ContainerCode's approach
+13. Mention compliance, security, and scalability considerations
+14. Reference UK market specifics where relevant
+
+CONTENT STRUCTURE:
+- Executive Summary (business impact focus)
+- Current State Analysis (industry context)
+- Strategic Implications (enterprise considerations)
+- Implementation Approach (ContainerCode methodology)
+- Risk Mitigation & Compliance
+- Success Metrics & ROI
+- Next Steps & Recommendations
+
+TONE & STYLE:
+- Authoritative but approachable
+- Evidence-based recommendations
+- Practical implementation focus
+- Strategic business perspective
+- Consultant-to-executive communication style
 
 Please provide:
-- A compelling, professional title (different from the RSS title)
-- Comprehensive article content with proper structure
-- Business-focused perspective on the technology topic
+- A compelling, professional title that reflects ContainerCode's expertise
+- Comprehensive article content with proper structure and ContainerCode insights
+- Business-focused perspective that positions ContainerCode as the trusted advisor
 
 Format the response as JSON with 'title' and 'content' fields.
 `;
@@ -359,11 +558,12 @@ The evolving landscape of ${category} continues to present new opportunities for
  * @param {Object} rssItem - RSS feed item
  * @param {string} category - Article category
  * @param {Object} ai - AI binding
+ * @param {Object} options - Generation options including BraveSearch settings
  * @returns {Promise<Object>} Generated article
  */
-export async function generateArticle(rssItem, category, ai) {
+export async function generateArticle(rssItem, category, ai, options = {}) {
   const generator = new ContentGenerator(ai);
-  return await generator.generateArticle(rssItem, category);
+  return await generator.generateArticle(rssItem, category, options);
 }
 
 export default ContentGenerator;

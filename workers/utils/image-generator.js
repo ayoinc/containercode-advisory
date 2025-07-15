@@ -11,13 +11,22 @@ export class ImageGenerator {
   }
 
   /**
-   * Generate header image for article
+   * Generate header image for article using Pexels API
    * @param {Object} article - Article data
-   * @returns {Promise<string>} Generated image URL
+   * @param {string} pexelsApiKey - Pexels API key
+   * @returns {Promise<string>} Image URL from Pexels
    */
-  async generateArticleImage(article) {
+  async generateArticleImage(article, pexelsApiKey = null) {
     try {
-      // Generate image using Stable Diffusion
+      // First try to get image from Pexels API
+      if (pexelsApiKey) {
+        const pexelsImageUrl = await this.fetchPexelsImage(article, pexelsApiKey);
+        if (pexelsImageUrl) {
+          return pexelsImageUrl;
+        }
+      }
+      
+      // Fallback to AI-generated image if Pexels fails
       const imagePrompt = this.createImagePrompt(article);
       const imageBlob = await this.generateImage(imagePrompt);
       
@@ -29,6 +38,129 @@ export class ImageGenerator {
       console.error('Error generating article image:', error);
       // Return fallback image URL
       return this.getFallbackImage(article.category);
+    }
+  }
+
+  /**
+   * Fetch relevant image from Pexels API
+   * @param {Object} article - Article data
+   * @param {string} apiKey - Pexels API key
+   * @returns {Promise<string|null>} Pexels image URL or null if failed
+   */
+  async fetchPexelsImage(article, apiKey) {
+    try {
+      // Create search query based on article content
+      const searchQuery = this.createPexelsSearchQuery(article);
+      
+      console.log('🖼️ Searching Pexels for:', searchQuery);
+      
+      const params = new URLSearchParams({
+        query: searchQuery,
+        per_page: '10',
+        orientation: 'landscape',
+        size: 'large',
+        color: 'blue'
+      });
+
+      const response = await fetch(`https://api.pexels.com/v1/search?${params}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': apiKey,
+          'User-Agent': 'ContainerCode Advisory/1.0'
+        }
+      });
+
+      if (!response.ok) {
+        console.error('Pexels API error:', response.status, response.statusText);
+        return null;
+      }
+
+      const data = await response.json();
+      
+      if (data.photos && data.photos.length > 0) {
+        // Select the best image (first result is usually most relevant)
+        const selectedPhoto = data.photos[0];
+        
+        // Return the large image URL
+        const imageUrl = selectedPhoto.src.large;
+        
+        console.log('✅ Found Pexels image:', imageUrl);
+        
+        // Store metadata about the image usage
+        await this.storePexelsImageMetadata(selectedPhoto, article);
+        
+        return imageUrl;
+      } else {
+        console.log('No Pexels images found for query:', searchQuery);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching image from Pexels:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Create search query for Pexels based on article
+   * @param {Object} article - Article data
+   * @returns {string} Search query for Pexels
+   */
+  createPexelsSearchQuery(article) {
+    const categoryKeywords = {
+      'ai': ['artificial intelligence', 'machine learning', 'neural networks', 'automation', 'robots', 'data analysis'],
+      'devops': ['software development', 'computer coding', 'servers', 'cloud computing', 'automation', 'technology'],
+      'cybersecurity': ['cyber security', 'network security', 'digital security', 'computer security', 'data protection'],
+      'cloud': ['cloud computing', 'data center', 'servers', 'network infrastructure', 'technology'],
+      'software_engineering': ['software development', 'coding', 'programming', 'computer', 'technology'],
+      'technology': ['technology', 'business technology', 'digital', 'innovation', 'computing'],
+      'digital_transformation': ['business technology', 'digital transformation', 'innovation', 'enterprise'],
+    };
+
+    // Get keywords for the category
+    const keywords = categoryKeywords[article.category] || categoryKeywords['technology'];
+    
+    // Select a random keyword to get variety
+    const primaryKeyword = keywords[Math.floor(Math.random() * keywords.length)];
+    
+    // Add context words for business/professional imagery
+    const contextWords = ['business', 'professional', 'corporate', 'modern'];
+    const context = contextWords[Math.floor(Math.random() * contextWords.length)];
+    
+    return `${primaryKeyword} ${context}`;
+  }
+
+  /**
+   * Store metadata about Pexels image usage
+   * @param {Object} photo - Pexels photo object
+   * @param {Object} article - Article data
+   */
+  async storePexelsImageMetadata(photo, article) {
+    try {
+      const metadata = {
+        articleId: article.id?.toString() || 'unknown',
+        articleTitle: article.title || 'untitled',
+        pexelsId: photo.id,
+        photographer: photo.photographer,
+        photographerUrl: photo.photographer_url,
+        imageUrl: photo.src.large,
+        usedAt: new Date().toISOString()
+      };
+
+      // Store in R2 as metadata file
+      const metadataKey = `pexels-usage/${article.slug || 'unknown'}-${photo.id}.json`;
+      
+      await this.r2Bucket.put(metadataKey, JSON.stringify(metadata, null, 2), {
+        httpMetadata: {
+          contentType: 'application/json',
+        },
+        customMetadata: {
+          type: 'pexels-usage-metadata'
+        }
+      });
+
+      console.log('📋 Stored Pexels usage metadata for photo:', photo.id);
+    } catch (error) {
+      console.error('Error storing Pexels metadata:', error);
     }
   }
 
@@ -287,11 +419,12 @@ Requirements:
  * @param {Object} article - Article data
  * @param {Object} ai - AI binding
  * @param {Object} r2Bucket - R2 bucket binding
+ * @param {string} pexelsApiKey - Pexels API key
  * @returns {Promise<string>} Generated image URL
  */
-export async function generateArticleImage(article, ai, r2Bucket) {
+export async function generateArticleImage(article, ai, r2Bucket, pexelsApiKey = null) {
   const generator = new ImageGenerator(ai, r2Bucket);
-  return await generator.generateArticleImage(article);
+  return await generator.generateArticleImage(article, pexelsApiKey);
 }
 
 /**

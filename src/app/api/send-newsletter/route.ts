@@ -129,7 +129,7 @@ async function logNewsletterActivity(activity: any): Promise<void> {
   try {
     // Store activity in Cloudflare KV for tracking
     const kvResponse = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/137e4efd34d240a498369c0cc273d5e3/values/newsletter_log_${Date.now()}`,
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CLOUDFLARE_KV_NAMESPACE_ID}/values/newsletter_log_${Date.now()}`,
       {
         method: 'PUT',
         headers: {

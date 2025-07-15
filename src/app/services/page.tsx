@@ -1,6 +1,13 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { ArrowRight, Cloud, Shield, Code, Database, Zap, Settings, CheckCircle, Users, Award, Clock, Target, Building2 } from 'lucide-react';
 import { ServiceImage, HeroImage } from '@/components/ui/images/smart-image';
+
+export const metadata: Metadata = {
+  title: 'Professional Services | ContainerCode Advisory',
+  description: 'Comprehensive technology solutions including multi-cloud consulting, cybersecurity, DevOps, digital transformation, software engineering, and managed IT support. Expert services delivering measurable business outcomes.',
+  keywords: ['cloud consulting services', 'cybersecurity consulting', 'devops services', 'digital transformation', 'software engineering', 'managed IT support', 'technology consulting'],
+};
 
 const professionalServices = [
   {
@@ -320,7 +327,7 @@ export default function ProfessionalServicesPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[
               { name: 'Financial Services', icon: '🏦', description: 'Banking, Insurance, FinTech' },
               { name: 'Healthcare', icon: '🏥', description: 'NHS, Private Healthcare, MedTech' },

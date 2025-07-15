@@ -155,8 +155,10 @@ export default async function ProfessionalBlogPage() {
 
             {/* Search */}
             <div className="relative">
+              <label htmlFor="article-search" className="sr-only">Search articles</label>
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
+                id="article-search"
                 type="text"
                 placeholder="Search articles..."
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 min-w-64"
@@ -317,7 +319,9 @@ export default async function ProfessionalBlogPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <label htmlFor="newsletter-email" className="sr-only">Email address for newsletter</label>
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
