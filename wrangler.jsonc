@@ -59,10 +59,6 @@
   
   "kv_namespaces": [
     {
-      "binding": "CACHE",
-      "id": "newsletter-cache"
-    },
-    {
       "binding": "KV_BINDING",
       "id": "ca3f3cbafbbc42c38c93c6b62b854ba1"
     }
