@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { User, LinkedIn, Mail, Award } from 'lucide-react';
+import { User, Linkedin, Mail, Award } from 'lucide-react';
 import { getTeamMembers } from '@/lib/notion-cms';
 import { getImageForContent } from '@/lib/pexels';
 import type { NotionTeamMember } from '@/lib/notion-cms';
@@ -187,7 +187,7 @@ export default function NotionTeamSection({
                     rel="noopener noreferrer"
                     className="p-2 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200 transition-colors"
                   >
-                    <LinkedIn className="w-4 h-4" />
+                    <Linkedin className="w-4 h-4" />
                   </a>
                 )}
                 {member.email && (

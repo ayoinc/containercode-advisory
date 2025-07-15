@@ -174,3 +174,46 @@ export const getRandomPhotos = cache(async (
     return [];
   }
 });
+
+/**
+ * Get image for specific content type
+ */
+export const getImageForContent = cache(async (
+  contentType: string,
+  orientation: 'landscape' | 'portrait' | 'square' = 'landscape'
+) => {
+  try {
+    // Map content types to search terms
+    const searchTermsMap: { [key: string]: string } = {
+      'hero': 'business technology office modern',
+      'about': 'professional team office',
+      'services': 'technology consulting business',
+      'contact': 'office building professional',
+      'tech': 'technology computer software',
+      'cloud': 'cloud computing technology',
+      'cybersecurity': 'cybersecurity technology secure',
+      'consulting': 'business consulting meeting',
+      'ai': 'artificial intelligence technology',
+      'default': 'professional business office'
+    };
+    
+    const searchTerm = searchTermsMap[contentType.toLowerCase()] || searchTermsMap['default'];
+    
+    const response = await searchPhotos(searchTerm, {
+      perPage: 10,
+      orientation,
+    });
+    
+    if (response.photos.length === 0) {
+      console.warn(`No images found for content type: ${contentType}`);
+      return null;
+    }
+    
+    // Return a random image from the results
+    const randomIndex = Math.floor(Math.random() * response.photos.length);
+    return response.photos[randomIndex];
+  } catch (error) {
+    console.warn(`Failed to get image for content type ${contentType}:`, error);
+    return null;
+  }
+});

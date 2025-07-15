@@ -48,6 +48,7 @@ export interface NotionService {
   outcomes: string[];
   href: string;
   image?: string;
+  imageType?: string;
   status: 'active' | 'inactive';
   order: number;
 }
@@ -60,6 +61,7 @@ export interface NotionTestimonial {
   content: string;
   rating: number;
   image?: string;
+  serviceUsed?: string;
   featured: boolean;
   date: string;
 }
@@ -72,6 +74,7 @@ export interface NotionFeature {
   category: string;
   order: number;
   active: boolean;
+  benefit?: string;
 }
 
 export interface NotionTeamMember {
@@ -80,9 +83,12 @@ export interface NotionTeamMember {
   position: string;
   bio: string;
   image?: string;
+  imageType?: string;
   linkedIn?: string;
   email?: string;
   specialties: string[];
+  yearsExperience?: number;
+  certifications?: string[];
   active: boolean;
   order: number;
 }
@@ -94,6 +100,7 @@ export interface NotionFAQ {
   category: string;
   order: number;
   active: boolean;
+  relatedService?: string;
 }
 
 export interface NotionHeroSection {
@@ -105,6 +112,7 @@ export interface NotionHeroSection {
   ctaText: string;
   ctaLink: string;
   backgroundImage?: string;
+  imageType?: string;
   active: boolean;
 }
 

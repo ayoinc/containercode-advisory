@@ -151,7 +151,7 @@ export default function NotionServicesGrid({ showAll = false, maxItems = 6 }: Se
               
               <div className="mt-auto">
                 <Link 
-                  href={service.href}
+                  href={service.href as any}
                   className={`inline-flex items-center text-${service.color}-600 hover:text-${service.color}-700 font-semibold transition-colors`}
                 >
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />

@@ -117,7 +117,7 @@ export default function NotionHeroSection({ pageSlug, fallbackData }: HeroSectio
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
-                href={displayData.ctaLink}
+                href={(displayData.ctaLink || '/contact') as any}
                 className="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors shadow-lg"
               >
                 {displayData.ctaText}
