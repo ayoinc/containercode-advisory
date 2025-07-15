@@ -196,9 +196,9 @@ const nextConfig = {
       config.optimization.splitChunks = {
         chunks: 'all',
         maxAsyncRequests: 30,
-        maxInitialRequests: 25, // Reduced from 30
-        minSize: 30000, // Increased from 20000
-        maxSize: 350000, // Add max size limit
+        maxInitialRequests: 20, // Further reduced for better performance
+        minSize: 40000, // Increased for better bundle consolidation
+        maxSize: 250000, // Reduced max size for better loading
         cacheGroups: {
           // React framework bundle
           framework: {

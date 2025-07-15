@@ -107,7 +107,7 @@ export function ProfessionalHero() {
             >
               <p className="text-xl text-gray-600 max-w-xl leading-relaxed">
                 We partner with forward-thinking organisations to accelerate their digital transformation journey. 
-                Our expertise spans multi-cloud architectures, cybersecurity, and operational excellence—delivering 
+                Our expertise spans multi-cloud architectures, cybersecurity, and operational excellence - delivering 
                 measurable results that drive sustainable growth.
               </p>
             </motion.div>

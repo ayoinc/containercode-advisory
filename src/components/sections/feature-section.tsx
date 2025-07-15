@@ -147,6 +147,7 @@ export function FeatureSection() {
                 className="w-full h-full object-cover"
                 width={400}
                 height={300}
+                quality={85}
               />
             </div>
           </div>

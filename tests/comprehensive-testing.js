@@ -83,29 +83,29 @@ class ComprehensiveTestRunner {
       const smoke = this.testResults.smoke;
       const smokeStatus = smoke.deploymentReady ? '✅ PASS' : '❌ FAIL';
       await this.log(`🔥 Smoke Tests: ${smokeStatus}`);
-      await this.log(`   Suites: ${smoke.passedSuites}/${smoke.totalSuites} (${smoke.smokeSuccessRate.toFixed(1)}%)`);
+      await this.log(`   Suites: ${smoke.passedSuites}/${smoke.totalSuites} (${(smoke.smokeSuccessRate || 0).toFixed(1)}%)`);
       await this.log(`   Tests: ${smoke.passedTests}/${smoke.totalTests}`);
-      await this.log(`   Duration: ${(smoke.duration / 1000).toFixed(1)}s`);
+      await this.log(`   Duration: ${((smoke.duration || 0) / 1000).toFixed(1)}s`);
     }
     
     // E2E Test Results
     if (this.testResults.e2e) {
       const e2e = this.testResults.e2e;
-      const e2eStatus = e2e.suiteSuccessRate >= 90 ? '✅ PASS' : '❌ FAIL';
+      const e2eStatus = (e2e.suiteSuccessRate || 0) >= 90 ? '✅ PASS' : '❌ FAIL';
       await this.log(`🧪 E2E Tests: ${e2eStatus}`);
-      await this.log(`   Suites: ${e2e.passedSuites}/${e2e.totalSuites} (${e2e.suiteSuccessRate.toFixed(1)}%)`);
+      await this.log(`   Suites: ${e2e.passedSuites}/${e2e.totalSuites} (${(e2e.suiteSuccessRate || 0).toFixed(1)}%)`);
       await this.log(`   Tests: ${e2e.passedTests}/${e2e.totalTests}`);
-      await this.log(`   Duration: ${(e2e.duration / 1000).toFixed(1)}s`);
+      await this.log(`   Duration: ${((e2e.duration || 0) / 1000).toFixed(1)}s`);
     }
     
     // UAT Test Results
     if (this.testResults.uat) {
       const uat = this.testResults.uat;
-      const uatStatus = uat.uatSuccessRate >= 80 ? '✅ PASS' : '❌ FAIL';
+      const uatStatus = (uat.uatSuccessRate || 0) >= 80 ? '✅ PASS' : '❌ FAIL';
       await this.log(`👥 UAT Tests: ${uatStatus}`);
-      await this.log(`   Suites: ${uat.passedSuites}/${uat.totalSuites} (${uat.uatSuccessRate.toFixed(1)}%)`);
+      await this.log(`   Suites: ${uat.passedSuites}/${uat.totalSuites} (${(uat.uatSuccessRate || 0).toFixed(1)}%)`);
       await this.log(`   Tests: ${uat.passedTests}/${uat.totalTests}`);
-      await this.log(`   Duration: ${(uat.duration / 1000).toFixed(1)}s`);
+      await this.log(`   Duration: ${((uat.duration || 0) / 1000).toFixed(1)}s`);
     }
     
     // Detailed Analysis

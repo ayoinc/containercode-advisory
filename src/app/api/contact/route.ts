@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { resend } from '@/lib/resend';
 import { emailTemplates } from '@/lib/resend';
 import { contactFormSchema } from '@/lib/validations';
+// import { validateInput, validateEmail, withSecurityHeaders } from '@/utils/security';
+// import { rateLimit } from '@/utils/rate-limit';
 
 
 export async function POST(request: NextRequest) {

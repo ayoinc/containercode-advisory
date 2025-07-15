@@ -68,7 +68,10 @@
     "images:cleanup": "npm run images:download-all cleanup",
     "deploy:staging": "wrangler pages deploy .next --project-name=containercode-staging",
     "deploy:production": "wrangler pages deploy .next --project-name=containercode-app",
-    "health:check": "curl -f https://containercode.com/api/health"
+    "health:check": "curl -f https://containercode.com/api/health",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env ANALYZE=true BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env ANALYZE=true BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
