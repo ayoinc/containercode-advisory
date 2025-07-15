@@ -578,7 +578,7 @@ export class BraveSearchProcessor {
   /**
    * Generate recommendations based on search results
    */
-  generateRecommendations(results, domain) {
+  generateRecommendations(results, _domain) {
     const recommendations = [];
     
     // Analyze for best practices
