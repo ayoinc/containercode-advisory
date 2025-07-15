@@ -6,8 +6,7 @@
   
   "observability": {
     "logs": {
-      "enabled": true,
-      "head_sample_rate": 100
+      "enabled": true
     }
   },
   
@@ -69,12 +68,9 @@
     }
   ],
   
-  "ai": [
-    {
-      "binding": "AI"
-    }
-  ],
-  
+  "ai": {
+    "binding": "AI"
+  },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
