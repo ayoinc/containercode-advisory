@@ -29,7 +29,7 @@ GEMINI_API_KEY = "AIzaSyBNZ1FRkh3H-zA-OXXrkVpgVDae553zlKc"
 
 [assets]
 directory = ".open-next/assets"
-binding = "STATIC_ASSETS"
+binding = "ASSETS"
 
 [[services]]
 binding = "WORKER_SELF_REFERENCE"
