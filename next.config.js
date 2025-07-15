@@ -340,6 +340,9 @@ const nextConfig = {
   // Output configuration for Cloudflare Pages
   output: 'standalone',
   
+  // Ensure static files are correctly copied
+  trailingSlash: false,
+  
   // Compression
   compress: true,
   

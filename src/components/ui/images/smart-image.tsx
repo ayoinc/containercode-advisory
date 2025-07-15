@@ -91,109 +91,153 @@ async function loadImageManifest(): Promise<ImageManifest> {
 function getDirectImagePath(category?: string, usage?: string): string | null {
   console.log(`[SmartImage] Direct lookup for category: "${category}", usage: "${usage}"`);
   
-  // Direct mapping based on actual file structure
-  const imageMap: Record<string, Record<string, string[]>> = {
-    hero: {
-      'cloud computing': [
-        '/images/pexels/hero/hero-cloud-computing-1.jpeg',
-        '/images/pexels/hero/hero-cloud-computing-2.jpeg',
-        '/images/pexels/hero/hero-cloud-computing-3.jpeg'
-      ],
-      'cybersecurity': [
-        '/images/pexels/hero/hero-cybersecurity-1.jpeg',
-        '/images/pexels/hero/hero-cybersecurity-2.jpeg',
-        '/images/pexels/hero/hero-cybersecurity-3.jpeg'
-      ],
-      'software development': [
-        '/images/pexels/hero/hero-devops-1.jpeg',
-        '/images/pexels/hero/hero-devops-2.jpeg',
-        '/images/pexels/hero/hero-devops-3.jpeg'
-      ],
-      'digital innovation': [
-        '/images/pexels/hero/hero-innovation-1.jpeg',
-        '/images/pexels/hero/hero-innovation-2.jpeg',
-        '/images/pexels/hero/hero-innovation-3.jpeg'
-      ],
-      'business team': [
-        '/images/pexels/hero/hero-team-1.jpeg',
-        '/images/pexels/hero/hero-team-2.jpeg',
-        '/images/pexels/hero/hero-team-3.jpeg'
-      ]
-    },
-    service: {
-      'cloud computing': [
-        '/images/pexels/service/service-cloud-technologies-1.jpeg',
-        '/images/pexels/service/service-cloud-technologies-2.jpeg',
-        '/images/pexels/service/service-cloud-technologies-3.jpeg',
-        '/images/pexels/service/service-cloud-technologies-4.jpeg',
-        '/images/pexels/service/service-cloud-technologies-5.jpeg'
-      ],
-      'cybersecurity': [
-        '/images/pexels/service/service-cybersecurity-1.jpeg',
-        '/images/pexels/service/service-cybersecurity-2.jpeg',
-        '/images/pexels/service/service-cybersecurity-3.jpeg',
-        '/images/pexels/service/service-cybersecurity-4.jpeg',
-        '/images/pexels/service/service-cybersecurity-5.jpeg'
-      ],
-      'devops automation': [
-        '/images/pexels/service/service-devops-1.jpeg',
-        '/images/pexels/service/service-devops-2.jpeg',
-        '/images/pexels/service/service-devops-3.jpeg',
-        '/images/pexels/service/service-devops-4.jpeg',
-        '/images/pexels/service/service-devops-5.jpeg'
-      ],
-      'digital transformation': [
-        '/images/pexels/service/service-digital-transformation-1.jpeg',
-        '/images/pexels/service/service-digital-transformation-2.jpeg',
-        '/images/pexels/service/service-digital-transformation-3.jpeg',
-        '/images/pexels/service/service-digital-transformation-4.jpeg',
-        '/images/pexels/service/service-digital-transformation-5.jpeg'
-      ],
-      'software engineering': [
-        '/images/pexels/service/service-software-engineering-1.jpeg',
-        '/images/pexels/service/service-software-engineering-2.jpeg',
-        '/images/pexels/service/service-software-engineering-3.jpeg',
-        '/images/pexels/service/service-software-engineering-4.jpeg',
-        '/images/pexels/service/service-software-engineering-5.jpeg'
-      ],
-      'it support': [
-        '/images/pexels/service/service-it-support-1.jpeg',
-        '/images/pexels/service/service-it-support-2.jpeg',
-        '/images/pexels/service/service-it-support-3.jpeg',
-        '/images/pexels/service/service-it-support-4.jpeg',
-        '/images/pexels/service/service-it-support-5.jpeg'
-      ]
-    },
-    general: {
-      'technology': [
-        '/images/pexels/general/tech-general-1.jpeg',
-        '/images/pexels/general/tech-general-2.jpeg',
-        '/images/pexels/general/tech-general-3.jpeg',
-        '/images/pexels/general/tech-general-4.jpeg',
-        '/images/pexels/general/tech-general-5.jpeg',
-        '/images/pexels/general/tech-general-6.jpeg',
-        '/images/pexels/general/tech-general-7.jpeg',
-        '/images/pexels/general/tech-general-8.jpeg',
-        '/images/pexels/general/tech-general-9.jpeg',
-        '/images/pexels/general/tech-general-10.jpeg'
-      ],
-      'cloud computing': [
-        '/images/pexels/general/tech-general-1.jpeg',
-        '/images/pexels/general/tech-general-2.jpeg',
-        '/images/pexels/general/tech-general-3.jpeg'
-      ],
-      'cybersecurity': [
-        '/images/pexels/general/tech-general-4.jpeg',
-        '/images/pexels/general/tech-general-5.jpeg',
-        '/images/pexels/general/tech-general-6.jpeg'
-      ],
-      'digital transformation': [
-        '/images/pexels/general/tech-general-7.jpeg',
-        '/images/pexels/general/tech-general-8.jpeg',
-        '/images/pexels/general/tech-general-9.jpeg'
-      ]
+  // Try to load from manifest first if available
+  if (typeof window !== 'undefined' && manifestCache) {
+    try {
+      const manifest = manifestCache;
+      const usageKey = usage || 'general';
+      const categoryKey = category || 'technology';
+      
+      if (manifest.usageMap[usageKey]?.[categoryKey]) {
+        const imageIds = manifest.usageMap[usageKey][categoryKey];
+        const randomImageId = imageIds[Math.floor(Math.random() * imageIds.length)];
+        const imageData = manifest.images[randomImageId];
+        
+        if (imageData) {
+          const imagePath = `/${imageData.localPath}`;
+          console.log(`[SmartImage] Using manifest image: ${imagePath}`);
+          return imagePath;
+        }
+      }
+    } catch (error) {
+      console.warn('Error using manifest, falling back to direct mapping:', error);
     }
-  };
+  }
+  
+  // Direct mapping based on actual file structure (fallback)
+  const imageMap: Record<string, Record<string, string[]>> = {
+      "hero": {
+            "cloud computing": [
+                  "/images/pexels/hero/hero-cloud-computing-1.jpeg",
+                  "/images/pexels/hero/hero-cloud-computing-2.jpeg",
+                  "/images/pexels/hero/hero-cloud-computing-3.jpeg"
+            ],
+            "cybersecurity": [
+                  "/images/pexels/hero/hero-cybersecurity-1.jpeg",
+                  "/images/pexels/hero/hero-cybersecurity-2.jpeg",
+                  "/images/pexels/hero/hero-cybersecurity-3.jpeg"
+            ],
+            "software development": [
+                  "/images/pexels/hero/hero-devops-1.jpeg",
+                  "/images/pexels/hero/hero-devops-2.jpeg",
+                  "/images/pexels/hero/hero-devops-3.jpeg"
+            ],
+            "digital innovation": [
+                  "/images/pexels/hero/hero-innovation-1.jpeg",
+                  "/images/pexels/hero/hero-innovation-2.jpeg",
+                  "/images/pexels/hero/hero-innovation-3.jpeg"
+            ],
+            "business team": [
+                  "/images/pexels/hero/hero-team-1.jpeg",
+                  "/images/pexels/hero/hero-team-2.jpeg",
+                  "/images/pexels/hero/hero-team-3.jpeg"
+            ]
+      },
+      "service": {
+            "cloud computing": [
+                  "/images/pexels/service/service-cloud-technologies-1.jpeg",
+                  "/images/pexels/service/service-cloud-technologies-2.jpeg",
+                  "/images/pexels/service/service-cloud-technologies-3.jpeg",
+                  "/images/pexels/service/service-cloud-technologies-4.jpeg",
+                  "/images/pexels/service/service-cloud-technologies-5.jpeg"
+            ],
+            "cybersecurity": [
+                  "/images/pexels/service/service-cybersecurity-1.jpeg",
+                  "/images/pexels/service/service-cybersecurity-2.jpeg",
+                  "/images/pexels/service/service-cybersecurity-3.jpeg",
+                  "/images/pexels/service/service-cybersecurity-4.jpeg",
+                  "/images/pexels/service/service-cybersecurity-5.jpeg"
+            ],
+            "devops automation": [
+                  "/images/pexels/service/service-devops-1.jpeg",
+                  "/images/pexels/service/service-devops-2.jpeg",
+                  "/images/pexels/service/service-devops-3.jpeg",
+                  "/images/pexels/service/service-devops-4.jpeg",
+                  "/images/pexels/service/service-devops-5.jpeg"
+            ],
+            "digital transformation": [
+                  "/images/pexels/service/service-digital-transformation-1.jpeg",
+                  "/images/pexels/service/service-digital-transformation-2.jpeg",
+                  "/images/pexels/service/service-digital-transformation-3.jpeg",
+                  "/images/pexels/service/service-digital-transformation-4.jpeg",
+                  "/images/pexels/service/service-digital-transformation-5.jpeg"
+            ],
+            "software engineering": [
+                  "/images/pexels/service/service-software-engineering-1.jpeg",
+                  "/images/pexels/service/service-software-engineering-2.jpeg",
+                  "/images/pexels/service/service-software-engineering-3.jpeg",
+                  "/images/pexels/service/service-software-engineering-4.jpeg",
+                  "/images/pexels/service/service-software-engineering-5.jpeg"
+            ],
+            "it support": [
+                  "/images/pexels/service/service-it-support-1.jpeg",
+                  "/images/pexels/service/service-it-support-2.jpeg",
+                  "/images/pexels/service/service-it-support-3.jpeg",
+                  "/images/pexels/service/service-it-support-4.jpeg",
+                  "/images/pexels/service/service-it-support-5.jpeg"
+            ]
+      },
+      "team": {
+            "professional team": [
+                  "/images/pexels/team/team-professional-1.jpeg",
+                  "/images/pexels/team/team-professional-2.jpeg",
+                  "/images/pexels/team/team-professional-3.jpeg",
+                  "/images/pexels/team/team-professional-4.jpeg",
+                  "/images/pexels/team/team-professional-5.jpeg",
+                  "/images/pexels/team/team-professional-6.jpeg",
+                  "/images/pexels/team/team-professional-7.jpeg",
+                  "/images/pexels/team/team-professional-8.jpeg"
+            ],
+            "collaboration": [
+                  "/images/pexels/team/team-collaboration-1.jpeg",
+                  "/images/pexels/team/team-collaboration-2.jpeg",
+                  "/images/pexels/team/team-collaboration-3.jpeg",
+                  "/images/pexels/team/team-collaboration-4.jpeg",
+                  "/images/pexels/team/team-collaboration-5.jpeg",
+                  "/images/pexels/team/team-collaboration-6.jpeg",
+                  "/images/pexels/team/team-collaboration-7.jpeg",
+                  "/images/pexels/team/team-collaboration-8.jpeg"
+            ]
+      },
+      "general": {
+            "technology": [
+                  "/images/pexels/general/tech-general-1.jpeg",
+                  "/images/pexels/general/tech-general-2.jpeg",
+                  "/images/pexels/general/tech-general-3.jpeg",
+                  "/images/pexels/general/tech-general-4.jpeg",
+                  "/images/pexels/general/tech-general-5.jpeg",
+                  "/images/pexels/general/tech-general-6.jpeg",
+                  "/images/pexels/general/tech-general-7.jpeg",
+                  "/images/pexels/general/tech-general-8.jpeg",
+                  "/images/pexels/general/tech-general-9.jpeg",
+                  "/images/pexels/general/tech-general-10.jpeg"
+            ]
+      },
+      "business": {
+            "business": [
+                  "/images/pexels/business/business-general-1.jpeg",
+                  "/images/pexels/business/business-general-2.jpeg",
+                  "/images/pexels/business/business-general-3.jpeg",
+                  "/images/pexels/business/business-general-4.jpeg",
+                  "/images/pexels/business/business-general-5.jpeg",
+                  "/images/pexels/business/business-general-6.jpeg",
+                  "/images/pexels/business/business-general-7.jpeg",
+                  "/images/pexels/business/business-general-8.jpeg",
+                  "/images/pexels/business/business-general-9.jpeg",
+                  "/images/pexels/business/business-general-10.jpeg"
+            ]
+      }
+};
   
   const usageKey = usage || 'general';
   const categoryKey = category || 'technology';
@@ -226,11 +270,11 @@ function getDirectImagePath(category?: string, usage?: string): string | null {
 }
 
 const DEFAULT_FALLBACKS = {
-  hero: '/images/placeholder-tech.jpg',
-  service: '/images/placeholder-tech.jpg',
-  team: '/images/team-professional.jpg',
-  general: '/images/placeholder-tech.jpg',
-  fallback: '/images/placeholder-tech.jpg'
+  hero: '/images/hero-main.svg',
+  service: '/images/service-cloud-technologies.svg',
+  team: '/images/team-professional.svg',
+  general: '/images/placeholder-tech.svg',
+  fallback: '/images/placeholder-tech.svg'
 };
 
 export function SmartImage({
@@ -269,7 +313,29 @@ export function SmartImage({
           return;
         }
 
-        // Use direct image mapping instead of manifest
+        // Try to load from manifest first
+        try {
+          const manifest = await loadImageManifest();
+          const usageKey = usage || 'general';
+          const categoryKey = category || 'technology';
+          
+          if (manifest.usageMap[usageKey]?.[categoryKey]) {
+            const imageIds = manifest.usageMap[usageKey][categoryKey];
+            const randomImageId = imageIds[Math.floor(Math.random() * imageIds.length)];
+            const imageData = manifest.images[randomImageId];
+            
+            if (imageData) {
+              const imagePath = `/${imageData.localPath}`;
+              console.log(`[SmartImage] Using manifest image: ${imagePath}`);
+              setImageSrc(imagePath);
+              return;
+            }
+          }
+        } catch (error) {
+          console.warn('Failed to load from manifest, using direct mapping:', error);
+        }
+        
+        // Use direct image mapping as fallback
         const smartSrc = getDirectImagePath(category, usage);
         
         if (smartSrc) {
@@ -292,11 +358,13 @@ export function SmartImage({
   }, [src, category, usage, fallbackSrc]);
 
   const handleImageError = () => {
+    console.warn(`[SmartImage] Image failed to load: ${imageSrc}`);
     setHasError(true);
     
     // Try fallback chain
     if (imageSrc !== (fallbackSrc || DEFAULT_FALLBACKS[usage])) {
       const defaultSrc = fallbackSrc || DEFAULT_FALLBACKS[usage] || DEFAULT_FALLBACKS.fallback;
+      console.log(`[SmartImage] Using fallback: ${defaultSrc}`);
       setImageSrc(defaultSrc);
     }
   };

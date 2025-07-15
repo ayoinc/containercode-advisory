@@ -58,7 +58,11 @@ export function SmartImage({
 
   const getImageSrc = (): string => {
     if (imageError) return fallbackSrc;
-    if (media) return `/${media.localPath}`;
+    if (media) {
+      // Ensure path starts with /
+      const path = media.localPath.startsWith('/') ? media.localPath : `/${media.localPath}`;
+      return path;
+    }
     return fallbackSrc;
   };
 
