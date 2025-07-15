@@ -1,0 +1,173 @@
+# Cloudflare Workers Configuration for Queue-Based Pipeline
+# Advanced queue and Durable Object configuration for newsletter automation
+
+name = "containercode-queue-processor"
+main = "queue-processor.js"
+compatibility_date = "2024-12-30"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+[observability.logs]
+enabled = true
+
+# Environment Variables
+[vars]
+DEEPSEEK_API_KEY = "sk-b38df53d479a4035a9d46deb665a9404"
+BRAVE_API_KEY = "BSAfxj3FizWR4egy5Cv61FQNXlEB6Fi"
+PEXELS_API_KEY = "vItppRQs2ePF4KaTb7ugqEjTCi8KiziBkOaASfNdJKXP6LSaywsFF9QF"
+RESEND_API_KEY = "re_gb5V7GVc_6AG9FpvJVFk6q4jdfh7r1yqt"
+RESEND_DOMAIN = "containercode.club"
+RESEND_EMAIL_FROM = "ContainerCode Advisory <hello@containercode.club>"
+ADMIN_EMAIL = "ayoinc@me.com"
+NOTION_TOKEN = "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"
+NOTION_DATABASE_SERVICES = "22ef9e48-4512-816b-8cdd-e9d1e0150946"
+NOTION_DATABASE_BLOG_POSTS = "22ef9e48-4512-8116-91c3-fd6cd65520a1"
+NOTION_DATABASE_NEWSLETTERS = "22ff9e48-4512-818e-bf90-c1d630503f2e"
+NOTION_DATABASE_SUBSCRIBERS = "22ff9e48-4512-818c-8120-e37c3c296442"
+NOTION_DATABASE_GENERATED_ARTICLES = "22ff9e48-4512-8153-80bd-fe94d869ff00"
+NOTION_DATABASE_WEBSITE_PAGES = "22ff9e48-4512-81c2-9b40-ff7ae702a424"
+NOTION_DATABASE_TRENDING_TOPICS = "22ff9e48-4512-81fc-9187-d5728a6f178e"
+NOTION_DATABASE_EMAIL_CAMPAIGNS = "22ff9e48-4512-8171-b609-c88d8f0fff23"
+NEXT_PUBLIC_SITE_URL = "https://containercode.club"
+REVALIDATION_SECRET = "MNUBj7PW0JMFkyIYFdq23eBn"
+WEBHOOK_URL = "https://containercode.club/api/webhooks/pipeline"
+
+# Database Configuration
+[[d1_databases]]
+binding = "DB"
+database_name = "newsletter-db-id"
+database_id = "4d8f479a-069a-446d-9930-2e4bbf8dae77"
+
+# R2 Storage Configuration
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "blog-images"
+
+[[r2_buckets]]
+binding = "R2_ASSETS"
+bucket_name = "newsletter-assets"
+
+# KV Storage Configuration
+[[kv_namespaces]]
+binding = "CACHE"
+id = "ca3f3cbafbbc42c38c93c6b62b854ba1"
+
+# AI Binding Configuration
+[ai]
+binding = "AI"
+
+# Queue Configuration
+[[queues.producers]]
+binding = "ARTICLE_QUEUE"
+queue = "article-processing"
+
+[[queues.producers]]
+binding = "NEWSLETTER_QUEUE"
+queue = "newsletter-generation"
+
+[[queues.producers]]
+binding = "EMAIL_QUEUE"
+queue = "email-distribution"
+
+[[queues.producers]]
+binding = "IMAGE_QUEUE"
+queue = "image-processing"
+
+[[queues.producers]]
+binding = "DEAD_LETTER_QUEUE"
+queue = "dead-letter"
+
+# Queue Consumers
+[[queues.consumers]]
+queue = "article-processing"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+dead_letter_queue = "dead-letter"
+
+[[queues.consumers]]
+queue = "newsletter-generation"
+max_batch_size = 5
+max_batch_timeout = 60
+max_retries = 2
+dead_letter_queue = "dead-letter"
+
+[[queues.consumers]]
+queue = "email-distribution"
+max_batch_size = 20
+max_batch_timeout = 15
+max_retries = 3
+dead_letter_queue = "dead-letter"
+
+[[queues.consumers]]
+queue = "image-processing"
+max_batch_size = 15
+max_batch_timeout = 45
+max_retries = 2
+dead_letter_queue = "dead-letter"
+
+[[queues.consumers]]
+queue = "dead-letter"
+max_batch_size = 50
+max_batch_timeout = 60
+max_retries = 0
+
+# Durable Objects Configuration
+[[durable_objects.bindings]]
+name = "JOB_STATE"
+class_name = "JobState"
+script_name = "containercode-queue-processor"
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+script_name = "containercode-queue-processor"
+
+[[durable_objects.bindings]]
+name = "PIPELINE_ORCHESTRATOR"
+class_name = "PipelineOrchestrator"
+script_name = "containercode-queue-processor"
+
+# Analytics Configuration
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "queue_analytics"
+
+# Cron Triggers for Maintenance
+[[triggers]]
+crons = ["0 2 * * *"]  # Daily cleanup at 2 AM
+
+# Service Bindings
+[[services]]
+binding = "MAIN_WORKER"
+service = "containercode"
+
+# WebSocket Configuration for Real-time Monitoring
+[websocket]
+binding = "WEBSOCKET"
+
+# Rate Limiting Configuration
+[rate_limiting]
+enabled = true
+requests_per_minute = 1000
+burst_size = 100
+
+# Memory and CPU Limits
+[placement]
+mode = "smart"
+
+# Build Configuration
+[build]
+command = "npm run build:workers"
+watch_dir = "workers"
+
+# Development Configuration
+[dev]
+ip = "127.0.0.1"
+port = 8788
+local_protocol = "http"
+upstream_protocol = "https"
+
+# Migrations (if needed)
+[[migrations]]
+tag = "v1"
+new_classes = ["JobState", "RateLimiter", "PipelineOrchestrator"]
