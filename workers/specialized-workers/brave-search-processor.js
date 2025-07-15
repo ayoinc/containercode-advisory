@@ -4,8 +4,7 @@
  * Implements topic-based search optimization and content quality filtering
  */
 
-import { JobState } from '../durable-objects/job-state.js';
-import { RateLimiter } from '../durable-objects/rate-limiter.js';
+// Import statements removed to avoid unused import warnings
 
 export class BraveSearchProcessor {
   constructor(env) {
