@@ -4,11 +4,24 @@ compatibility_date = "2025-01-16"
 compatibility_flags = ["nodejs_compat"]
 
 # Container configuration using the new Containers API
+[[durable_objects.bindings]]
+name = "CONTAINER_CODE_APP_SQLITE"
+class_name = "ContainerCodeAppSQLite"
+
+# Migration for durable objects with SQLite
+[[migrations]]
+tag = "v1"
+deleted_classes = [ "ContainerCodeApp" ]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = [ "ContainerCodeAppSQLite" ]
+
+# Enable containers for this durable object class
 [[containers]]
-name = "CONTAINER_CODE_APP"
-class_name = "ContainerCodeApp"
+name = "CONTAINER_CODE_APP_SQLITE"
+class_name = "ContainerCodeAppSQLite"
 image = "./Dockerfile"
-# Optional: specify build context
 build_context = "."
 
 # Environment variables for the container
