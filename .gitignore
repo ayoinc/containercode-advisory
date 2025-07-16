@@ -63,3 +63,4 @@ performance-report.json
 
 # OpenNext build output
 .open-next
+.claude/settings.local.json
