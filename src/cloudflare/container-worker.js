@@ -1,8 +1,9 @@
 import { ContainerCodeApp } from './container-class';
+import { ContainerCodeAppEnhanced } from './container-class-enhanced';
 import { getRandom } from "@cloudflare/containers";
 
-// Export the Container class for Durable Objects
-export { ContainerCodeApp };
+// Export the Container classes for Durable Objects
+export { ContainerCodeApp, ContainerCodeAppEnhanced };
 
 export default {
   async fetch(request, env, ctx) {
