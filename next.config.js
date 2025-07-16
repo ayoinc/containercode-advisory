@@ -55,11 +55,11 @@ const withPWA = require('next-pwa')({
 // Enhanced Content Security Policy
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.google-analytics.com *.vercel-insights.com vitals.vercel-insights.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.google-analytics.com *.vercel-insights.com vitals.vercel-insights.com *.cloudflareinsights.com static.cloudflareinsights.com containercode.club;
   style-src 'self' 'unsafe-inline' fonts.googleapis.com;
   img-src 'self' blob: data: images.pexels.com images.unsplash.com prod-files-secure.s3.us-west-2.amazonaws.com *.google-analytics.com;
   font-src 'self' fonts.googleapis.com fonts.gstatic.com;
-  connect-src 'self' *.google-analytics.com vitals.vercel-insights.com *.vercel.com api.resend.com;
+  connect-src 'self' *.google-analytics.com vitals.vercel-insights.com *.vercel.com api.resend.com *.cloudflareinsights.com containercode.club;
   frame-src 'self';
   media-src 'self';
   object-src 'none';
