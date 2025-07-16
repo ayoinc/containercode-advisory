@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      - ANALYTICS_ENABLED=true
+      - CONTAINER_MODE=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - redis
+      - postgres
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: containercode
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev -d containercode"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Cloudflare Workers local development
+  wrangler:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx wrangler dev --local --port 8787
+    ports:
+      - "8787:8787"
+    environment:
+      - NODE_ENV=development
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+    depends_on:
+      - app
+
+  # Analytics dashboard (optional)
+  analytics:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./analytics-dashboard:/usr/share/nginx/html
+    depends_on:
+      - app
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  default:
+    driver: bridge

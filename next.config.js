@@ -5,47 +5,117 @@ const withBundleAnalyzer = process.env.ANALYZE === 'true'
   ? require('@next/bundle-analyzer')({ enabled: true })
   : (config) => config;
 
-// PWA Configuration
+// Enhanced PWA Configuration
 const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
-  buildExcludes: [/middleware-manifest.json$/],
+  buildExcludes: [/middleware-manifest.json$/, /app-build-manifest.json$/],
+  
+  // Enhanced runtime caching with analytics support
   runtimeCaching: [
+    // Google Fonts optimization
+    {
+      urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'google-fonts-stylesheets',
+        expiration: {
+          maxEntries: 30,
+          maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+        },
+      },
+    },
+    {
+      urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'google-fonts-webfonts',
+        expiration: {
+          maxEntries: 30,
+          maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+        },
+      },
+    },
+    // Analytics with background sync
+    {
+      urlPattern: /\/api\/analytics/,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'analytics-api',
+        networkTimeoutSeconds: 3,
+        plugins: [
+          {
+            cacheKeyWillBeUsed: async ({ request }) => {
+              return `${request.url}?${Date.now()}`;
+            },
+            requestWillFetch: async ({ request }) => {
+              // Add analytics headers
+              const headers = new Headers(request.headers);
+              headers.set('X-Analytics-Source', 'service-worker');
+              return new Request(request, { headers });
+            },
+          },
+        ],
+        backgroundSync: {
+          name: 'analytics-queue',
+          options: {
+            maxRetentionTime: 24 * 60, // 24 hours
+          },
+        },
+      },
+    },
+    // Enhanced static assets caching
+    {
+      urlPattern: /\/_next\/static\/.*/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'next-static',
+        expiration: {
+          maxEntries: 200,
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+        },
+      },
+    },
+    // Images with advanced caching
+    {
+      urlPattern: /\.(?:png|gif|jpg|jpeg|svg|webp)$/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'images-cache',
+        expiration: {
+          maxEntries: 300,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        },
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+      },
+    },
+    // Cloudflare Workers specific optimizations
+    {
+      urlPattern: /^https:\/\/containercode\.club\/api\/.*/,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'cf-api-cache',
+        networkTimeoutSeconds: 5,
+        expiration: {
+          maxEntries: 100,
+          maxAgeSeconds: 5 * 60, // 5 minutes
+        },
+      },
+    },
+    // General network requests with fallback
     {
       urlPattern: /^https?.*/,
       handler: 'NetworkFirst',
       options: {
         cacheName: 'offlineCache',
+        networkTimeoutSeconds: 10,
         expiration: {
           maxEntries: 200,
           maxAgeSeconds: 24 * 60 * 60, // 24 hours
-        },
-      },
-    },
-    // Optimized caching for static assets
-    {
-      urlPattern: /\/_next\/static\/.*/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'static-cache',
-        expiration: {
-          maxEntries: 100,
-          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
-        },
-      },
-    },
-    // API routes with network-first strategy
-    {
-      urlPattern: /\/api\/.*/,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'api-cache',
-        networkTimeoutSeconds: 10,
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 5 * 60, // 5 minutes
         },
       },
     },

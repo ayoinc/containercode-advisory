@@ -1,0 +1,65 @@
+# Cloudflare Containers Configuration
+name = "containercode-app"
+main = "src/cloudflare/container-worker.js"
+compatibility_date = "2025-01-16"
+compatibility_flags = ["nodejs_compat"]
+
+# Container configuration
+[[containers]]
+class_name = "ContainerCodeApp"
+image = "./Dockerfile"
+instance_type = "standard" # 4GB RAM, 0.5 vCPU
+autoscaling = {
+  minimum_instances = 1,
+  maximum_instances = 10,
+  cpu_target = 70,
+  requests_per_second_target = 100
+}
+
+# Analytics Engine binding
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+
+# D1 Database for analytics
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "containercode-analytics"
+database_id = "your-analytics-db-id"
+
+# KV for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your-cache-namespace-id"
+
+# R2 for static assets
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "containercode-assets"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+NEXT_PUBLIC_SITE_URL = "https://containercode.club"
+ANALYTICS_ENABLED = "true"
+CONTAINER_MODE = "true"
+
+# Observability
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+level = "info"
+
+[observability.traces]
+enabled = true
+sampling_rate = 0.1
+
+# Performance settings
+[limits]
+cpu_ms = 30000
+memory_mb = 512
+
+# Placement configuration
+[placement]
+mode = "smart"

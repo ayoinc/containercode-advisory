@@ -117,5 +117,30 @@
     "Fast",
     "Offline Capable",
     "Installable"
+  ],
+  "lang": "en",
+  "dir": "ltr",
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+containercode",
+      "url": "/share?url=%s"
+    }
+  ],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "file_handlers": [
+    {
+      "action": "/share",
+      "accept": {
+        "text/plain": [".txt"],
+        "application/json": [".json"]
+      }
+    }
   ]
 }
