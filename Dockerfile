@@ -1,53 +1,32 @@
-# Multi-stage build for production optimization
-FROM node:18-alpine AS base
+# Simple container for Cloudflare Containers
+FROM node:18-alpine
 
-# Install dependencies only when needed
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
-COPY package.json package-lock.json* ./
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
 RUN npm ci --only=production
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+# Copy the server file
+COPY server.js ./
 
-# Build the application with enhanced analytics
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
-
-RUN npm run build
-
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
+# Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN adduser --system --uid 1001 nodejs
 
-# Copy public assets
-COPY --from=builder /app/public ./public
+USER nodejs
 
-# Automatically leverage output traces to reduce image size
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Expose port 8080 (required for Cloudflare Containers)
+EXPOSE 8080
 
-# Copy service worker and PWA files
-COPY --from=builder /app/public/sw.js ./public/sw.js
-COPY --from=builder /app/public/manifest.json ./public/manifest.json
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=8080
 
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
+# Run the server
+CMD ["node", "server.js"]
 ENV HOSTNAME "0.0.0.0"
 
 # Add health check

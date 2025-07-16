@@ -1,5 +1,5 @@
 name = "containercode-app"
-main = ".open-next/worker.js"
+main = "src/cloudflare/container-worker.js"
 compatibility_date = "2025-01-16"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
@@ -20,13 +20,17 @@ mode = "smart"
 [[containers]]
 class_name = "ContainerCodeApp"
 image = "./Dockerfile"
-instance_type = "standard" # 4GB RAM, 0.5 vCPU
+max_instances = 10
 
-[containers.autoscaling]
-minimum_instances = 1
-maximum_instances = 10
-cpu_target = 70
-requests_per_second_target = 100
+# Durable Objects configuration (required for containers)
+[durable_objects]
+bindings = [
+  { class_name = "ContainerCodeApp", name = "CONTAINER_CODE_APP" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ContainerCodeApp"]
 
 [vars]
 NODE_ENV = "production"
