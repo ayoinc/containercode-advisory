@@ -1,12 +1,38 @@
-name = "containercode"
+name = "containercode-app"
 main = ".open-next/worker.js"
-compatibility_date = "2024-12-30"
+compatibility_date = "2025-01-16"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
-[observability.logs]
+# Observability
+[observability]
 enabled = true
 
+# Performance settings from container config
+[limits]
+cpu_ms = 30000
+memory_mb = 512
+
+# Placement configuration for optimal performance
+[placement]
+mode = "smart"
+
+# Container configuration
+[[containers]]
+class_name = "ContainerCodeApp"
+image = "./Dockerfile"
+instance_type = "standard" # 4GB RAM, 0.5 vCPU
+
+[containers.autoscaling]
+minimum_instances = 1
+maximum_instances = 10
+cpu_target = 70
+requests_per_second_target = 100
+
 [vars]
+NODE_ENV = "production"
+NEXT_PUBLIC_SITE_URL = "https://containercode.club"
+ANALYTICS_ENABLED = "true"
+CONTAINER_MODE = "true"
 DEEPSEEK_API_KEY = "sk-b38df53d479a4035a9d46deb665a9404"
 BRAVE_API_KEY = "BSAfxj3FizWR4egy5Cv61FQNXlEB6Fi"
 PEXELS_API_KEY = "vItppRQs2ePF4KaTb7ugqEjTCi8KiziBkOaASfNdJKXP6LSaywsFF9QF"
@@ -23,7 +49,6 @@ NOTION_DATABASE_GENERATED_ARTICLES = "22ff9e48-4512-8153-80bd-fe94d869ff00"
 NOTION_DATABASE_WEBSITE_PAGES = "22ff9e48-4512-81c2-9b40-ff7ae702a424"
 NOTION_DATABASE_TRENDING_TOPICS = "22ff9e48-4512-81fc-9187-d5728a6f178e"
 NOTION_DATABASE_EMAIL_CAMPAIGNS = "22ff9e48-4512-8171-b609-c88d8f0fff23"
-NEXT_PUBLIC_SITE_URL = "https://containercode.club"
 REVALIDATION_SECRET = "MNUBj7PW0JMFkyIYFdq23eBn"
 GEMINI_API_KEY = "AIzaSyBNZ1FRkh3H-zA-OXXrkVpgVDae553zlKc"
 
@@ -36,6 +61,12 @@ binding = "DB"
 database_name = "newsletter-db-id"
 database_id = "4d8f479a-069a-446d-9930-2e4bbf8dae77"
 
+# Analytics database from container config
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "containercode"
+database_id = "ab29336d-2c61-4085-b43c-4335a489bbb9"
+
 [[r2_buckets]]
 binding = "IMAGES"
 bucket_name = "blog-images"
@@ -45,12 +76,26 @@ bucket_name = "blog-images"
 binding = "R2_ASSETS"
 bucket_name = "newsletter-assets"
 
+# Assets bucket from container config
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "containercode"
+
 [[kv_namespaces]]
 binding = "KV_BINDING"
 id = "ca3f3cbafbbc42c38c93c6b62b854ba1"
 
+# Cache namespace from container config
+[[kv_namespaces]]
+binding = "CACHE"
+id = "137e4efd34d240a498369c0cc273d5e3"
+
 [ai]
 binding = "AI"
+
+# Analytics Engine binding from container config
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
 
 [[services]]
 binding = "WORKER_SELF_REFERENCE"
