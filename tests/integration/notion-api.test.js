@@ -5,7 +5,7 @@
  * page creation, content synchronization, and error handling
  */
 
-const { describe, expect, it, jest, beforeEach, afterEach, beforeAll, afterAll } = require('@jest/globals');
+const { describe, expect, it, beforeEach, afterEach, beforeAll, afterAll } = require('@jest/globals');
 const { performance } = require('perf_hooks');
 
 // Mock environment variables

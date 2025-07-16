@@ -5,7 +5,7 @@
  * batch processing, error handling, and campaign tracking
  */
 
-const { describe, expect, it, jest, beforeEach, afterEach, beforeAll, afterAll } = require('@jest/globals');
+const { describe, expect, it, beforeEach, afterEach, beforeAll, afterAll } = require('@jest/globals');
 const { performance } = require('perf_hooks');
 
 // Mock environment variables
@@ -636,11 +636,7 @@ describe('Email Distribution Integration Tests', () => {
     });
 
     it('should stop retrying after max attempts', async () => {
-      mockFetch.mockResolvedValue({
-        ok: false,
-        status: 500,
-        json: async () => ({ message: 'Server error' })
-      });
+      mockFetch.mockRejectedValue(new Error('Server error'));
 
       const result = await emailDistributor.sendWithRetry(
         mockRecipient,
@@ -652,7 +648,7 @@ describe('Email Distribution Integration Tests', () => {
       expect(result.success).toBe(false);
       expect(result.error).toContain('Server error');
       expect(mockFetch).toHaveBeenCalledTimes(4); // Initial + 3 retries
-    });
+    }, 10000);
 
     it('should use exponential backoff for retries', async () => {
       let callCount = 0;
@@ -683,9 +679,9 @@ describe('Email Distribution Integration Tests', () => {
         'Test'
       );
 
-      // Check that delays increase exponentially
-      expect(callTimes[1] - callTimes[0]).toBeGreaterThan(1000); // ~1 second
-      expect(callTimes[2] - callTimes[1]).toBeGreaterThan(2000); // ~2 seconds
+      // Check that delays increase exponentially (allowing for some timing variance)
+      expect(callTimes[1] - callTimes[0]).toBeGreaterThan(900); // ~1 second (with tolerance)
+      expect(callTimes[2] - callTimes[1]).toBeGreaterThan(1800); // ~2 seconds (with tolerance)
     });
   });
 

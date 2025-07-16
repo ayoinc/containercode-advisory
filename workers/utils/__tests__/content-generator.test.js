@@ -1,8 +1,8 @@
-const { describe, expect, it, jest, beforeEach, afterEach } = require('@jest/globals')
+const { describe, expect, it, beforeEach, afterEach } = require('@jest/globals')
 const { ContentGenerator } = require('../content-generator')
 
 // Mock global fetch
-global.fetch = jest.fn()
+global.fetch = require('jest').fn()
 
 describe('ContentGenerator', () => {
   let contentGenerator
