@@ -129,7 +129,7 @@ const nextConfig = {
     reactRemoveProperties: process.env.NODE_ENV === 'production',
   },
   
-  // Advanced image optimization - optimized for OpenNext/Cloudflare
+  // Advanced image optimization - disabled for Cloudflare Workers compatibility
   images: {
     remotePatterns: [
       {
@@ -148,16 +148,10 @@ const nextConfig = {
         pathname: '**',
       },
     ],
-    formats: ['image/webp', 'image/avif'], // Enable modern formats for Cloudflare
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days for production
+    // Disable Next.js image optimization for Cloudflare Workers
+    unoptimized: true,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // OpenNext/Cloudflare optimized settings
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Enable optimization for OpenNext deployment
-    unoptimized: false,
-    loader: 'default',
   },
 
   // Experimental features for better performance
