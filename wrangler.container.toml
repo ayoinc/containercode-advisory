@@ -1,0 +1,44 @@
+name = "containercode-container"
+main = "src/cloudflare/container-worker.js"
+compatibility_date = "2025-01-16"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+# Container-specific deployment configuration
+[placement]
+mode = "smart"
+
+# Durable Objects configuration for containers
+[durable_objects]
+bindings = [
+  { class_name = "ContainerCodeApp", name = "CONTAINER_CODE_APP", script_name = "containercode-container" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ContainerCodeApp"]
+
+# Environment variables for container
+[vars]
+NODE_ENV = "production"
+CONTAINER_MODE = "true"
+ANALYTICS_ENABLED = "true"
+
+# Performance settings
+[limits]
+cpu_ms = 30000
+memory_mb = 512
+
+# Observability
+[observability]
+enabled = true
+
+# Optional: Analytics database
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "containercode"
+database_id = "ab29336d-2c61-4085-b43c-4335a489bbb9"
+
+# Optional: Cache storage
+[[kv_namespaces]]
+binding = "CACHE"
+id = "137e4efd34d240a498369c0cc273d5e3"

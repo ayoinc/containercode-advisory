@@ -2,102 +2,120 @@ const http = require('http');
 const url = require('url');
 
 const PORT = process.env.PORT || 8080;
-const MESSAGE = process.env.MESSAGE || 'Hello from ContainerCode App!';
-const INSTANCE_ID = process.env.CLOUDFLARE_DEPLOYMENT_ID || 'local-dev';
 
-const server = http.createServer((req, res) => {
+// Simple analytics tracking
+let requestCount = 0;
+const startTime = Date.now();
+
+const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
+  const path = parsedUrl.pathname;
+  
+  // Increment request counter
+  requestCount++;
   
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
+  // Handle preflight requests
   if (req.method === 'OPTIONS') {
     res.writeHead(200);
     res.end();
     return;
   }
   
-  // Health check endpoint
-  if (parsedUrl.pathname === '/health') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      status: 'healthy',
-      message: MESSAGE,
-      instanceId: INSTANCE_ID,
-      timestamp: new Date().toISOString(),
-      uptime: process.uptime()
-    }));
-    return;
+  try {
+    // Health check endpoint
+    if (path === '/health') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        uptime: Date.now() - startTime,
+        requests: requestCount,
+        memory: process.memoryUsage(),
+        version: process.env.npm_package_version || '1.0.0'
+      }));
+      return;
+    }
+    
+    // Container info endpoint
+    if (path === '/container/info') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        container_id: process.env.HOSTNAME || 'unknown',
+        timestamp: new Date().toISOString(),
+        requests: requestCount,
+        uptime: Date.now() - startTime,
+        memory: process.memoryUsage(),
+        env: process.env.NODE_ENV || 'development'
+      }));
+      return;
+    }
+    
+    // Analytics endpoint
+    if (path.startsWith('/api/analytics')) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        container_id: process.env.HOSTNAME || 'unknown',
+        requests: requestCount,
+        timestamp: new Date().toISOString(),
+        method: req.method,
+        path: path,
+        uptime: Date.now() - startTime
+      }));
+      return;
+    }
+    
+    // Load balancer test endpoint
+    if (path === '/lb') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        message: 'Load balancer response',
+        container_id: process.env.HOSTNAME || 'unknown',
+        timestamp: new Date().toISOString(),
+        requests: requestCount
+      }));
+      return;
+    }
+    
+    // Default response
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(`Hello from Container ${process.env.HOSTNAME || 'unknown'}!
+Path: ${path}
+Method: ${req.method}
+Requests: ${requestCount}
+Uptime: ${Date.now() - startTime}ms
+Timestamp: ${new Date().toISOString()}`);
+    
+  } catch (error) {
+    console.error('Server error:', error);
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end(`Server Error: ${error.message}`);
   }
-  
-  // API endpoint
-  if (parsedUrl.pathname.startsWith('/api/')) {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      message: `API response: ${MESSAGE}`,
-      instanceId: INSTANCE_ID,
-      path: parsedUrl.pathname,
-      method: req.method,
-      timestamp: new Date().toISOString()
-    }));
-    return;
-  }
-  
-  // Default response
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>ContainerCode App</title>
-      <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .info { background: #f5f5f5; padding: 20px; border-radius: 8px; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h1>🚀 ContainerCode App</h1>
-        <div class="info">
-          <h3>Container Info:</h3>
-          <p><strong>Message:</strong> ${MESSAGE}</p>
-          <p><strong>Instance ID:</strong> ${INSTANCE_ID}</p>
-          <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
-          <p><strong>Uptime:</strong> ${Math.floor(process.uptime())} seconds</p>
-        </div>
-        <h3>Available Endpoints:</h3>
-        <ul>
-          <li><a href="/health">/health</a> - Health check</li>
-          <li><a href="/api/test">/api/test</a> - API test</li>
-        </ul>
-      </div>
-    </body>
-    </html>
-  `);
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 ContainerCode App running on port ${PORT}`);
-  console.log(`📝 Message: ${MESSAGE}`);
-  console.log(`🆔 Instance ID: ${INSTANCE_ID}`);
+  console.log(`Container server running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`Started at: ${new Date().toISOString()}`);
 });
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-  console.log('🛑 Received SIGTERM, shutting down gracefully');
+  console.log('SIGTERM received, shutting down gracefully');
   server.close(() => {
-    console.log('✅ Server closed');
+    console.log('Server closed');
     process.exit(0);
   });
 });
 
 process.on('SIGINT', () => {
-  console.log('🛑 Received SIGINT, shutting down gracefully');
+  console.log('SIGINT received, shutting down gracefully');
   server.close(() => {
-    console.log('✅ Server closed');
+    console.log('Server closed');
     process.exit(0);
   });
 });

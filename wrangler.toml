@@ -3,6 +3,32 @@ main = "src/cloudflare/container-worker.js"
 compatibility_date = "2025-01-16"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
+# Container deployment mode
+[placement]
+mode = "smart"
+
+# Enable container runtime
+containers = "enabled"
+
+# Container configuration
+[[containers]]
+class_name = "ContainerCodeApp"
+image = "./Dockerfile"
+max_instances = 10
+min_instances = 1
+cpu = 0.25
+memory = "512MB"
+
+# Durable Objects configuration (required for containers)
+[durable_objects]
+bindings = [
+  { class_name = "ContainerCodeApp", name = "CONTAINER_CODE_APP", script_name = "containercode-app" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ContainerCodeApp"]
+
 # Observability
 [observability]
 enabled = true
@@ -11,26 +37,6 @@ enabled = true
 [limits]
 cpu_ms = 30000
 memory_mb = 512
-
-# Placement configuration for optimal performance
-[placement]
-mode = "smart"
-
-# Container configuration
-[[containers]]
-class_name = "ContainerCodeApp"
-image = "./Dockerfile"
-max_instances = 10
-
-# Durable Objects configuration (required for containers)
-[durable_objects]
-bindings = [
-  { class_name = "ContainerCodeApp", name = "CONTAINER_CODE_APP" }
-]
-
-[[migrations]]
-tag = "v1"
-new_sqlite_classes = ["ContainerCodeApp"]
 
 [vars]
 NODE_ENV = "production"

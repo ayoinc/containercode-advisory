@@ -9,6 +9,8 @@
     "build:cloudflare": "opennextjs-cloudflare build",
     "build:pages": "npm run build:cloudflare",
     "deploy:cloudflare": "bash scripts/deploy-cloudflare.sh",
+    "deploy:container": "wrangler deploy --config wrangler.container.toml",
+    "deploy:container:test": "bash deploy-container.sh",
     "build:analyze": "ANALYZE=true next build",
     "bundle:analyze": "ANALYZE=true npm run build",
     "bundle:check": "node scripts/check-bundle-size.js",

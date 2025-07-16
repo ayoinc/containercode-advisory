@@ -1,0 +1,42 @@
+name = "containercode-containers"
+main = "src/cloudflare/container-worker-new.js"
+compatibility_date = "2025-01-16"
+compatibility_flags = ["nodejs_compat"]
+
+# Container configuration using the new Containers API
+[[containers]]
+name = "CONTAINER_CODE_APP"
+class_name = "ContainerCodeApp"
+image = "./Dockerfile"
+# Optional: specify build context
+build_context = "."
+
+# Environment variables for the container
+[vars]
+NODE_ENV = "production"
+CONTAINER_MODE = "true"
+ANALYTICS_ENABLED = "true"
+NEXT_PUBLIC_SITE_URL = "https://containercode.club"
+
+# Optional: Additional bindings for analytics
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "containercode-analytics"
+database_id = "ab29336d-2c61-4085-b43c-4335a489bbb9"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "137e4efd34d240a498369c0cc273d5e3"
+
+# Analytics Engine for performance tracking
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+
+# Observability
+[observability]
+enabled = true
+
+# Performance settings
+[limits]
+cpu_ms = 30000
+memory_mb = 512
