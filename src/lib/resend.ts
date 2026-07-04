@@ -1,13 +1,31 @@
 import { Resend } from 'resend';
 import { ContactFormData } from './validations';
 
-const resendApiKey = process.env.RESEND_API_KEY;
-
-if (!resendApiKey) {
-  throw new Error('Missing RESEND_API_KEY environment variable');
+// Lazily instantiate the Resend client. Throwing at module load broke the
+// production build: Next imports every route module to collect page data, so a
+// missing RESEND_API_KEY at import time failed the whole build. The key is only
+// needed when an email is actually sent (at request time), so resolve it then.
+let _resend: Resend | null = null;
+function getResendClient(): Resend {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    throw new Error('Missing RESEND_API_KEY environment variable');
+  }
+  if (!_resend) _resend = new Resend(key);
+  return _resend;
 }
 
-export const resend = new Resend(resendApiKey);
+// Preserve the `resend.emails.send(...)` call sites while deferring client
+// creation (and the env check) to first property access at request time.
+export const resend = new Proxy({} as Resend, {
+  get(_target, prop) {
+    const client = getResendClient() as unknown as Record<string | symbol, unknown>;
+    const value = client[prop];
+    return typeof value === 'function'
+      ? (value as (...a: unknown[]) => unknown).bind(client)
+      : value;
+  },
+});
 
 // Email configuration
 export const EMAIL_CONFIG = {
