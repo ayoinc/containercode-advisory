@@ -20,14 +20,19 @@ export async function POST(request: NextRequest) {
 
     const { email } = result.data;
 
-    // Primary: notify the team of the new subscriber via the Cloudflare
-    // send_email binding (verified admin inbox, no third-party key required).
-    const adminResult = await notifyAdmin({
-      subject: `New newsletter subscriber: ${email}`,
-      html: `<p>A new visitor subscribed to the ContainerCode Advisory newsletter.</p><p><strong>Email:</strong> ${email}</p>`,
-      replyTo: email,
-    });
-    console.log('📧 Subscriber notification:', adminResult);
+    // Notify the team of the new subscriber via the Cloudflare send_email
+    // binding (verified admin inbox, no third-party key required). Best-effort:
+    // a failed admin notification must not fail the subscription itself.
+    try {
+      const adminResult = await notifyAdmin({
+        subject: `New newsletter subscriber: ${email}`,
+        html: `<p>A new visitor subscribed to the ContainerCode Advisory newsletter.</p><p><strong>Email:</strong> ${email}</p>`,
+        replyTo: email,
+      });
+      console.log('📧 Subscriber notification:', adminResult);
+    } catch (notifyError) {
+      console.warn('⚠️ Subscriber notification failed:', notifyError);
+    }
 
     // Best-effort welcome to the subscriber. The send_email binding cannot
     // reach arbitrary recipients, so this goes via Resend and must never fail

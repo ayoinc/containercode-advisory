@@ -46,27 +46,48 @@ export async function POST(request: NextRequest) {
 
     console.log('✅ Validation passed, notifying admin...');
 
-    // Primary delivery: notify the team via the Cloudflare send_email binding.
-    // No third-party key required — the enquiry lands in the verified admin
-    // inbox. A rejected send here is a real misconfiguration, so let it throw.
+    // Deliver the enquiry to the team. Primary channel is the Cloudflare
+    // send_email binding (no third-party key needed); Resend is the fallback
+    // when the binding is unavailable (local dev) or its send fails (e.g. Email
+    // Routing not yet verified). The submission only fails if NEITHER channel
+    // delivers, so a working form never depends on a single provider.
     const notification = emailTemplates.contactFormNotification(validatedData);
-    const adminResult = await notifyAdmin({
-      subject: notification.subject,
-      html: notification.html,
-      replyTo: validatedData.email,
-    });
-    console.log('📧 Admin notification:', adminResult);
+    let adminDelivered = false;
+    let adminFailure = '';
 
-    // Fallback for environments without the binding (e.g. local `next dev`):
-    // try Resend if a key is configured. Not fatal if it isn't.
-    if (!adminResult.delivered) {
-      console.warn('⚠️ EMAIL binding unavailable; attempting Resend fallback for admin notification');
+    try {
+      const adminResult = await notifyAdmin({
+        subject: notification.subject,
+        html: notification.html,
+        replyTo: validatedData.email,
+      });
+      console.log('📧 Admin notification:', adminResult);
+      if (adminResult.delivered) {
+        adminDelivered = true;
+      } else {
+        adminFailure = `binding: ${adminResult.reason}`;
+      }
+    } catch (bindingError) {
+      adminFailure = `binding: ${bindingError instanceof Error ? bindingError.message : 'send failed'}`;
+      console.warn('⚠️ EMAIL binding send failed:', bindingError);
+    }
+
+    if (!adminDelivered) {
+      console.warn('⚠️ Falling back to Resend for admin notification');
       try {
         const r = await resend.emails.send(notification);
         if (r.error) throw new Error(r.error.message);
-      } catch (fallbackError) {
-        console.warn('⚠️ Admin notification fallback failed:', fallbackError);
+        adminDelivered = true;
+      } catch (resendError) {
+        adminFailure += `; resend: ${resendError instanceof Error ? resendError.message : 'send failed'}`;
+        console.error('❌ Resend fallback also failed:', resendError);
       }
+    }
+
+    if (!adminDelivered) {
+      // Nothing delivered the enquiry — don't tell the submitter "success" for a
+      // message that went nowhere. The reason names the exact failure.
+      throw new Error(`Admin notification failed (${adminFailure})`);
     }
 
     // User-facing confirmation. The send_email binding cannot reach arbitrary
