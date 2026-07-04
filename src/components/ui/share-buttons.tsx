@@ -45,7 +45,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
       {/* Copy link button */}
       <button
         onClick={handleCopyLink}
-        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+        className="p-2 rounded-full text-navy-300 hover:text-aqua-400 hover:bg-navy-800 transition-colors"
         aria-label="Copy link"
         title="Copy link"
       >
@@ -60,7 +60,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-green-600"
+            className="text-aqua-400"
           >
             <path d="M20 6L9 17l-5-5" />
           </svg>
@@ -85,7 +85,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
       {/* Share button */}
       <button
         onClick={handleShare}
-        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+        className="p-2 rounded-full text-navy-300 hover:text-aqua-400 hover:bg-navy-800 transition-colors"
         aria-label="Share"
         title="Share"
       >

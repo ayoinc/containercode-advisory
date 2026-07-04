@@ -91,7 +91,7 @@ export function NotionBlockRenderer({ blocks }: NotionBlockRendererProps) {
             
           case 'code':
             return (
-              <pre key={id} className="bg-gray-100 p-4 rounded-md overflow-x-auto mb-6">
+              <pre key={id} className="bg-navy-950 border border-navy-700 p-4 rounded overflow-x-auto mb-6 text-navy-100">
                 <code className="text-sm">
                   {block.code.rich_text.map((text: any, i: number) => (
                     <Fragment key={i}>{text.plain_text}</Fragment>
@@ -102,7 +102,7 @@ export function NotionBlockRenderer({ blocks }: NotionBlockRendererProps) {
             
           case 'quote':
             return (
-              <blockquote key={id} className="pl-4 border-l-4 border-navy-200 italic mb-6">
+              <blockquote key={id} className="pl-4 border-l-2 border-aqua-500 italic text-navy-200 mb-6">
                 {block.quote.rich_text.map((text: any, i: number) => (
                   <RichTextRenderer key={i} richText={text} />
                 ))}
@@ -126,7 +126,7 @@ export function NotionBlockRenderer({ blocks }: NotionBlockRendererProps) {
                   />
                 </div>
                 {block.image.caption?.length > 0 && (
-                  <figcaption className="text-center text-sm text-gray-600 mt-2">
+                  <figcaption className="text-center text-sm text-navy-300 mt-2">
                     {block.image.caption[0].plain_text}
                   </figcaption>
                 )}
@@ -134,13 +134,13 @@ export function NotionBlockRenderer({ blocks }: NotionBlockRendererProps) {
             );
             
           case 'divider':
-            return <hr key={id} className="my-8 border-t border-gray-200" />;
+            return <hr key={id} className="my-8 border-t border-navy-700" />;
             
           case 'callout':
             return (
               <div 
                 key={id} 
-                className="bg-navy-50 p-4 rounded-md flex items-start gap-4 mb-6"
+                className="bg-navy-800 border border-navy-700 p-4 rounded flex items-start gap-4 mb-6"
               >
                 {block.callout.icon?.emoji && (
                   <div className="text-xl">{block.callout.icon.emoji}</div>
@@ -162,7 +162,7 @@ export function NotionBlockRenderer({ blocks }: NotionBlockRendererProps) {
                   readOnly 
                   className="mt-1.5"
                 />
-                <span className={block.to_do.checked ? 'line-through text-gray-500' : ''}>
+                <span className={block.to_do.checked ? 'line-through text-navy-400' : ''}>
                   {block.to_do.rich_text.map((text: any, i: number) => (
                     <RichTextRenderer key={i} richText={text} />
                   ))}
@@ -176,7 +176,7 @@ export function NotionBlockRenderer({ blocks }: NotionBlockRendererProps) {
             
           default:
             return (
-              <div key={id} className="text-gray-500 italic my-2">
+              <div key={id} className="text-navy-400 italic my-2">
                 Unsupported block type: {type}
               </div>
             );
@@ -203,7 +203,7 @@ function RichTextRenderer({ richText }: RichTextRendererProps) {
   if (annotations.italic) className += 'italic ';
   if (annotations.strikethrough) className += 'line-through ';
   if (annotations.underline) className += 'underline ';
-  if (annotations.code) className += 'font-mono bg-gray-100 px-1 rounded ';
+  if (annotations.code) className += 'font-mono bg-navy-800 text-aqua-300 px-1 rounded ';
   if (annotations.color && annotations.color !== 'default') {
     className += `text-${annotations.color} `;
   }
@@ -213,7 +213,7 @@ function RichTextRenderer({ richText }: RichTextRendererProps) {
     return (
       <Link 
         href={href} 
-        className={`${className} text-navy-600 hover:underline`}
+        className={`${className} text-aqua-400 hover:text-aqua-300 hover:underline`}
         target="_blank"
         rel="noopener noreferrer"
       >
