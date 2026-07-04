@@ -1,0 +1,17 @@
+{
+  "//": "Type-check config for CI. Extends the app tsconfig but excludes the",
+  "//2": "test suite and tooling scripts/workers, which carry pre-existing type",
+  "//3": "errors and are compiled/checked by their own toolchains (jest, wrangler).",
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "**/__tests__/**",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "tests",
+    "scripts",
+    "workers",
+    "src/cloudflare"
+  ]
+}

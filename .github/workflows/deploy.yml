@@ -1,0 +1,41 @@
+name: Deploy (production)
+
+# Single-target deploy: OpenNext build -> Cloudflare Workers (wrangler.jsonc).
+# Manual trigger only so it never blocks PRs. Once the repository secrets
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID (and the app runtime secrets)
+# are configured, add a `push: branches: [main]` trigger below to auto-deploy.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    name: Build & deploy to Cloudflare Workers
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://containercode.club
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (OpenNext) & deploy (Wrangler)
+        run: npx opennextjs-cloudflare build && npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NEXT_PUBLIC_SITE_URL: https://containercode.club
+          NODE_ENV: production
+
+      - name: Health check
+        run: |
+          sleep 20
+          curl -fsS https://containercode.club/api/health || echo "health check unavailable"
