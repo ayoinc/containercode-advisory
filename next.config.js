@@ -1,126 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 // Performance and bundle analysis - conditional import
-const withBundleAnalyzer = process.env.ANALYZE === 'true' 
+const withBundleAnalyzer = process.env.ANALYZE === 'true'
   ? require('@next/bundle-analyzer')({ enabled: true })
   : (config) => config;
-
-// Enhanced PWA Configuration
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-  buildExcludes: [/middleware-manifest.json$/, /app-build-manifest.json$/],
-  
-  // Enhanced runtime caching with analytics support
-  runtimeCaching: [
-    // Google Fonts optimization
-    {
-      urlPattern: /^https:\/\/fonts\.googleapis\.com/,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'google-fonts-stylesheets',
-        expiration: {
-          maxEntries: 30,
-          maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-        },
-      },
-    },
-    {
-      urlPattern: /^https:\/\/fonts\.gstatic\.com/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'google-fonts-webfonts',
-        expiration: {
-          maxEntries: 30,
-          maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-        },
-      },
-    },
-    // Analytics with background sync
-    {
-      urlPattern: /\/api\/analytics/,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'analytics-api',
-        networkTimeoutSeconds: 3,
-        plugins: [
-          {
-            cacheKeyWillBeUsed: async ({ request }) => {
-              return `${request.url}?${Date.now()}`;
-            },
-            requestWillFetch: async ({ request }) => {
-              // Add analytics headers
-              const headers = new Headers(request.headers);
-              headers.set('X-Analytics-Source', 'service-worker');
-              return new Request(request, { headers });
-            },
-          },
-        ],
-        backgroundSync: {
-          name: 'analytics-queue',
-          options: {
-            maxRetentionTime: 24 * 60, // 24 hours
-          },
-        },
-      },
-    },
-    // Enhanced static assets caching
-    {
-      urlPattern: /\/_next\/static\/.*/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'next-static',
-        expiration: {
-          maxEntries: 200,
-          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
-        },
-      },
-    },
-    // Images with advanced caching
-    {
-      urlPattern: /\.(?:png|gif|jpg|jpeg|svg|webp)$/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'images-cache',
-        expiration: {
-          maxEntries: 300,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
-        },
-        cacheableResponse: {
-          statuses: [0, 200],
-        },
-      },
-    },
-    // Cloudflare Workers specific optimizations
-    {
-      urlPattern: /^https:\/\/containercode\.club\/api\/.*/,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'cf-api-cache',
-        networkTimeoutSeconds: 5,
-        expiration: {
-          maxEntries: 100,
-          maxAgeSeconds: 5 * 60, // 5 minutes
-        },
-      },
-    },
-    // General network requests with fallback
-    {
-      urlPattern: /^https?.*/,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'offlineCache',
-        networkTimeoutSeconds: 10,
-        expiration: {
-          maxEntries: 200,
-          maxAgeSeconds: 24 * 60 * 60, // 24 hours
-        },
-      },
-    },
-  ],
-});
 
 // Enhanced Content Security Policy
 const ContentSecurityPolicy = `
@@ -192,12 +75,17 @@ const securityHeaders = [
 const nextConfig = {
   // Performance optimizations
   reactStrictMode: true,
-  swcMinify: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
     // React optimization
     reactRemoveProperties: process.env.NODE_ENV === 'production',
   },
+
+  // Node packages that must not be bundled by the server compiler (Next 15+)
+  serverExternalPackages: ['@notionhq/client', 'pexels'],
+
+  // Typed routes are stable in Next 15+
+  typedRoutes: true,
   
   // Advanced image optimization - disabled for Cloudflare Workers compatibility
   images: {
@@ -224,125 +112,12 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
-  // Experimental features for better performance
+  // Experimental features. Bundling/splitting is left to Turbopack (the Next 16
+  // default); the old bespoke webpack splitChunks config referenced packages
+  // that are no longer used and is unnecessary under Turbopack.
   experimental: {
-    serverComponentsExternalPackages: [
-      '@notionhq/client',
-      'pexels',
-    ],
-    optimizeCss: true,
-    typedRoutes: true,
-    // Advanced experimental features
-    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@nextui-org/react'],
-    // Edge runtime optimization
-    serverMinification: true,
-    // Enhanced tree shaking
-    esmExternals: true,
-    // Turbopack for faster builds
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
-  },
-
-  // Bundle optimization
-  webpack: (config, { dev, isServer }) => {
-    // Optimize bundle in production
-    if (!dev && !isServer) {
-      // Enhanced code splitting configuration
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        maxAsyncRequests: 30,
-        maxInitialRequests: 20, // Further reduced for better performance
-        minSize: 40000, // Increased for better bundle consolidation
-        maxSize: 250000, // Reduced max size for better loading
-        cacheGroups: {
-          // React framework bundle
-          framework: {
-            chunks: 'all',
-            name: 'framework',
-            test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
-            priority: 40,
-            enforce: true,
-          },
-          // Framer Motion (large library)
-          'framer-motion': {
-            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-            name: 'framer-motion',
-            priority: 35,
-            enforce: true,
-            chunks: 'async', // Load framer-motion asynchronously
-          },
-          // NextUI components
-          nextui: {
-            test: /[\\/]node_modules[\\/]@nextui-org[\\/]/,
-            name: 'nextui',
-            priority: 35,
-            enforce: true,
-            chunks: 'async',
-          },
-          // Radix UI components
-          radix: {
-            test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-            name: 'radix-ui',
-            priority: 35,
-            enforce: true,
-          },
-          // Lucide icons
-          lucide: {
-            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
-            name: 'lucide-react',
-            priority: 33,
-            enforce: true,
-          },
-          // Other libraries
-          lib: {
-            test: /[\\/]node_modules[\\/]/,
-            name(module) {
-              const match = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-              if (!match) return 'lib';
-              const packageName = match[1];
-              return `npm.${packageName.replace('@', '')}`;
-            },
-            priority: 30,
-            minChunks: 1,
-            reuseExistingChunk: true,
-            maxSize: 300000, // Split large vendor chunks
-          },
-          // Commons for shared code
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 20,
-            maxSize: 250000,
-          },
-        },
-      };
-      
-      // Module concatenation for smaller bundles
-      config.optimization.concatenateModules = true;
-      
-      // Better tree shaking
-      config.optimization.usedExports = true;
-      config.optimization.sideEffects = false;
-      
-      // Add dynamic imports analysis
-      config.optimization.mangleExports = 'size';
-    }
-    
-    // Enhanced performance hints
-    config.performance = {
-      hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
-      maxEntrypointSize: 400000, // Reduced from 512000
-      maxAssetSize: 400000, // Reduced from 512000
-    };
-    
-    return config;
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'INP', 'TTFB'],
   },
 
   // Security headers
@@ -420,8 +195,8 @@ const nextConfig = {
   },
 };
 
-// Apply configurations with PWA and Bundle Analyzer
-const finalConfig = withPWA(withBundleAnalyzer(nextConfig));
+// Apply configuration with the (optional) bundle analyzer
+const finalConfig = withBundleAnalyzer(nextConfig);
 
 // Initialize OpenNext for Cloudflare development
 if (process.env.NODE_ENV === 'development') {

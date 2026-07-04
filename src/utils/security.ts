@@ -38,7 +38,7 @@ export const generateCSRFToken = (): string => {
 // Rate limiting middleware
 export const withRateLimit = (handler: any) => {
   return async (req: NextRequest) => {
-    const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown';
+    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-forwarded-for') || 'unknown';
     
     try {
       await rateLimit.check(ip, 10, '1 m'); // 10 requests per minute

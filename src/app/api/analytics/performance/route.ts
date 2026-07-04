@@ -70,8 +70,8 @@ export async function POST(request: NextRequest) {
 
     // Extract client information
     const userAgent = request.headers.get('user-agent') || '';
-    const country = request.geo?.country || 'unknown';
-    const clientIP = request.ip || 'unknown';
+    const country = request.headers.get('cf-ipcountry') || 'unknown';
+    const clientIP = request.headers.get('x-forwarded-for') || 'unknown';
     
     // Device detection
     const device = detectDevice(userAgent);
