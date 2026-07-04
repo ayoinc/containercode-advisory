@@ -51,12 +51,22 @@ export async function POST(request: NextRequest) {
     const notificationEmail = emailTemplates.contactFormNotification(validatedData);
     const notificationResult = await resend.emails.send(notificationEmail);
     console.log('📧 Notification email result:', notificationResult);
-    
+
+    // Resend returns { error } instead of throwing — surface it so the failure
+    // is visible (e.g. missing/invalid key, or an unverified sending domain)
+    // rather than silently reporting success.
+    if (notificationResult.error) {
+      throw new Error(`Resend: ${notificationResult.error.message}`);
+    }
+
     // Send confirmation email to user
     console.log('📤 Sending confirmation email to:', validatedData.email);
     const confirmationEmail = emailTemplates.contactFormConfirmation(validatedData);
     const confirmationResult = await resend.emails.send(confirmationEmail);
     console.log('📧 Confirmation email result:', confirmationResult);
+    if (confirmationResult.error) {
+      throw new Error(`Resend: ${confirmationResult.error.message}`);
+    }
     
     // Handle newsletter subscription if requested
     if (validatedData.subscribe) {
@@ -97,7 +107,12 @@ export async function POST(request: NextRequest) {
     }
     
     return withSecurityHeaders(NextResponse.json(
-      { error: 'Failed to send message' },
+      {
+        error: 'Failed to send message',
+        // Surfaced to help diagnose live config (missing RESEND_API_KEY secret,
+        // unverified sending domain, etc.). Not sensitive.
+        reason: error instanceof Error ? error.message : 'unknown',
+      },
       { status: 500 }
     ));
   }
