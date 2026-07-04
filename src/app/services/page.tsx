@@ -137,9 +137,9 @@ const competitiveAdvantages = [
 
 export default function ProfessionalServicesPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-navy-900">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-24 pb-16 overflow-hidden">
+      <section className="relative bg-navy-950 pt-24 pb-16 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <HeroImage 
@@ -147,19 +147,19 @@ export default function ProfessionalServicesPage() {
             className="w-full h-full object-cover opacity-20"
             priority
           />
-          <div className="absolute inset-0 bg-gray-900/60" />
+          <div className="absolute inset-0 bg-navy-950/60" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-800 text-sm font-medium mb-6 backdrop-blur-sm">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-aqua-500/10 text-aqua-300 border border-aqua-500/25 text-sm font-medium mb-6 backdrop-blur-sm">
               <Building2 className="w-4 h-4 mr-2" />
               Professional Services
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Comprehensive Technology Solutions
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-navy-200 leading-relaxed max-w-3xl mx-auto">
               Expert consulting services designed to accelerate your digital transformation, enhance security posture, 
               and deliver measurable business outcomes across all technology domains.
             </p>
@@ -171,15 +171,15 @@ export default function ProfessionalServicesPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Service Portfolio</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Our Service Portfolio</h2>
+            <p className="text-xl text-navy-300">
               End-to-end technology solutions delivering measurable business value
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {professionalServices.map((service) => (
-              <div key={service.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col overflow-hidden">
+              <div key={service.id} className="bg-navy-850 rounded-2xl shadow-lg border border-navy-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col overflow-hidden">
                 {/* Service Image */}
                 <div className="relative h-48">
                   <ServiceImage 
@@ -202,26 +202,26 @@ export default function ProfessionalServicesPage() {
                 </div>
 
                 <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                  <p className="text-gray-600 mb-6 flex-grow leading-relaxed">{service.description}</p>
+                  <h3 className="text-xl font-bold text-navy-100 mb-4">{service.title}</h3>
+                  <p className="text-navy-300 mb-6 flex-grow leading-relaxed">{service.description}</p>
                   
                   <div className="mb-6">
-                    <h4 className="font-semibold mb-3 text-sm text-gray-700">Key Capabilities:</h4>
+                    <h4 className="font-semibold mb-3 text-sm text-navy-200">Key Capabilities:</h4>
                     <ul className="space-y-2">
                       {service.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
-                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <li key={index} className="flex items-start gap-2 text-sm text-navy-300">
+                          <CheckCircle className="h-4 w-4 text-aqua-400 flex-shrink-0 mt-0.5" />
                           {feature}
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-                    <h4 className="font-semibold mb-2 text-sm text-gray-700">Typical Outcomes:</h4>
+                  <div className="mb-6 p-4 bg-navy-950 rounded-lg">
+                    <h4 className="font-semibold mb-2 text-sm text-navy-200">Typical Outcomes:</h4>
                     <div className="space-y-1">
                       {service.outcomes.map((outcome, index) => (
-                        <div key={index} className="text-sm text-gray-600 font-medium">
+                        <div key={index} className="text-sm text-navy-300 font-medium">
                           • {outcome}
                         </div>
                       ))}
@@ -244,11 +244,11 @@ export default function ProfessionalServicesPage() {
       </section>
 
       {/* Competitive Advantages */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose ContainerCode Advisory?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Why Choose ContainerCode Advisory?</h2>
+            <p className="text-xl text-navy-300 max-w-3xl mx-auto">
               We combine deep technical expertise with proven business results to deliver transformational 
               outcomes that drive sustainable competitive advantage.
             </p>
@@ -256,13 +256,13 @@ export default function ProfessionalServicesPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {competitiveAdvantages.map((advantage, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 rounded-xl mb-4">
-                  <advantage.icon className="h-6 w-6 text-primary-600" />
+              <div key={index} className="bg-navy-850 rounded-2xl p-6 shadow-lg border border-navy-700 text-center hover:shadow-xl transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-aqua-500/10 border border-aqua-500/25 rounded-xl mb-4">
+                  <advantage.icon className="h-6 w-6 text-aqua-400" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{advantage.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{advantage.description}</p>
-                <div className="text-sm font-semibold text-primary-600">{advantage.metrics}</div>
+                <h3 className="text-lg font-bold text-navy-100 mb-3">{advantage.title}</h3>
+                <p className="text-navy-300 mb-4 leading-relaxed">{advantage.description}</p>
+                <div className="text-sm font-semibold text-aqua-400">{advantage.metrics}</div>
               </div>
             ))}
           </div>
@@ -273,8 +273,8 @@ export default function ProfessionalServicesPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Service Delivery Methodology</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Our Service Delivery Methodology</h2>
+            <p className="text-xl text-navy-300">
               A proven framework that ensures successful outcomes for every client engagement
             </p>
           </div>
@@ -307,10 +307,10 @@ export default function ProfessionalServicesPage() {
               }
             ].map((phase, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-primary-600 mb-4">{phase.step}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{phase.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{phase.description}</p>
-                <div className="text-sm font-semibold text-primary-600">{phase.duration}</div>
+                <div className="text-4xl font-bold text-aqua-400 mb-4">{phase.step}</div>
+                <h3 className="text-lg font-bold text-navy-100 mb-3">{phase.title}</h3>
+                <p className="text-navy-300 mb-4 leading-relaxed">{phase.description}</p>
+                <div className="text-sm font-semibold text-aqua-400">{phase.duration}</div>
               </div>
             ))}
           </div>
@@ -318,11 +318,11 @@ export default function ProfessionalServicesPage() {
       </section>
 
       {/* Industries Served */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Industries We Serve</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Industries We Serve</h2>
+            <p className="text-xl text-navy-300">
               Specialised expertise across diverse sectors with deep understanding of industry-specific requirements
             </p>
           </div>
@@ -338,10 +338,10 @@ export default function ProfessionalServicesPage() {
               { name: 'Government', icon: '🏛️', description: 'Public Sector, Councils, Agencies' },
               { name: 'Energy', icon: '⚡', description: 'Utilities, Renewables, Oil & Gas' }
             ].map((industry) => (
-              <div key={industry.name} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div key={industry.name} className="bg-navy-850 rounded-2xl p-6 shadow-lg border border-navy-700 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="text-3xl mb-3">{industry.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2">{industry.name}</h3>
-                <p className="text-sm text-gray-600">{industry.description}</p>
+                <h3 className="font-bold text-navy-100 mb-2">{industry.name}</h3>
+                <p className="text-sm text-navy-300">{industry.description}</p>
               </div>
             ))}
           </div>
@@ -352,8 +352,8 @@ export default function ProfessionalServicesPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Flexible Engagement Models</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Flexible Engagement Models</h2>
+            <p className="text-xl text-navy-300">
               Choose the engagement model that best fits your requirements and budget
             </p>
           </div>
@@ -379,19 +379,19 @@ export default function ProfessionalServicesPage() {
                 ideal: 'Businesses needing ongoing operational support'
               }
             ].map((model, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{model.name}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{model.description}</p>
+              <div key={index} className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 hover:shadow-xl transition-all duration-300">
+                <h3 className="text-xl font-bold text-navy-100 mb-4">{model.name}</h3>
+                <p className="text-navy-300 mb-6 leading-relaxed">{model.description}</p>
                 <ul className="space-y-3 mb-6">
                   {model.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center gap-3">
-                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <CheckCircle className="h-4 w-4 text-aqua-400 flex-shrink-0" />
+                      <span className="text-navy-200">{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="pt-4 border-t border-gray-100">
-                  <p className="text-sm text-gray-600">
+                <div className="pt-4 border-t border-navy-700">
+                  <p className="text-sm text-navy-300">
                     <strong>Ideal for:</strong> {model.ideal}
                   </p>
                 </div>
@@ -402,27 +402,27 @@ export default function ProfessionalServicesPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Accelerate Your Digital Journey?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+            <p className="text-xl text-navy-200 mb-8 leading-relaxed">
               Let&apos;s discuss how our comprehensive service portfolio can help you achieve your technology 
               objectives with proven methodologies, expert guidance, and measurable results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/contact"
-                className="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors shadow-lg"
+                className="inline-flex items-center px-8 py-4 bg-aqua-500 hover:bg-aqua-400 text-navy-950 rounded-lg font-semibold transition-colors shadow-lg"
               >
                 Schedule Free Consultation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link 
                 href="/contact"
-                className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-lg font-semibold transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 bg-transparent border border-navy-600 text-navy-100 hover:bg-navy-800 rounded-lg font-semibold transition-all duration-300"
               >
                 View Success Stories
                 <ArrowRight className="w-4 h-4 ml-2" />
