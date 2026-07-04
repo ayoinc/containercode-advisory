@@ -120,19 +120,19 @@ const professionalCertifications = [
 
 export default function ProfessionalAboutPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-navy-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-24 pb-16">
+      <section className="bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 pt-24 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-800 text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-aqua-500/10 text-aqua-300 border border-aqua-500/25 text-sm font-medium mb-6">
               <Building2 className="w-4 h-4 mr-2" />
               About ContainerCode Advisory
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Your Strategic Technology Partner
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-navy-200 leading-relaxed max-w-3xl mx-auto">
               We are a leading technology consultancy specialising in multi-cloud solutions, cybersecurity excellence, 
               and digital transformation. Our mission is to empower organisations with secure, scalable, and innovative 
               technology solutions that drive sustainable growth and competitive advantage.
@@ -146,30 +146,30 @@ export default function ProfessionalAboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Transforming Businesses Through 
-                <span className="text-primary-600"> Technology Excellence</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-navy-100 mb-6">
+                Transforming Businesses Through
+                <span className="text-aqua-400"> Technology Excellence</span>
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-navy-300 mb-6 leading-relaxed">
                 ContainerCode Advisory combines deep technical expertise with strategic business insight to help 
                 organisations navigate the complexities of modern technology. We specialise in multi-cloud architectures, 
                 cybersecurity frameworks, and digital transformation initiatives that deliver measurable business value.
               </p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-navy-300 mb-8 leading-relaxed">
                 Our team of certified professionals brings decades of combined experience across all major cloud platforms, 
                 enabling us to design and implement solutions that are secure, scalable, and aligned with your business objectives.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   href="/contact"
-                  className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg"
+                  className="inline-flex items-center px-6 py-3 bg-aqua-500 text-navy-950 font-semibold rounded-lg hover:bg-aqua-400 transition-colors shadow-lg"
                 >
                   Partner With Us
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
                 <Link 
                   href="/services"
-                  className="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+                  className="inline-flex items-center px-6 py-3 border border-aqua-500/50 text-aqua-400 font-semibold rounded-lg hover:bg-aqua-500/10 transition-colors"
                 >
                   View Our Work
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -177,20 +177,20 @@ export default function ProfessionalAboutPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gray-900 rounded-2xl p-8 text-white shadow-2xl">
+              <div className="bg-navy-850 rounded-2xl p-8 text-white shadow-2xl border border-navy-700">
                 <h3 className="text-2xl font-bold mb-6">Our Mission</h3>
-                <p className="text-lg mb-8 text-gray-300 leading-relaxed">
+                <p className="text-lg mb-8 text-navy-200 leading-relaxed">
                   To empower businesses with secure, scalable, and innovative cloud solutions that drive growth, 
                   operational efficiency, and competitive advantage in the digital economy.
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   {achievements.map((achievement, index) => (
                     <div key={index} className="text-center">
-                      <div className="flex items-center justify-center w-12 h-12 bg-primary-600 rounded-full mx-auto mb-3">
+                      <div className="flex items-center justify-center w-12 h-12 bg-navy-800 border border-navy-700 rounded-full mx-auto mb-3">
                         <achievement.icon className="w-6 h-6" />
                       </div>
                       <div className="text-2xl font-bold text-primary-400">{achievement.number}</div>
-                      <div className="text-sm text-gray-400 font-medium">{achievement.label}</div>
+                      <div className="text-sm text-navy-400 font-medium">{achievement.label}</div>
                     </div>
                   ))}
                 </div>
@@ -201,23 +201,23 @@ export default function ProfessionalAboutPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Our Core Values</h2>
+            <p className="text-xl text-navy-300">
               The principles that guide every aspect of our client engagements
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {coreValues.map((value, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-2xl mb-6">
-                  <value.icon className="w-8 h-8 text-primary-600" />
+              <div key={index} className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-aqua-500/10 border border-aqua-500/25 rounded-2xl mb-6">
+                  <value.icon className="w-8 h-8 text-aqua-400" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3 className="text-xl font-bold text-navy-100 mb-4">{value.title}</h3>
+                <p className="text-navy-300 leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -228,29 +228,29 @@ export default function ProfessionalAboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Areas of Expertise</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Our Areas of Expertise</h2>
+            <p className="text-xl text-navy-300">
               Comprehensive technical knowledge across the entire technology ecosystem
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {expertiseAreas.map((area, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+              <div key={index} className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-100 rounded-xl">
-                      <area.icon className="w-8 h-8 text-primary-600" />
+                    <div className="inline-flex items-center justify-center w-14 h-14 bg-aqua-500/10 border border-aqua-500/25 rounded-xl">
+                      <area.icon className="w-8 h-8 text-aqua-400" />
                     </div>
                   </div>
                   <div className="flex-grow">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed">{area.description}</p>
+                    <h3 className="text-xl font-bold text-navy-100 mb-3">{area.title}</h3>
+                    <p className="text-navy-300 mb-6 leading-relaxed">{area.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {area.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium"
+                          className="px-3 py-1 bg-navy-800 text-navy-200 rounded-lg text-sm font-medium"
                         >
                           {tech}
                         </span>
@@ -265,11 +265,11 @@ export default function ProfessionalAboutPage() {
       </section>
 
       {/* Company Timeline */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Journey of Excellence</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Our Journey of Excellence</h2>
+            <p className="text-xl text-navy-300">
               Five years of continuous growth, innovation, and client success
             </p>
           </div>
@@ -279,16 +279,16 @@ export default function ProfessionalAboutPage() {
               {companyTimeline.map((milestone, index) => (
                 <div key={index} className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-14 h-14 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    <div className="w-14 h-14 bg-navy-800 border border-navy-700 text-white rounded-full flex items-center justify-center font-bold text-lg">
                       {milestone.year.slice(-2)}
                     </div>
                   </div>
-                  <div className="flex-grow bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                  <div className="flex-grow bg-navy-850 rounded-xl p-6 shadow-lg border border-navy-700">
                     <div className="flex items-center gap-4 mb-3">
-                      <h3 className="text-xl font-bold text-gray-900">{milestone.year}</h3>
-                      <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">{milestone.title}</span>
+                      <h3 className="text-xl font-bold text-navy-100">{milestone.year}</h3>
+                      <span className="px-3 py-1 bg-aqua-500/10 text-aqua-300 border border-aqua-500/25 rounded-full text-sm font-semibold">{milestone.title}</span>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
+                    <p className="text-navy-300 leading-relaxed">{milestone.description}</p>
                   </div>
                 </div>
               ))}
@@ -301,8 +301,8 @@ export default function ProfessionalAboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certifications & Accreditations</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Professional Certifications & Accreditations</h2>
+            <p className="text-xl text-navy-300">
               Our team maintains industry-leading certifications across all major technology platforms
             </p>
           </div>
@@ -311,10 +311,10 @@ export default function ProfessionalAboutPage() {
             {professionalCertifications.map((certification, index) => (
               <div 
                 key={index}
-                className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+                className="flex items-center gap-4 p-4 bg-navy-850 rounded-xl border border-navy-700 hover:border-aqua-500/50 hover:shadow-lg transition-all duration-300"
               >
-                <Award className="w-6 h-6 text-primary-600 flex-shrink-0" />
-                <span className="text-gray-700 font-medium">{certification}</span>
+                <Award className="w-6 h-6 text-aqua-400 flex-shrink-0" />
+                <span className="text-navy-200 font-medium">{certification}</span>
               </div>
             ))}
           </div>
@@ -322,11 +322,11 @@ export default function ProfessionalAboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Partner With ContainerCode Advisory?</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Why Partner With ContainerCode Advisory?</h2>
+            <p className="text-xl text-navy-300">
               What distinguishes us in the competitive technology consulting marketplace
             </p>
           </div>
@@ -349,14 +349,14 @@ export default function ProfessionalAboutPage() {
                 benefits: ['Strategic consulting', 'Implementation support', 'Continuous optimisation']
               }
             ].map((differentiator, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{differentiator.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{differentiator.description}</p>
+              <div key={index} className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <h3 className="text-xl font-bold text-navy-100 mb-4">{differentiator.title}</h3>
+                <p className="text-navy-300 mb-6 leading-relaxed">{differentiator.description}</p>
                 <div className="space-y-3">
                   {differentiator.benefits.map((benefit, benefitIndex) => (
                     <div key={benefitIndex} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium">{benefit}</span>
+                      <CheckCircle className="w-5 h-5 text-aqua-400 flex-shrink-0" />
+                      <span className="text-navy-200 font-medium">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -367,27 +367,27 @@ export default function ProfessionalAboutPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Accelerate Your Digital Transformation?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+            <p className="text-xl text-navy-200 mb-8 leading-relaxed">
               Let's discuss how our expertise and proven methodologies can help you achieve your technology 
               objectives with measurable results, reduced risk, and accelerated time-to-value.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/contact"
-                className="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors shadow-lg"
+                className="inline-flex items-center px-8 py-4 bg-aqua-500 hover:bg-aqua-400 text-navy-950 rounded-lg font-semibold transition-colors shadow-lg"
               >
                 Schedule Consultation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link 
                 href="/services"
-                className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-lg font-semibold transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 bg-transparent border border-navy-600 text-navy-100 hover:bg-navy-800 rounded-lg font-semibold transition-all duration-300"
               >
                 Explore Our Services
                 <ArrowRight className="w-4 h-4 ml-2" />

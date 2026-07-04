@@ -1,246 +1,184 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Star, Shield, Award, Users, TrendingUp, Clock } from 'lucide-react';
-import { HeroImage } from '@/components/ui/images/smart-image';
+import Image from 'next/image';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Terminal } from 'lucide-react';
 
 export function ProfessionalHero() {
+  const reduce = useReducedMotion();
+
   const trustMetrics = [
-    { metric: 150, suffix: '+', label: 'Successful Transformations' },
-    { metric: 99.9, suffix: '%', label: 'Service Reliability' },
-    { metric: 24, suffix: '/7', label: 'Expert Support' },
-    { metric: 5, suffix: '★', label: 'Client Satisfaction' }
+    { value: '150+', label: 'Successful Transformations' },
+    { value: '99.9%', label: 'Service Reliability' },
+    { value: '24/7', label: 'Expert Support' },
+    { value: '5.0', label: 'Client Satisfaction' },
   ];
 
   const keyCapabilities = [
     'Multi-cloud expertise across all major platforms',
     'Security-first approach with regulatory compliance',
     'DevOps automation and operational excellence',
-    'Strategic digital transformation guidance'
+    'Strategic digital transformation guidance',
   ];
 
-  const trustLogos = [
-    { name: 'AWS', color: 'text-orange-500' },
-    { name: 'Azure', color: 'text-primary-600' },
-    { name: 'GCP', color: 'text-green-500' },
-    { name: 'Oracle', color: 'text-red-600' },
-    { name: 'IBM', color: 'text-primary-700' }
-  ];
+  const cloudProviders = ['AWS', 'Azure', 'GCP', 'Oracle', 'IBM'];
 
-  const AnimatedCounter = ({ from, to, duration, suffix }: { from: number; to: number; duration: number; suffix: string }) => {
-    const [count, setCount] = React.useState(from);
-
-    React.useEffect(() => {
-      let startTime: number;
-      const animate = (currentTime: number) => {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-        
-        setCount(from + (to - from) * progress);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-      
-      const timer = setTimeout(() => requestAnimationFrame(animate), 1000);
-      return () => clearTimeout(timer);
-    }, [from, to, duration]);
-
-    return (
-      <span>
-        {Math.round(count * 10) / 10}{suffix}
-      </span>
-    );
-  };
+  // Entrance choreography — disabled under prefers-reduced-motion
+  const fade = (delay = 0) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+        };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
-      
-      {/* Professional background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236b7280' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-      
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Left Column - Content */}
-          <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.div 
-                className="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 border border-gray-200 text-gray-700 mb-6"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Award className="w-4 h-4 mr-2 text-primary-600" />
-                <span className="text-sm font-medium">Trusted by Industry Leaders</span>
-              </motion.div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Transforming Businesses Through{' '}
-                <span className="text-primary-600">
-                  Cloud Excellence
-                </span>
-              </h1>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <p className="text-xl text-gray-600 max-w-xl leading-relaxed">
-                We partner with forward-thinking organisations to accelerate their digital transformation journey. 
-                Our expertise spans multi-cloud architectures, cybersecurity, and operational excellence - delivering 
-                measurable results that drive sustainable growth.
-              </p>
+    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-navy-900">
+      {/* Technical grid + aqua glow backdrop */}
+      <div aria-hidden className="absolute inset-0 bg-tech-grid opacity-60" />
+      <div
+        aria-hidden
+        className="absolute -top-1/4 right-0 h-[60rem] w-[60rem] rounded-full blur-3xl"
+        style={{ background: 'radial-gradient(circle, rgb(20 184 166 / 0.12) 0%, transparent 60%)' }}
+      />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy-900 to-transparent" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left — content */}
+          <div className="lg:col-span-7 space-y-8">
+            <motion.div {...fade(0)}>
+              <span className="tech-label inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-aqua-400 animate-pulse" />
+                {'// Trusted by industry leaders'}
+              </span>
             </motion.div>
 
-            {/* Capabilities */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="space-y-4 mb-8">
-                {keyCapabilities.map((capability, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="flex items-center text-gray-700"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>{capability}</span>
-                  </motion.div>
+            <motion.h1 {...fade(0.08)} className="max-w-2xl">
+              Transforming Businesses Through{' '}
+              <span className="text-gradient-aqua">Cloud Excellence</span>
+            </motion.h1>
+
+            <motion.p {...fade(0.16)} className="text-lg md:text-xl text-navy-200 max-w-xl leading-relaxed">
+              We partner with forward-thinking organisations to accelerate their digital transformation
+              journey. Our expertise spans multi-cloud architectures, cybersecurity, and operational
+              excellence — delivering measurable results that drive sustainable growth.
+            </motion.p>
+
+            <motion.ul {...fade(0.24)} className="grid sm:grid-cols-2 gap-3">
+              {keyCapabilities.map((capability) => (
+                <li key={capability} className="flex items-start gap-3 text-navy-200">
+                  <CheckCircle2 className="w-5 h-5 text-aqua-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-sm">{capability}</span>
+                </li>
+              ))}
+            </motion.ul>
+
+            <motion.div {...fade(0.32)} className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-aqua-500 text-navy-950 font-semibold rounded hover:bg-aqua-400 transition-colors shadow-button hover:shadow-glow"
+              >
+                Start Your Transformation
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/services"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 border border-aqua-500/50 text-aqua-400 font-semibold rounded hover:bg-aqua-500/10 transition-colors"
+              >
+                View Success Stories
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            {/* Trust metrics — rendered with final values (SSR-correct, no-JS safe) */}
+            <motion.div {...fade(0.4)} className="pt-8 border-t border-navy-700">
+              <p className="tech-label mb-5 text-navy-300">Trusted by organisations worldwide</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {trustMetrics.map((metric) => (
+                  <div key={metric.label}>
+                    <div className="font-display text-3xl font-bold text-aqua-400 mb-1 tabular-nums">
+                      {metric.value}
+                    </div>
+                    <div className="text-xs text-navy-300">{metric.label}</div>
+                  </div>
                 ))}
               </div>
             </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <div className="flex flex-wrap gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link 
-                    href="/contact" 
-                    className="group inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  >
-                    Start Your Transformation
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
-                
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link 
-                    href="/services" 
-                    className="group inline-flex items-center px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300"
-                  >
-                    View Success Stories
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
+          </div>
+
+          {/* Right — console-framed hero image (shown on all breakpoints) */}
+          <motion.div
+            {...(reduce
+              ? {}
+              : {
+                  initial: { opacity: 0, scale: 0.96 },
+                  animate: { opacity: 1, scale: 1 },
+                  transition: { duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const },
+                })}
+            className="lg:col-span-5"
+          >
+            <div className="relative rounded-xl border border-navy-700 bg-navy-850 shadow-elevated overflow-hidden">
+              {/* Console title bar */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-navy-700 bg-navy-900/60">
+                <span className="h-3 w-3 rounded-full bg-error-500/70" />
+                <span className="h-3 w-3 rounded-full bg-tertiary-400/70" />
+                <span className="h-3 w-3 rounded-full bg-aqua-500/80" />
+                <span className="ml-2 inline-flex items-center gap-2 font-mono text-xs text-navy-300">
+                  <Terminal className="w-3.5 h-3.5" />
+                  ~/containercode — multi-cloud
+                </span>
               </div>
-            </motion.div>
-            
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-            >
-              <div className="pt-8 border-t border-gray-200">
-                <p className="text-gray-500 text-sm mb-6">Trusted by organisations worldwide</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {trustMetrics.map((metric, index) => (
-                    <motion.div 
-                      key={index} 
-                      className="text-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="text-2xl font-bold text-primary-600 mb-1">
-                        <AnimatedCounter
-                          from={0}
-                          to={metric.metric}
-                          duration={2 + index * 0.2}
-                          suffix={metric.suffix}
-                        />
-                      </div>
-                      <div className="text-xs text-gray-500">{metric.label}</div>
-                    </motion.div>
-                  ))}
+
+              {/* Deterministic hero image (priority → preloadable LCP, in server HTML) */}
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/hero-cloud-computing-1.jpeg"
+                  alt="Multi-cloud infrastructure and digital transformation"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                  priority
+                  unoptimized
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-transparent" />
+                {/* Live status chip */}
+                <div className="absolute top-3 right-3 badge badge-primary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-aqua-400" />
+                  Live
                 </div>
               </div>
-            </motion.div>
-          </div>
-          
-          {/* Right Column - Hero Image with Professional Dashboard */}
-          <motion.div
-            className="hidden lg:block relative"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            {/* Hero Image Background */}
-            <div className="relative mb-8">
-              <HeroImage 
-                alt="Cloud computing infrastructure and digital transformation"
-                className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl" />
-            </div>
 
-            
+              {/* Cloud provider strip */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3 border-t border-navy-700 bg-navy-900/60">
+                <span className="font-mono text-[0.65rem] uppercase tracking-widest text-navy-400">
+                  platforms:
+                </span>
+                {cloudProviders.map((p) => (
+                  <span key={p} className="font-mono text-xs font-semibold text-navy-200">
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-      
-      {/* Professional scroll indicator */}
+
+      {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.4 }}
+        {...(reduce ? {} : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: 0.8 } })}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center"
       >
-        <div className="flex flex-col items-center">
-          <span className="text-gray-500 text-sm mb-2">Discover our expertise</span>
-          <motion.div 
-            className="w-6 h-10 border-2 border-gray-300 rounded-full flex items-start justify-center p-1"
-            whileHover={{ scale: 1.1 }}
-          >
-            <motion.div 
-              className="w-1.5 h-3 bg-gray-400 rounded-full"
-              animate={{ y: [0, 16, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </motion.div>
+        <span className="font-mono text-xs text-navy-400 mb-2">scroll</span>
+        <div className="w-6 h-10 border-2 border-navy-600 rounded-full flex items-start justify-center p-1">
+          <motion.div
+            className="w-1.5 h-3 bg-aqua-400 rounded-full"
+            animate={reduce ? {} : { y: [0, 16, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
         </div>
       </motion.div>
     </section>

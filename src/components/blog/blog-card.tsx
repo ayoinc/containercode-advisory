@@ -11,7 +11,7 @@ interface BlogCardProps {
 export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
   if (variant === 'featured') {
     return (
-      <div className="group relative rounded-xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow">
+      <div className="group relative rounded-xl overflow-hidden bg-navy-850 border border-navy-700 shadow-card hover:shadow-card-hover hover:border-aqua-500/40 transition-shadow">
         <Link href={`/blog/${post.slug}`} className="block">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="relative h-64 md:h-full">
@@ -23,26 +23,26 @@ export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
                   className="object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                  <span className="text-gray-500 text-lg">No image</span>
+                <div className="w-full h-full bg-navy-800 flex items-center justify-center">
+                  <span className="text-navy-300 text-lg">No image</span>
                 </div>
               )}
             </div>
             <div className="p-6 md:p-8 flex flex-col">
               <div className="flex items-center gap-x-4 text-sm mb-4">
-                <span className="text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                <span className="text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-3 py-1 rounded-full font-mono text-xs uppercase tracking-wider">
                   {post.category}
                 </span>
-                <time dateTime={post.publishedDate} className="text-gray-500">
+                <time dateTime={post.publishedDate} className="text-navy-400">
                   {formatDate(post.publishedDate)}
                 </time>
               </div>
               
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">
+              <h3 className="text-2xl font-bold mb-3 text-navy-100 group-hover:text-aqua-400 transition-colors">
                 {post.title}
               </h3>
               
-              <p className="text-gray-600 mb-4 line-clamp-3">
+              <p className="text-navy-300 mb-4 line-clamp-3">
                 {post.excerpt}
               </p>
               
@@ -56,8 +56,8 @@ export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
                     className="rounded-full"
                   />
                 ) : (
-                  <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <span className="text-gray-700 font-medium">
+                  <div className="w-8 h-8 bg-navy-800 border border-navy-700 rounded-full flex items-center justify-center">
+                    <span className="text-aqua-400 font-medium">
                       {post.author.name.charAt(0)}
                     </span>
                   </div>
@@ -72,7 +72,7 @@ export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
   }
   
   return (
-    <div className="group rounded-xl overflow-hidden bg-white shadow hover:shadow-lg transition-shadow">
+    <div className="group rounded-xl overflow-hidden bg-navy-850 border border-navy-700 shadow-card hover:shadow-card-hover hover:border-aqua-500/40 transition-shadow">
       <Link href={`/blog/${post.slug}`} className="block">
         <div className="relative h-48">
           {post.coverImage ? (
@@ -83,26 +83,26 @@ export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-              <span className="text-gray-500 text-lg">No image</span>
+            <div className="w-full h-full bg-navy-800 flex items-center justify-center">
+              <span className="text-navy-300 text-lg">No image</span>
             </div>
           )}
         </div>
         <div className="p-6">
           <div className="flex items-center gap-x-4 text-sm mb-3">
-            <span className="text-primary-600 bg-primary-50 px-2.5 py-0.5 rounded-full">
+            <span className="text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-2.5 py-0.5 rounded-full font-mono text-xs uppercase tracking-wider">
               {post.category}
             </span>
-            <time dateTime={post.publishedDate} className="text-gray-500 text-xs">
+            <time dateTime={post.publishedDate} className="text-navy-400 text-xs">
               {formatDate(post.publishedDate)}
             </time>
           </div>
           
-          <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+          <h3 className="text-xl font-bold mb-2 text-navy-100 group-hover:text-aqua-400 transition-colors line-clamp-2">
             {post.title}
           </h3>
           
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+          <p className="text-navy-300 text-sm mb-4 line-clamp-3">
             {post.excerpt}
           </p>
           
@@ -116,8 +116,8 @@ export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
                 className="rounded-full"
               />
             ) : (
-              <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
-                <span className="text-gray-700 text-xs font-medium">
+              <div className="w-6 h-6 bg-navy-800 border border-navy-700 rounded-full flex items-center justify-center">
+                <span className="text-aqua-400 text-xs font-medium">
                   {post.author.name.charAt(0)}
                 </span>
               </div>

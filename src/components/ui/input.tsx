@@ -6,14 +6,14 @@ import { forwardRef, InputHTMLAttributes, useState, ReactNode } from 'react';
 import { Eye, EyeOff, AlertCircle, Check } from 'lucide-react';
 
 const inputVariants = cva(
-  'flex w-full border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200',
+  'flex w-full rounded border border-navy-700 bg-navy-950 px-3 py-2 text-sm text-navy-100 ring-offset-navy-900 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-navy-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'rounded-md focus-visible:ring-primary-500',
-        ghost: 'border-transparent bg-gray-100 focus-visible:bg-white',
-        filled: 'bg-gray-50 border-gray-200',
-        glassmorphism: 'bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/70',
+        default: 'focus-visible:border-aqua-500 focus-visible:ring-aqua-500/40',
+        ghost: 'border-transparent bg-navy-800 focus-visible:bg-navy-950',
+        filled: 'bg-navy-800 border-navy-700',
+        glassmorphism: 'bg-navy-850/60 backdrop-blur-sm border-navy-700/60 text-navy-100 placeholder:text-navy-300',
       },
       inputSize: {
         sm: 'h-9 px-3 text-sm',
@@ -22,9 +22,9 @@ const inputVariants = cva(
       },
       state: {
         default: '',
-        error: 'border-red-500 focus-visible:ring-red-500',
-        success: 'border-green-500 focus-visible:ring-green-500',
-        warning: 'border-yellow-500 focus-visible:ring-yellow-500',
+        error: 'border-error-500 focus-visible:ring-error-500/40',
+        success: 'border-aqua-500 focus-visible:ring-aqua-500/40',
+        warning: 'border-tertiary-500 focus-visible:ring-tertiary-500/40',
       }
     },
     defaultVariants: {
@@ -79,16 +79,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label className={cn(
             'block text-sm font-medium mb-2 transition-colors',
-            disabled ? 'text-gray-400' : 'text-gray-700',
-            isFocused && 'text-primary-600'
+            disabled ? 'text-navy-400' : 'text-navy-200',
+            isFocused && 'text-aqua-400'
           )}>
             {label}
           </label>
         )}
-        
+
         <div className="relative">
           {hasLeftIcon && (
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-navy-300">
               {leftIcon}
             </div>
           )}
@@ -110,17 +110,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {hasRightIcon && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
               {actualState === 'error' && (
-                <AlertCircle className="h-4 w-4 text-red-500" />
+                <AlertCircle className="h-4 w-4 text-error-400" />
               )}
               {actualState === 'success' && (
-                <Check className="h-4 w-4 text-green-500" />
+                <Check className="h-4 w-4 text-aqua-400" />
               )}
-              {rightIcon && <div className="text-gray-400">{rightIcon}</div>}
+              {rightIcon && <div className="text-navy-300">{rightIcon}</div>}
               {showPasswordToggle && type === 'password' && (
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                  className="text-navy-300 hover:text-navy-100 focus:outline-none"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? (
@@ -137,7 +137,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {(helperText || errorMessage) && (
           <div className={cn(
             'mt-2 text-sm',
-            errorMessage ? 'text-red-600' : 'text-gray-500'
+            errorMessage ? 'text-error-400' : 'text-navy-300'
           )}>
             {errorMessage || helperText}
           </div>

@@ -63,11 +63,11 @@ export function Header() {
     <header
       className={cn(
         'fixed w-full z-50 transition-all duration-300',
-        isScrolled 
-          ? 'bg-white border-b border-gray-200 shadow-lg backdrop-blur-lg bg-white/95'
-          : isOpen 
-            ? 'bg-white border-b border-gray-200' 
-            : 'bg-white/90 backdrop-blur-md'
+        isScrolled
+          ? 'bg-navy-950/90 border-b border-navy-800 shadow-lg backdrop-blur-lg'
+          : isOpen
+            ? 'bg-navy-950 border-b border-navy-800'
+            : 'bg-navy-900/80 backdrop-blur-md border-b border-transparent'
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4">
@@ -101,37 +101,37 @@ export function Header() {
                   key={item.name}
                   href={item.href as any}
                   className={cn(
-                    'relative group text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150',
-                    pathname === item.href && 'text-primary-600 bg-primary-50'
+                    'relative group text-navy-200 hover:text-navy-100 px-3 py-2 rounded text-sm font-medium transition-colors duration-150',
+                    pathname === item.href && 'text-aqua-400'
                   )}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-aqua-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </Link>
               ) : (
                 <div key={item.name} className="relative group">
-                  <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 flex items-center group">
+                  <button className="text-navy-200 hover:text-navy-100 px-3 py-2 rounded text-sm font-medium transition-colors duration-150 flex items-center group">
                     {item.name}
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
                   </button>
                   <div className="absolute left-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="py-2 mt-1 bg-white rounded-xl shadow-xl border border-gray-100">
+                    <div className="py-2 mt-1 bg-navy-850 rounded-lg shadow-xl border border-navy-700">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href as any}
                           className={cn(
-                            "block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg",
-                            pathname === child.href && 'bg-primary-50 text-primary-700'
+                            "block px-4 py-3 text-sm text-navy-200 hover:bg-navy-800 hover:text-aqua-400 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg",
+                            pathname === child.href && 'bg-navy-800 text-aqua-400'
                           )}
                         >
                           {child.name}
                         </Link>
                       ))}
-                      <div className="px-4 py-2 mt-1 border-t border-gray-100">
+                      <div className="px-4 py-2 mt-1 border-t border-navy-700">
                         <Link
                           href="/services"
-                          className="flex items-center text-sm font-medium text-primary-600 hover:text-primary-700"
+                          className="flex items-center text-sm font-medium text-aqua-400 hover:text-aqua-300"
                         >
                           View All Services
                           <ChevronRight className="ml-1 h-4 w-4" />
@@ -142,11 +142,11 @@ export function Header() {
                 </div>
               )
             )}
-            
+
             {/* CTA Button */}
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-aqua-500 text-navy-950 font-semibold rounded hover:bg-aqua-400 transition-all duration-200 shadow-button hover:shadow-button-hover"
             >
               Get Started
             </Link>
@@ -159,7 +159,7 @@ export function Header() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                className="p-2 rounded text-navy-200 hover:bg-navy-800 hover:text-navy-100 transition-colors"
                 aria-label="Toggle menu"
                 aria-expanded={isOpen}
               >
@@ -175,9 +175,9 @@ export function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      <div 
+      <div
         className={cn(
-          'md:hidden transition-all duration-300 bg-white border-t border-gray-100 overflow-y-auto max-h-[80vh]',
+          'md:hidden transition-all duration-300 bg-navy-950 border-t border-navy-800 overflow-y-auto max-h-[80vh]',
           isOpen ? 'block animate-slide-down' : 'hidden'
         )}
       >
@@ -190,48 +190,48 @@ export function Header() {
                   href={item.href as any}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    'text-base font-medium transition-colors py-2.5 px-3 rounded-lg',
+                    'text-base font-medium transition-colors py-2.5 px-3 rounded',
                     pathname === item.href
-                      ? 'text-primary-700 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-700 hover:bg-gray-50'
+                      ? 'text-aqua-400 bg-navy-800'
+                      : 'text-navy-200 hover:text-aqua-400 hover:bg-navy-850'
                   )}
                 >
                   {item.name}
                 </Link>
               ) : (
-                <div key={item.name} className="space-y-1 rounded-lg overflow-hidden border border-gray-100">
+                <div key={item.name} className="space-y-1 rounded-lg overflow-hidden border border-navy-800">
                   <button
                     onClick={() => toggleMobileItem(item.name)}
-                    className="flex justify-between items-center w-full text-left text-base font-medium text-gray-700 p-3 hover:bg-gray-50"
+                    className="flex justify-between items-center w-full text-left text-base font-medium text-navy-200 p-3 hover:bg-navy-850"
                   >
                     {item.name}
-                    <ChevronDown 
+                    <ChevronDown
                       className={cn(
-                        "h-5 w-5 text-gray-500 transition-transform duration-200",
+                        "h-5 w-5 text-navy-300 transition-transform duration-200",
                         expandedMobileItem === item.name && "rotate-180"
-                      )} 
+                      )}
                     />
                   </button>
-                  
-                  <div 
+
+                  <div
                     className={cn(
                       "overflow-hidden transition-all duration-300",
-                      expandedMobileItem === item.name 
-                        ? "max-h-96 opacity-100" 
+                      expandedMobileItem === item.name
+                        ? "max-h-96 opacity-100"
                         : "max-h-0 opacity-0"
                     )}
                   >
-                    <div className="bg-gray-50 px-3 py-2 space-y-1">
+                    <div className="bg-navy-900 px-3 py-2 space-y-1">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href as any}
                           onClick={() => setIsOpen(false)}
                           className={cn(
-                            "block text-sm rounded-md px-3 py-2.5 transition-colors",
+                            "block text-sm rounded px-3 py-2.5 transition-colors",
                             pathname === child.href
-                              ? "text-primary-700 bg-primary-50"
-                              : "text-gray-600 hover:text-primary-700 hover:bg-gray-100"
+                              ? "text-aqua-400 bg-navy-800"
+                              : "text-navy-300 hover:text-aqua-400 hover:bg-navy-800"
                           )}
                         >
                           {child.name}
@@ -240,7 +240,7 @@ export function Header() {
                       <Link
                         href="/services"
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 px-3 py-2.5"
+                        className="flex items-center text-sm font-medium text-aqua-400 hover:text-aqua-300 px-3 py-2.5"
                       >
                         View All Services
                         <ChevronRight className="ml-1 h-4 w-4" />
@@ -250,12 +250,12 @@ export function Header() {
                 </div>
               )
             )}
-            
+
             {/* Mobile CTA */}
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-200 mt-2 w-full justify-center"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-aqua-500 text-navy-950 font-semibold rounded hover:bg-aqua-400 transition-all duration-200 mt-2 w-full justify-center"
             >
               Get Started
             </Link>

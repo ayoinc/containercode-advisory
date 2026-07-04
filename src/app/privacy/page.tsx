@@ -14,8 +14,8 @@ export default function PrivacyPage() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-8">Privacy Policy</h1>
           
-          <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-600 mb-8">
+          <div className="prose prose-invert prose-lg max-w-none prose-a:text-aqua-400 prose-headings:text-navy-100">
+            <p className="text-xl text-navy-300 mb-8">
               Last updated: {new Date().toLocaleDateString()}
             </p>
 
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
                 <h2 className="text-2xl font-semibold mb-4 mt-8">Contact Us</h2>
                 <p>
                   If you have any questions about this Privacy Policy, please contact us at{' '}
-                  <a href="mailto:privacy@containercode.club" className="text-primary-600 hover:underline">
+                  <a href="mailto:privacy@containercode.club" className="text-aqua-400 hover:underline">
                     privacy@containercode.club
                   </a>
                 </p>

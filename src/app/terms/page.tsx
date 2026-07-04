@@ -14,8 +14,8 @@ export default function TermsPage() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-8">Terms of Service</h1>
           
-          <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-600 mb-8">
+          <div className="prose prose-invert prose-lg max-w-none prose-a:text-aqua-400 prose-headings:text-navy-100">
+            <p className="text-xl text-navy-300 mb-8">
               Last updated: {new Date().toLocaleDateString()}
             </p>
 
@@ -36,7 +36,7 @@ export default function TermsPage() {
                 <h2 className="text-2xl font-semibold mb-4 mt-8">Contact Information</h2>
                 <p>
                   If you have any questions about these Terms of Service, please contact us at{' '}
-                  <a href="mailto:legal@containercode.club" className="text-primary-600 hover:underline">
+                  <a href="mailto:legal@containercode.club" className="text-aqua-400 hover:underline">
                     legal@containercode.club
                   </a>
                 </p>

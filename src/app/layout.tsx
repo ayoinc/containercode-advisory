@@ -1,13 +1,15 @@
 import './globals.css';
+import { GeistSans } from 'geist/font/sans';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { PerformanceProvider } from './providers/performance-provider';
 
-// Configure Inter font with optimization
+// Geist — display / headline typeface (sharp, geometric, "engineered").
+// Self-hosted via the `geist` package; exposes --font-geist-sans.
+
+// Inter — body copy
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -16,7 +18,7 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
-// Configure JetBrains Mono font for code and monospace text
+// JetBrains Mono — data labels, status chips, technical accents
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   display: 'swap',
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
   keywords: ['cloud consulting', 'multi-cloud', 'cybersecurity', 'devops', 'digital transformation', 'software engineering'],
   authors: [{ name: 'ContainerCode Advisory' }],
   creator: 'ContainerCode Advisory',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://containercode.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://containercode.club'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -100,28 +102,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <head>
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images.pexels.com" />
-        
-        {/* DNS prefetch for performance */}
-        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-      </head>
-      <body className="min-h-screen flex flex-col bg-white text-gray-900 custom-scrollbar">
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen flex flex-col bg-navy-900 text-navy-100 custom-scrollbar">
         {/* Skip to content link for accessibility */}
         <a href="#main-content" className="skip-link">Skip to content</a>
-        
+
         <PerformanceProvider>
           <Header />
           <main id="main-content" className="flex-grow">{children}</main>
           <Footer />
         </PerformanceProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

@@ -372,7 +372,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose Our {service.title} Services?</h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-navy-300 leading-relaxed">
                 {service.longDescription}
               </p>
             </div>
@@ -385,7 +385,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Service Capabilities</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               Comprehensive solutions designed to meet your specific business needs
             </p>
           </div>
@@ -395,12 +395,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               <Card key={index} variant="elevated" hoverable>
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 mb-6">{feature.description}</p>
+                  <p className="text-navy-300 mb-6">{feature.description}</p>
                   <div className="space-y-2">
                     {feature.benefits.map((benefit, benefitIndex) => (
                       <div key={benefitIndex} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{benefit}</span>
+                        <CheckCircle className="w-5 h-5 text-aqua-400 flex-shrink-0" />
+                        <span className="text-sm text-navy-200">{benefit}</span>
                       </div>
                     ))}
                   </div>
@@ -416,7 +416,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Our Proven Process</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               A systematic approach that ensures successful outcomes
             </p>
           </div>
@@ -424,11 +424,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {service.processes.map((process, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                <div className="w-16 h-16 bg-aqua-500 text-navy-950 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                   {String(index + 1).padStart(2, '0')}
                 </div>
                 <h3 className="text-lg font-semibold mb-3">{process.step}</h3>
-                <p className="text-gray-600">{process.description}</p>
+                <p className="text-navy-300">{process.description}</p>
               </div>
             ))}
           </div>
@@ -440,7 +440,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Technologies We Use</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               Industry-leading tools and platforms for optimal results
             </p>
           </div>
@@ -463,7 +463,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Client Success Stories</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               Real results from our {service.title.toLowerCase()} implementations
             </p>
           </div>
@@ -492,15 +492,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               <Card key={index} variant="elevated" hoverable>
                 <CardContent className="p-6">
                   <div className="mb-4">
-                    <div className="text-sm font-medium text-primary-600 mb-2">{caseStudy.client}</div>
+                    <div className="text-sm font-medium text-aqua-400 mb-2">{caseStudy.client}</div>
                     <h3 className="text-lg font-semibold mb-3">Challenge</h3>
-                    <p className="text-gray-600 text-sm mb-4">{caseStudy.challenge}</p>
+                    <p className="text-navy-300 text-sm mb-4">{caseStudy.challenge}</p>
                     
                     <h3 className="text-lg font-semibold mb-3">Solution</h3>
-                    <p className="text-gray-600 text-sm mb-4">{caseStudy.solution}</p>
+                    <p className="text-navy-300 text-sm mb-4">{caseStudy.solution}</p>
                     
                     <h3 className="text-lg font-semibold mb-3">Results</h3>
-                    <p className="text-green-600 text-sm font-medium">{caseStudy.results}</p>
+                    <p className="text-aqua-400 text-sm font-medium">{caseStudy.results}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -514,7 +514,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Industry Recognition & Certifications</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               Trusted by leading organisations and certified by industry leaders
             </p>
           </div>
@@ -532,7 +532,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             ].map((cert, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl mb-3">{cert.icon}</div>
-                <div className="text-sm font-medium text-gray-700">{cert.name}</div>
+                <div className="text-sm font-medium text-navy-200">{cert.name}</div>
               </div>
             ))}
           </div>
@@ -546,25 +546,25 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-200 mb-8 max-w-2xl mx-auto">
               Let's discuss how our {service.title.toLowerCase()} expertise can deliver measurable results for your organisation. Schedule a complimentary consultation to explore your specific requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/contact"
-                className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                className="bg-aqua-500 hover:bg-aqua-400 text-navy-950 px-8 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
               >
                 <ArrowRight className="w-5 h-5" />
                 Schedule Free Consultation
               </Link>
               <Link 
                 href="/services"
-                className="bg-transparent border border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-lg font-medium transition-colors"
+                className="bg-transparent border border-navy-600 text-navy-100 hover:bg-navy-800 px-8 py-3 rounded-lg font-medium transition-colors"
               >
                 Explore All Services
               </Link>
             </div>
-            <p className="text-sm text-gray-400 mt-4">
+            <p className="text-sm text-navy-400 mt-4">
               No obligation • 30-minute consultation • Expert recommendations
             </p>
           </div>

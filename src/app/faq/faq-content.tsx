@@ -115,19 +115,19 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
     <Card variant="default" className="mb-4">
       <CardContent className="p-0">
         <button
-          className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+          className="w-full p-6 text-left flex justify-between items-center hover:bg-navy-950 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
           <h3 className="text-lg font-semibold pr-4">{question}</h3>
           {isOpen ? (
-            <ChevronUp className="h-5 w-5 text-gray-500 flex-shrink-0" />
+            <ChevronUp className="h-5 w-5 text-navy-300 flex-shrink-0" />
           ) : (
-            <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
+            <ChevronDown className="h-5 w-5 text-navy-300 flex-shrink-0" />
           )}
         </button>
         {isOpen && (
           <div className="px-6 pb-6">
-            <p className="text-gray-600 leading-relaxed">{answer}</p>
+            <p className="text-navy-300 leading-relaxed">{answer}</p>
           </div>
         )}
       </CardContent>
@@ -148,7 +148,7 @@ export function FAQContent() {
           <div className="max-w-4xl mx-auto">
             {faqData.map((category, categoryIndex) => (
               <div key={categoryIndex} className="mb-12">
-                <h2 className="text-2xl font-bold mb-6 text-gray-900">
+                <h2 className="text-2xl font-bold mb-6 text-navy-100">
                   {category.category}
                 </h2>
                 <div className="space-y-4">
@@ -171,19 +171,19 @@ export function FAQContent() {
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-navy-300 mb-8">
               Our team is here to help. Get in touch for personalized answers to your specific needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+                className="bg-aqua-500 hover:bg-aqua-400 text-navy-950 px-8 py-3 rounded-lg font-medium transition-colors"
               >
                 Contact Us
               </a>
               <a
                 href="mailto:hello@containercode.club"
-                className="bg-transparent border border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-8 py-3 rounded-lg font-medium transition-colors"
+                className="bg-transparent border border-aqua-500/50 text-aqua-400 hover:bg-aqua-500/10 hover:text-aqua-300 px-8 py-3 rounded-lg font-medium transition-colors"
               >
                 Email Directly
               </a>
