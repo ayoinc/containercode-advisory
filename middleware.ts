@@ -83,22 +83,21 @@ const ENHANCED_SECURITY_HEADERS = {
 
 // Performance optimization headers
 const PERFORMANCE_HEADERS = {
-  // Resource hints for critical resources
-  'Link': [
-    '</fonts/inter-var.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
-    '</api/critical-data>; rel=prefetch',
-    '<https://fonts.googleapis.com>; rel=preconnect; crossorigin',
-    '<https://vitals.vercel-insights.com>; rel=preconnect',
-  ].join(', '),
-  
+  // NB: no `Link` resource hints here. Fonts are self-hosted by next/font under
+  // /_next/static and the hero image is preloaded via next/image `priority`.
+  // The old hints pointed at nonexistent resources (/fonts/inter-var.woff2,
+  // /api/critical-data) and dead third parties (Google Fonts, vercel-insights),
+  // 404-ing on every response and inflating per-IP request counts.
+
   // DNS prefetch control
   'X-DNS-Prefetch-Control': 'on',
-  
+
   // Early hints support
   'Accept-CH': 'DPR, Viewport-Width, Width, Save-Data, Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform',
-  
-  // Compression preferences
-  'Vary': 'Accept-Encoding, Accept, User-Agent, Save-Data',
+
+  // Compression preferences. `Vary: User-Agent` would destroy shared edge-cache
+  // reuse for HTML, so vary only on encoding.
+  'Vary': 'Accept-Encoding',
 };
 
 // Edge-compatible rate limiting (using Map for simplicity)
