@@ -12,8 +12,8 @@ import {
 } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
-const HERO_SRC = '/images/hero-cloud-computing-1.jpeg';
-const HERO_ALT = 'Multi-cloud infrastructure and digital transformation';
+const HERO_SRC = '/images/hero/hero-master.webp';
+const HERO_ALT = 'Stylised multi-cloud data-centre infrastructure';
 const SLICES = 5;
 
 const metrics = [
