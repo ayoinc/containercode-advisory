@@ -10,11 +10,13 @@ const cardVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-white border-gray-200 shadow-sm hover:shadow-md',
-        elevated: 'bg-white border-gray-200 shadow-lg hover:shadow-xl',
-        glassmorphism: 'bg-white/10 backdrop-blur-md border-white/20 shadow-lg hover:bg-white/20',
-        gradient: 'bg-gradient-to-br from-white to-gray-50 border-gray-200 shadow-md hover:shadow-lg',
-        interactive: 'bg-white border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] cursor-pointer',
+        default: 'bg-navy-850 border-navy-700 shadow-card hover:border-navy-600 hover:shadow-card-hover',
+        elevated: 'bg-navy-800 border-navy-700 shadow-lg hover:shadow-xl',
+        glassmorphism: 'bg-navy-850/70 backdrop-blur-md border-navy-700/60 shadow-lg hover:bg-navy-850/90',
+        gradient: 'bg-gradient-to-br from-navy-800 to-navy-850 border-navy-700 shadow-md hover:shadow-lg',
+        interactive: 'bg-navy-850 border-navy-700 shadow-card hover:border-aqua-500/40 hover:shadow-card-hover hover:scale-[1.02] cursor-pointer',
+        // Featured consultancy service — aqua top-border accent
+        featured: 'bg-navy-850 border-navy-700 border-t-2 border-t-aqua-500 shadow-card hover:shadow-card-hover',
       },
       padding: {
         none: 'p-0',
@@ -123,7 +125,7 @@ const CardDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-sm text-gray-500', className)}
+    className={cn('text-sm text-navy-300', className)}
     {...props}
   />
 ));

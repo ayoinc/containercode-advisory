@@ -41,39 +41,41 @@ export function FeatureSection() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-navy-900 to-navy-800 text-white">
-      <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section className="py-24 bg-navy-900 text-navy-100 relative">
+      <div aria-hidden className="absolute inset-0 bg-tech-grid opacity-40" />
+      <div className="container-custom relative z-10">
+        <div className="max-w-3xl mb-16">
+          <span className="tech-label">[ 02 ] — Why ContainerCode</span>
+          <h2 className="mt-4 mb-4 text-navy-100">
             Why Choose ContainerCode Advisory?
           </h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-navy-200">
             Our expert team delivers strategic technology solutions with measurable business impact.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300"
+            <div
+              key={index}
+              className="bg-navy-850 border border-navy-700 rounded-lg p-8 hover:border-aqua-500/40 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="mb-4">
-                <span className="text-4xl font-bold text-aqua-400">
+                <span className="font-display text-4xl font-bold text-gradient-aqua">
                   {feature.stats}
                 </span>
               </div>
-              <h3 className="text-xl font-semibold mb-3">
+              <h3 className="text-xl font-semibold mb-3 text-navy-100">
                 {feature.title}
               </h3>
-              <p className="text-white/80 mb-6">
+              <p className="text-navy-300 mb-6">
                 {feature.description}
               </p>
               
               {/* Feature highlights */}
               <ul className="space-y-2 mb-6">
                 {feature.highlights.map((highlight, highlightIndex) => (
-                  <li key={highlightIndex} className="flex items-start text-sm text-white/70">
+                  <li key={highlightIndex} className="flex items-start text-sm text-navy-200">
                     <svg className="w-4 h-4 text-aqua-400 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -95,16 +97,16 @@ export function FeatureSection() {
         </div>
         
         {/* Additional feature highlight */}
-        <div className="mt-16 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 lg:p-12">
+        <div className="mt-16 bg-navy-850 border border-navy-700 rounded-xl p-8 lg:p-12 card-featured">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-2xl font-bold mb-4 text-navy-100">
                 End-to-End Digital Transformation
               </h3>
-              <p className="text-white/80 mb-6">
+              <p className="text-navy-300 mb-6">
                 From strategic planning and cloud migration to optimisation and ongoing management, we provide comprehensive digital transformation services tailored to your business objectives and UK regulatory requirements.
               </p>
-              
+
               <ul className="space-y-4 mb-8">
                 {[
                   "Strategic digital roadmap development with ROI analysis",
@@ -114,7 +116,7 @@ export function FeatureSection() {
                   "Performance optimisation and intelligent auto-scaling",
                   "Compliance management for UK and EU regulations"
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start">
+                  <li key={i} className="flex items-start text-navy-200">
                     <svg className="w-5 h-5 text-aqua-400 mr-2 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -122,26 +124,26 @@ export function FeatureSection() {
                   </li>
                 ))}
               </ul>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
+                <Link
                   href="/services"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-aqua-500 hover:bg-aqua-600 text-white font-semibold rounded-lg transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-aqua-500 hover:bg-aqua-400 text-navy-950 font-semibold rounded transition-colors"
                 >
                   Explore All Services
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
-                <Link 
+                <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 border border-white/20 text-white hover:bg-white/10 font-semibold rounded-lg transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-navy-600 text-navy-100 hover:border-aqua-500/50 hover:bg-navy-800 font-semibold rounded transition-colors"
                 >
                   Schedule Consultation
                 </Link>
               </div>
             </div>
-            
-            <div className="rounded-lg overflow-hidden h-[300px]">
-              <Image 
+
+            <div className="rounded-lg overflow-hidden h-[300px] border border-navy-700 bg-navy-900">
+              <Image
                 src="/images/service-digital-transformation.svg"
                 alt="Digital transformation and modern technology"
                 className="w-full h-full object-cover"

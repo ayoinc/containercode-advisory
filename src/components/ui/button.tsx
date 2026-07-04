@@ -4,19 +4,22 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 // Modern button variants using cva
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none',
+  'inline-flex items-center justify-center gap-2 rounded font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-navy-900 disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
-        primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-button hover:shadow-button-hover active:translate-y-px',
-        secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500 shadow-button hover:shadow-button-hover active:translate-y-px',
-        outline: 'bg-transparent text-primary-600 border border-primary-600 hover:bg-primary-50 focus:ring-primary-500',
-        ghost: 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-500 shadow-none',
-        subtle: 'bg-primary-50 text-primary-700 hover:bg-primary-100 focus:ring-primary-500 shadow-sm',
+        // Solid aqua with near-black navy text — the beacon
+        primary: 'bg-aqua-500 text-navy-950 hover:bg-aqua-400 focus:ring-aqua-400 shadow-button hover:shadow-button-hover active:translate-y-px',
+        // Navy surface with subtle aqua border on hover
+        secondary: 'bg-navy-800 text-navy-100 border border-navy-700 hover:border-aqua-500/60 hover:bg-navy-750 focus:ring-aqua-400 active:translate-y-px',
+        outline: 'bg-transparent text-aqua-400 border border-aqua-500/50 hover:bg-aqua-500/10 focus:ring-aqua-400',
+        // Ghost — mono, developer-first
+        ghost: 'bg-transparent text-aqua-400 font-mono hover:bg-navy-800 hover:text-aqua-300 focus:ring-aqua-400 shadow-none',
+        subtle: 'bg-aqua-500/10 text-aqua-300 hover:bg-aqua-500/20 focus:ring-aqua-400',
       },
       size: {
-        sm: 'px-3 py-1.5 text-sm rounded-lg',
-        md: 'px-4 py-2 text-sm',
+        sm: 'px-3 py-1.5 text-sm',
+        md: 'px-4 py-2.5 text-sm',
         lg: 'px-6 py-3 text-base',
       },
       animation: {

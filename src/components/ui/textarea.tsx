@@ -6,14 +6,14 @@ import { forwardRef, TextareaHTMLAttributes, useState } from 'react';
 import { AlertCircle, Check } from 'lucide-react';
 
 const textareaVariants = cva(
-  'flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 resize-none',
+  'flex min-h-[80px] w-full rounded border border-navy-700 bg-navy-950 px-3 py-2 text-sm text-navy-100 ring-offset-navy-900 placeholder:text-navy-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 resize-none',
   {
     variants: {
       variant: {
-        default: 'focus-visible:ring-primary-500',
-        ghost: 'border-transparent bg-gray-100 focus-visible:bg-white',
-        filled: 'bg-gray-50 border-gray-200',
-        glassmorphism: 'bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/70',
+        default: 'focus-visible:border-aqua-500 focus-visible:ring-aqua-500/40',
+        ghost: 'border-transparent bg-navy-800 focus-visible:bg-navy-950',
+        filled: 'bg-navy-800 border-navy-700',
+        glassmorphism: 'bg-navy-850/60 backdrop-blur-sm border-navy-700/60 text-navy-100 placeholder:text-navy-300',
       },
       textareaSize: {
         sm: 'min-h-[60px] px-3 py-2 text-sm',
@@ -23,9 +23,9 @@ const textareaVariants = cva(
       },
       state: {
         default: '',
-        error: 'border-red-500 focus-visible:ring-red-500',
-        success: 'border-green-500 focus-visible:ring-green-500',
-        warning: 'border-yellow-500 focus-visible:ring-yellow-500',
+        error: 'border-error-500 focus-visible:ring-error-500/40',
+        success: 'border-aqua-500 focus-visible:ring-aqua-500/40',
+        warning: 'border-tertiary-500 focus-visible:ring-tertiary-500/40',
       },
       resize: {
         none: 'resize-none',
@@ -88,8 +88,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label className={cn(
             'block text-sm font-medium mb-2 transition-colors',
-            disabled ? 'text-gray-400' : 'text-gray-700',
-            isFocused && 'text-primary-600'
+            disabled ? 'text-navy-400' : 'text-navy-200',
+            isFocused && 'text-aqua-400'
           )}>
             {label}
           </label>
@@ -121,9 +121,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           
           {actualState !== 'default' && (
             <div className="absolute top-3 right-3">
-              {actualState === 'success' && <Check className="h-4 w-4 text-green-500" />}
-              {actualState === 'error' && <AlertCircle className="h-4 w-4 text-red-500" />}
-              {actualState === 'warning' && <AlertCircle className="h-4 w-4 text-yellow-500" />}
+              {actualState === 'success' && <Check className="h-4 w-4 text-aqua-400" />}
+              {actualState === 'error' && <AlertCircle className="h-4 w-4 text-error-400" />}
+              {actualState === 'warning' && <AlertCircle className="h-4 w-4 text-tertiary-400" />}
             </div>
           )}
         </div>
@@ -133,21 +133,21 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             {(helperText || errorMessage) && (
               <p className={cn(
                 'text-sm transition-colors',
-                errorMessage 
-                  ? 'text-red-600'
-                  : 'text-gray-500'
+                errorMessage
+                  ? 'text-error-400'
+                  : 'text-navy-300'
               )}>
                 {errorMessage || helperText}
               </p>
             )}
           </div>
-          
+
           {showCharCount && (
             <span className={cn(
               'text-xs transition-colors',
-              maxLength && charCount > maxLength * 0.9 
-                ? 'text-yellow-600'
-                : 'text-gray-400'
+              maxLength && charCount > maxLength * 0.9
+                ? 'text-tertiary-400'
+                : 'text-navy-300'
             )}>
               {charCount}{maxLength && `/${maxLength}`}
             </span>
