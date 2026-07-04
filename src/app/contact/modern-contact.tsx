@@ -182,9 +182,9 @@ export default function ProfessionalContactPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-navy-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-24 pb-16">
+      <section className="bg-navy-950 pt-24 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -192,15 +192,15 @@ export default function ProfessionalContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-800 text-sm font-medium mb-6">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-aqua-500/10 text-aqua-300 border border-aqua-500/25 text-sm font-medium mb-6">
                 <Building2 className="w-4 h-4 mr-2" />
                 Get In Touch
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Let's Discuss Your
-                <span className="block text-primary-400">Digital Transformation</span>
+                <span className="block text-aqua-400">Digital Transformation</span>
               </h1>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
+              <p className="text-xl text-navy-200 leading-relaxed max-w-3xl mx-auto mb-12">
                 Ready to accelerate your technology journey? Our expert team is here to help you achieve 
                 your business objectives with proven solutions and measurable results.
               </p>
@@ -215,10 +215,10 @@ export default function ProfessionalContactPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2">
+                    <div className="text-3xl md:text-4xl font-bold text-aqua-400 mb-2">
                       {achievement.number}
                     </div>
-                    <div className="text-sm text-gray-400 font-medium">{achievement.label}</div>
+                    <div className="text-sm text-navy-400 font-medium">{achievement.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -228,13 +228,13 @@ export default function ProfessionalContactPage() {
       </section>
 
       {/* Contact Methods */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">
               Multiple Ways to Connect
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               Choose the communication method that works best for your requirements
             </p>
           </div>
@@ -244,17 +244,17 @@ export default function ProfessionalContactPage() {
               <motion.a
                 key={index}
                 href={method.href}
-                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center group"
+                className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 rounded-xl mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                  <method.icon className="w-6 h-6 text-primary-600 group-hover:text-white" />
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-aqua-500/10 rounded-xl mb-6 group-hover:bg-aqua-500 group-hover:text-navy-950 transition-colors">
+                  <method.icon className="w-6 h-6 text-aqua-400 group-hover:text-navy-950" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{method.title}</h3>
-                <p className="text-primary-600 font-semibold mb-2">{method.content}</p>
-                <p className="text-sm text-gray-600">{method.description}</p>
+                <h3 className="text-lg font-bold text-navy-100 mb-2">{method.title}</h3>
+                <p className="text-aqua-400 font-semibold mb-2">{method.content}</p>
+                <p className="text-sm text-navy-300">{method.description}</p>
               </motion.a>
             ))}
           </div>
@@ -271,8 +271,8 @@ export default function ProfessionalContactPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Tell Us About Your Project</h3>
+              <div className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700">
+                <h3 className="text-2xl font-bold text-navy-100 mb-6">Tell Us About Your Project</h3>
                 
                 <AnimatePresence mode="wait">
                   {!submitted ? (
@@ -286,7 +286,7 @@ export default function ProfessionalContactPage() {
                     >
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-navy-200 mb-2">
                             Full Name *
                           </label>
                           <input
@@ -295,12 +295,12 @@ export default function ProfessionalContactPage() {
                             required
                             value={formData.name}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                             placeholder="John Smith"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-navy-200 mb-2">
                             Email Address *
                           </label>
                           <input
@@ -309,7 +309,7 @@ export default function ProfessionalContactPage() {
                             required
                             value={formData.email}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                             placeholder="john.smith@company.co.uk"
                           />
                         </div>
@@ -317,7 +317,7 @@ export default function ProfessionalContactPage() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-navy-200 mb-2">
                             Company
                           </label>
                           <input
@@ -325,12 +325,12 @@ export default function ProfessionalContactPage() {
                             name="company"
                             value={formData.company}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                             placeholder="Your Organisation"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-navy-200 mb-2">
                             Position
                           </label>
                           <input
@@ -338,7 +338,7 @@ export default function ProfessionalContactPage() {
                             name="position"
                             value={formData.position}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                             placeholder="Your Role"
                           />
                         </div>
@@ -346,14 +346,14 @@ export default function ProfessionalContactPage() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-navy-200 mb-2">
                             Service of Interest
                           </label>
                           <select
                             name="service"
                             value={formData.service}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                           >
                             <option value="">Please select a service</option>
                             {services.map((service) => (
@@ -362,14 +362,14 @@ export default function ProfessionalContactPage() {
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-navy-200 mb-2">
                             Budget Range
                           </label>
                           <select
                             name="budget"
                             value={formData.budget}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                           >
                             <option value="">Select budget range</option>
                             {budgetRanges.map((range) => (
@@ -380,14 +380,14 @@ export default function ProfessionalContactPage() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-navy-200 mb-2">
                           Project Timeline
                         </label>
                         <select
                           name="timeline"
                           value={formData.timeline}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                          className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors"
                         >
                           <option value="">Select preferred timeline</option>
                           {timelines.map((timeline) => (
@@ -397,7 +397,7 @@ export default function ProfessionalContactPage() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-navy-200 mb-2">
                           Project Requirements *
                         </label>
                         <textarea
@@ -406,7 +406,7 @@ export default function ProfessionalContactPage() {
                           value={formData.message}
                           onChange={handleInputChange}
                           rows={5}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+                          className="w-full px-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500 transition-colors resize-none"
                           placeholder="Please describe your project requirements, current challenges, and objectives. Include any specific technologies or compliance requirements."
                         />
                       </div>
@@ -414,11 +414,11 @@ export default function ProfessionalContactPage() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-100 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                        className="w-full bg-aqua-500 text-navy-950 py-4 px-6 rounded-lg font-semibold text-lg hover:bg-aqua-400 focus:ring-4 focus:ring-aqua-500/30 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                       >
                         {isSubmitting ? (
                           <>
-                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            <div className="w-5 h-5 border-2 border-navy-950 border-t-transparent rounded-full animate-spin" />
                             Submitting Enquiry...
                           </>
                         ) : (
@@ -437,17 +437,17 @@ export default function ProfessionalContactPage() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-10 h-10 text-green-600" />
+                      <div className="w-20 h-20 bg-aqua-500/10 border border-aqua-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="w-10 h-10 text-aqua-400" />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Enquiry Submitted Successfully</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
+                      <h3 className="text-2xl font-bold text-navy-100 mb-4">Enquiry Submitted Successfully</h3>
+                      <p className="text-navy-300 mb-6 leading-relaxed">
                         Thank you for contacting ContainerCode Advisory. We'll review your requirements 
                         and respond within 24 hours with next steps.
                       </p>
                       <button
                         onClick={() => setSubmitted(false)}
-                        className="text-primary-600 hover:text-primary-700 font-semibold"
+                        className="text-aqua-400 hover:text-aqua-300 font-semibold"
                       >
                         Submit Another Enquiry
                       </button>
@@ -465,36 +465,36 @@ export default function ProfessionalContactPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               {/* Trust Indicators */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Why Choose ContainerCode Advisory?</h3>
+              <div className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700">
+                <h3 className="text-xl font-bold text-navy-100 mb-6">Why Choose ContainerCode Advisory?</h3>
                 <div className="space-y-4">
                   {trustIndicators.map((indicator, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg"
+                      className="flex items-center gap-4 p-4 bg-navy-950 rounded-lg"
                     >
-                      <div className="flex-shrink-0 p-2 bg-primary-100 rounded-lg">
-                        <indicator.icon className="w-5 h-5 text-primary-600" />
+                      <div className="flex-shrink-0 p-2 bg-aqua-500/10 rounded-lg">
+                        <indicator.icon className="w-5 h-5 text-aqua-400" />
                       </div>
                       <div className="flex-grow">
-                        <div className="font-semibold text-gray-900">{indicator.text}</div>
+                        <div className="font-semibold text-navy-100">{indicator.text}</div>
                       </div>
-                      <div className="text-lg font-bold text-primary-600">{indicator.stat}</div>
+                      <div className="text-lg font-bold text-aqua-400">{indicator.stat}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Emergency Support */}
-              <div className="bg-gradient-to-br from-primary-600 to-gray-700 rounded-2xl p-8 text-white">
+              <div className="bg-navy-850 border border-navy-700 rounded-2xl p-8 text-white">
                 <h3 className="text-xl font-bold mb-4">Emergency Support Available</h3>
-                <p className="text-primary-100 mb-6 leading-relaxed">
-                  Experiencing critical issues? Our emergency support team provides 
+                <p className="text-navy-200 mb-6 leading-relaxed">
+                  Experiencing critical issues? Our emergency support team provides
                   immediate assistance for urgent technical matters.
                 </p>
                 <a
                   href="tel:+442079460958"
-                  className="inline-flex items-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                  className="inline-flex items-center gap-2 bg-aqua-500 text-navy-950 px-6 py-3 rounded-lg font-semibold hover:bg-aqua-400 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
                   Emergency Hotline
@@ -502,8 +502,8 @@ export default function ProfessionalContactPage() {
               </div>
 
               {/* Next Steps */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">What Happens Next?</h3>
+              <div className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700">
+                <h3 className="text-xl font-bold text-navy-100 mb-6">What Happens Next?</h3>
                 <div className="space-y-4">
                   {[
                     'We review your project requirements and objectives',
@@ -512,10 +512,10 @@ export default function ProfessionalContactPage() {
                     'Begin your digital transformation journey'
                   ].map((step, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      <div className="flex-shrink-0 w-6 h-6 bg-aqua-500 text-navy-950 rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
-                      <span className="text-gray-700 leading-relaxed">{step}</span>
+                      <span className="text-navy-200 leading-relaxed">{step}</span>
                     </div>
                   ))}
                 </div>
@@ -526,32 +526,32 @@ export default function ProfessionalContactPage() {
       </section>
 
       {/* Office Information */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-navy-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Global Reach</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-navy-100 mb-4">Our Global Reach</h2>
+            <p className="text-xl text-navy-300">
               Headquartered in London, serving clients worldwide
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
-              <MapPin className="w-8 h-8 text-primary-600 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Headquarters</h3>
-              <p className="text-gray-600">London, United Kingdom</p>
+            <div className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 text-center">
+              <MapPin className="w-8 h-8 text-aqua-400 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-navy-100 mb-2">Headquarters</h3>
+              <p className="text-navy-300">London, United Kingdom</p>
             </div>
-            
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
-              <Clock className="w-8 h-8 text-green-600 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Business Hours</h3>
-              <p className="text-gray-600">Monday-Friday, 9AM-6PM GMT</p>
+
+            <div className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 text-center">
+              <Clock className="w-8 h-8 text-aqua-400 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-navy-100 mb-2">Business Hours</h3>
+              <p className="text-navy-300">Monday-Friday, 9AM-6PM GMT</p>
             </div>
-            
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
-              <Users className="w-8 h-8 text-purple-600 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Global Service</h3>
-              <p className="text-gray-600">Supporting clients across all time zones</p>
+
+            <div className="bg-navy-850 rounded-2xl p-8 shadow-lg border border-navy-700 text-center">
+              <Users className="w-8 h-8 text-aqua-400 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-navy-100 mb-2">Global Service</h3>
+              <p className="text-navy-300">Supporting clients across all time zones</p>
             </div>
           </div>
         </div>

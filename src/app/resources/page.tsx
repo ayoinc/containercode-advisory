@@ -165,28 +165,28 @@ function ResourceCard({ resource, categoryIcon: CategoryIcon }: { resource: any;
       <CardContent className="p-6 flex flex-col h-full">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary-100 rounded-lg">
-              <CategoryIcon className="h-5 w-5 text-primary-600" />
+            <div className="p-2 bg-aqua-500/10 rounded-lg">
+              <CategoryIcon className="h-5 w-5 text-aqua-400" />
             </div>
-            <span className="text-sm font-medium text-primary-600 bg-primary-100 px-2 py-1 rounded">
+            <span className="text-sm font-medium text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-2 py-1 rounded">
               {resource.type}
             </span>
           </div>
           {resource.featured && (
-            <span className="text-xs font-bold text-teal-600 bg-teal-100 px-2 py-1 rounded-full">
+            <span className="text-xs font-bold text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-2 py-1 rounded-full">
               FEATURED
             </span>
           )}
         </div>
         
         <h3 className="text-lg font-semibold mb-2">{resource.title}</h3>
-        <p className="text-gray-600 mb-4 flex-grow">{resource.description}</p>
+        <p className="text-navy-300 mb-4 flex-grow">{resource.description}</p>
         
         <div className="mt-auto">
           {isDownload && (
             <a
               href={resource.downloadUrl}
-              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
+              className="inline-flex items-center gap-2 text-aqua-400 hover:text-aqua-300 font-medium"
               download
             >
               <Download className="h-4 w-4" />
@@ -198,7 +198,7 @@ function ResourceCard({ resource, categoryIcon: CategoryIcon }: { resource: any;
               href={resource.externalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
+              className="inline-flex items-center gap-2 text-aqua-400 hover:text-aqua-300 font-medium"
             >
               {resource.type === 'Tool' ? 'Launch Tool' : 'View Resource'}
               <ExternalLink className="h-4 w-4" />
@@ -223,7 +223,7 @@ export default function ResourcesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Featured Resources</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-navy-300">
               Our most popular and valuable resources to jumpstart your cloud journey
             </p>
           </div>
@@ -248,8 +248,8 @@ export default function ResourcesPage() {
           {resources.map((category, index) => (
             <div key={index} className="mb-16">
               <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-primary-100 rounded-lg">
-                  <category.icon className="h-6 w-6 text-primary-600" />
+                <div className="p-3 bg-aqua-500/10 rounded-lg">
+                  <category.icon className="h-6 w-6 text-aqua-400" />
                 </div>
                 <h2 className="text-2xl font-bold">{category.category}</h2>
               </div>
@@ -273,36 +273,36 @@ export default function ResourcesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">Upcoming Webinars</h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-navy-200">
               Join our expert-led webinars to stay ahead of cloud technology trends
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {webinars.map((webinar, index) => (
-              <Card key={index} variant="elevated" className="bg-white">
+              <Card key={index} variant="elevated" className="bg-navy-850 border border-navy-700">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium text-primary-600 bg-primary-100 px-2 py-1 rounded">
+                    <span className="text-sm font-medium text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-2 py-1 rounded">
                       {webinar.duration}
                     </span>
                     {webinar.upcoming && (
-                      <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                      <span className="text-xs font-bold text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-2 py-1 rounded-full">
                         UPCOMING
                       </span>
                     )}
                   </div>
                   
                   <h3 className="text-lg font-semibold mb-2">{webinar.title}</h3>
-                  <p className="text-sm text-primary-600 font-medium mb-2">{webinar.date}</p>
-                  <p className="text-gray-600 mb-6">{webinar.description}</p>
-                  
+                  <p className="text-sm text-aqua-400 font-medium mb-2">{webinar.date}</p>
+                  <p className="text-navy-300 mb-6">{webinar.description}</p>
+
                   <a
                     href={webinar.registrationUrl}
                     className={`inline-block w-full text-center px-4 py-2 rounded-lg font-medium transition-colors ${
                       webinar.upcoming
-                        ? 'bg-primary-600 hover:bg-primary-700 text-white'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+                        ? 'bg-aqua-500 hover:bg-aqua-400 text-navy-950'
+                        : 'bg-navy-800 hover:bg-navy-700 text-navy-200'
                     }`}
                   >
                     {webinar.upcoming ? 'Register Now' : 'Watch Recording'}
@@ -319,7 +319,7 @@ export default function ResourcesPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-navy-300 mb-8">
               Subscribe to our newsletter for the latest resources, insights, and cloud technology updates.
             </p>
             <NewsletterSignup />

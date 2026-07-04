@@ -69,18 +69,18 @@ export function NewsletterSignup() {
             exit={{ opacity: 0, y: -20 }}
             className="text-center"
           >
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="w-16 h-16 bg-aqua-500/10 border border-aqua-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="h-8 w-8 text-aqua-400" />
             </div>
-            <h3 className="text-xl font-semibold text-green-800 mb-2">
+            <h3 className="text-xl font-semibold text-aqua-300 mb-2">
               Successfully Subscribed!
             </h3>
-            <p className="text-green-700 mb-4">
+            <p className="text-navy-200 mb-4">
               Thank you for subscribing to our newsletter. You'll receive our latest updates and insights.
             </p>
             <button
               onClick={handleReset}
-              className="text-green-600 hover:text-green-700 font-medium"
+              className="text-aqua-400 hover:text-aqua-300 font-medium"
             >
               Subscribe another email
             </button>
@@ -96,7 +96,7 @@ export function NewsletterSignup() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-400">
                       <Mail className="h-5 w-5" />
                     </div>
                     <input
@@ -104,7 +104,7 @@ export function NewsletterSignup() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                      className="w-full pl-10 pr-4 py-3 bg-navy-950 border border-navy-700 text-navy-100 placeholder:text-navy-300 rounded-lg focus:ring-2 focus:ring-aqua-500/30 focus:border-aqua-500"
                       disabled={isSubmitting}
                       required
                     />
@@ -117,7 +117,7 @@ export function NewsletterSignup() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="mt-2 flex items-center gap-2 text-red-600"
+                        className="mt-2 flex items-center gap-2 text-error-400"
                       >
                         <AlertCircle className="h-4 w-4" />
                         <span className="text-sm">{errorMessage}</span>
@@ -129,7 +129,7 @@ export function NewsletterSignup() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !email}
-                  className="bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 justify-center min-w-[140px]"
+                  className="bg-aqua-500 hover:bg-aqua-400 disabled:bg-navy-700 disabled:text-navy-400 text-navy-950 px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 justify-center min-w-[140px]"
                 >
                   {isSubmitting ? (
                     <>
@@ -143,7 +143,7 @@ export function NewsletterSignup() {
               </div>
             </form>
             
-            <p className="text-sm text-gray-500 mt-4 text-center">
+            <p className="text-sm text-navy-300 mt-4 text-center">
               No spam. Unsubscribe at any time. We respect your privacy.
             </p>
           </motion.div>
