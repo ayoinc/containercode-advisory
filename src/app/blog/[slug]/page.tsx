@@ -82,10 +82,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Post header */}
           <div className="mb-10">
             <div className="flex items-center gap-x-4 text-sm mb-4">
-              <span className="text-navy-600 bg-navy-50 px-3 py-1 rounded-full">
+              <span className="text-aqua-300 bg-aqua-500/10 border border-aqua-500/25 px-3 py-1 rounded-full">
                 {post.category}
               </span>
-              <time dateTime={post.publishedDate} className="text-gray-500">
+              <time dateTime={post.publishedDate} className="text-navy-300">
                 {formatDate(post.publishedDate)}
               </time>
             </div>
@@ -94,7 +94,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.title}
             </h1>
             
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-xl text-navy-200 mb-8">
               {post.excerpt}
             </p>
             
@@ -109,8 +109,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     className="rounded-full"
                   />
                 ) : (
-                  <div className="w-10 h-10 bg-navy-100 rounded-full flex items-center justify-center">
-                    <span className="text-navy-700 font-medium">
+                  <div className="w-10 h-10 bg-aqua-500/10 rounded-full flex items-center justify-center">
+                    <span className="text-aqua-400 font-medium">
                       {post.author.name.charAt(0)}
                     </span>
                   </div>
@@ -138,19 +138,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
           
           {/* Post content */}
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-invert prose-lg max-w-none prose-a:text-aqua-400 prose-headings:text-navy-100 prose-strong:text-navy-100">
             <NotionBlockRenderer blocks={post.content} />
           </div>
           
           {/* Tags */}
           {post.tags.length > 0 && (
-            <div className="mt-12 pt-6 border-t border-gray-200">
-              <h3 className="text-sm font-medium text-gray-500 mb-3">Tags</h3>
+            <div className="mt-12 pt-6 border-t border-navy-700">
+              <h3 className="text-sm font-medium text-navy-300 mb-3">Tags</h3>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-gray-100 text-gray-800 text-sm rounded-full"
+                    className="px-3 py-1 bg-navy-800 text-navy-200 text-sm rounded-full"
                   >
                     {tag}
                   </span>
