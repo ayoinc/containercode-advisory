@@ -58,10 +58,14 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     children,
     ...props 
   }, ref) => {
+    // The reveal is driven entirely by the InViewAnimation wrapper below, so the
+    // inner card must NOT also carry the static `opacity-0`/`translate-y` classes
+    // from the `animation` variant — those never toggle off and would keep the
+    // card permanently invisible. Render the inner div with `animation: 'none'`.
     const cardElement = (
       <div
         className={cn(
-          cardVariants({ variant, padding, animation, className }),
+          cardVariants({ variant, padding, animation: 'none', className }),
           hoverable && 'hover:scale-105 cursor-pointer'
         )}
         ref={ref}
