@@ -273,8 +273,9 @@ const services = {
   }
 };
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const service = services[params.slug as keyof typeof services];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services[slug as keyof typeof services];
   
   if (!service) {
     return {
@@ -296,8 +297,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
-  const service = services[params.slug as keyof typeof services];
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = services[slug as keyof typeof services];
 
   if (!service) {
     notFound();
@@ -319,7 +321,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 'software-engineering': 'software development',
                 'it-support': 'it support'
               };
-              return categoryMap[params.slug] || 'technology';
+              return categoryMap[slug] || 'technology';
             })()}
             alt={`${service.title} hero background`}
             fill

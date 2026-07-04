@@ -42,8 +42,8 @@ export async function POST(request: NextRequest) {
     }
     
     if (tag) {
-      // Revalidate by tag
-      await revalidateTag(tag);
+      // Revalidate by tag (Next 16 requires a cache profile; 'max' = on-demand)
+      await revalidateTag(tag, 'max');
       console.log(`[Revalidation] Tag revalidated: ${tag}`);
     }
     

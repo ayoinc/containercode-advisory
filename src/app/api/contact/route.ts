@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   
   try {
     // Apply rate limiting
-    const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown';
     await rateLimit.check(clientIP, 10, '1m'); // 10 requests per minute per IP
     
     const body = await request.json();

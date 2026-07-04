@@ -146,8 +146,8 @@ export function middleware(request: NextRequest) {
   const startTime = Date.now();
   const { pathname, search } = request.nextUrl;
   const userAgent = request.headers.get('user-agent') || '';
-  const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
-  const country = request.geo?.country || 'unknown';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown';
+  const country = request.headers.get('cf-ipcountry') || 'unknown';
   
   // Create response object
   const response = NextResponse.next();
@@ -463,7 +463,7 @@ function applyPerformanceMonitoring(
     cached: false, // Would be determined by cache status
     bot: isBot,
     suspicious: isSuspicious,
-    country: request.geo?.country,
+    country: request.headers.get('cf-ipcountry') ?? undefined,
   };
   
   // Store metrics (in production, send to analytics service)

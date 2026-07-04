@@ -63,10 +63,10 @@ export async function POST(request: NextRequest) {
 
     // Extract client information
     const userAgent = request.headers.get('user-agent') || '';
-    const clientIP = request.ip || 
+    const clientIP = request.headers.get('x-forwarded-for') || 
                     request.headers.get('x-forwarded-for')?.split(',')[0] ||
                     'unknown';
-    const country = request.geo?.country || 'unknown';
+    const country = request.headers.get('cf-ipcountry') || 'unknown';
 
     // Process and analyze the violation
     const processedViolation = processCSPViolation(report, userAgent, clientIP, country);

@@ -62,14 +62,14 @@ export async function POST(request: NextRequest) {
     const eventData = await request.json();
     
     // Extract client information
-    const clientIP = request.ip || 
+    const clientIP = request.headers.get('x-forwarded-for') || 
                     request.headers.get('x-forwarded-for')?.split(',')[0] ||
                     request.headers.get('x-real-ip') ||
                     'unknown';
     
     const userAgent = request.headers.get('user-agent') || '';
-    const country = request.geo?.country || 'unknown';
-    const city = request.geo?.city || 'unknown';
+    const country = request.headers.get('cf-ipcountry') || 'unknown';
+    const city = 'unknown';
     
     // Create security event
     const securityEvent: SecurityEvent = {
