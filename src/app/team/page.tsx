@@ -111,8 +111,8 @@ function TeamMemberCard({ member, featured = false }: { member: any; featured?: 
             )}>
               {member.name}
             </h3>
-            <p className="text-primary-600 mb-3">{member.position}</p>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-aqua-400 mb-3">{member.position}</p>
+            <p className="text-navy-300 text-sm mb-4">
               {Array.isArray(member.bio) 
                 ? member.bio.map((block: any) => block.plain_text).join(' ')
                 : member.bio}
@@ -126,13 +126,13 @@ function TeamMemberCard({ member, featured = false }: { member: any; featured?: 
                 {member.expertise?.slice(0, featured ? 4 : 3).map((skill: string) => (
                   <span
                     key={skill}
-                    className="px-2 py-1 bg-primary-100 text-primary-800 rounded text-xs"
+                    className="px-2 py-1 bg-aqua-500/10 text-aqua-300 border border-aqua-500/25 rounded text-xs"
                   >
                     {skill}
                   </span>
                 ))}
                 {member.expertise?.length > (featured ? 4 : 3) && (
-                  <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                  <span className="px-2 py-1 bg-navy-800 text-navy-200 border border-navy-700 rounded text-xs">
                     +{member.expertise.length - (featured ? 4 : 3)} more
                   </span>
                 )}
@@ -146,13 +146,13 @@ function TeamMemberCard({ member, featured = false }: { member: any; featured?: 
                   {member.certifications.slice(0, 2).map((cert: string) => (
                     <span
                       key={cert}
-                      className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                      className="px-2 py-1 bg-aqua-500/10 text-aqua-300 border border-aqua-500/25 rounded text-xs"
                     >
                       {cert}
                     </span>
                   ))}
                   {member.certifications.length > 2 && (
-                    <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                    <span className="px-2 py-1 bg-navy-800 text-navy-200 border border-navy-700 rounded text-xs">
                       +{member.certifications.length - 2} more
                     </span>
                   )}
@@ -166,7 +166,7 @@ function TeamMemberCard({ member, featured = false }: { member: any; featured?: 
                   href={member.linkedIn}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-600 hover:text-primary-700"
+                  className="text-aqua-400 hover:text-aqua-300"
                 >
                   <Linkedin className="h-4 w-4" />
                 </a>
@@ -174,7 +174,7 @@ function TeamMemberCard({ member, featured = false }: { member: any; featured?: 
               {member.email && (
                 <a
                   href={`mailto:${member.email}`}
-                  className="text-gray-600 hover:text-gray-700"
+                  className="text-navy-300 hover:text-navy-200"
                 >
                   <Mail className="h-4 w-4" />
                 </a>
@@ -254,7 +254,7 @@ export default async function TeamPage() {
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Our Culture & Values</h2>
-            <p className="text-xl text-gray-600 mb-12">
+            <p className="text-xl text-navy-300 mb-12">
               We believe in building lasting partnerships with our clients through expertise, 
               transparency, and innovative solutions that drive real business value.
             </p>
@@ -265,7 +265,7 @@ export default async function TeamPage() {
                   <span className="text-2xl text-white font-bold">E</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Excellence</h3>
-                <p className="text-gray-600">
+                <p className="text-navy-300">
                   We deliver exceptional results through continuous learning and best practices.
                 </p>
               </div>
@@ -275,7 +275,7 @@ export default async function TeamPage() {
                   <span className="text-2xl text-white font-bold">I</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Innovation</h3>
-                <p className="text-gray-600">
+                <p className="text-navy-300">
                   We embrace cutting-edge technologies to solve complex business challenges.
                 </p>
               </div>
@@ -285,7 +285,7 @@ export default async function TeamPage() {
                   <span className="text-2xl text-white font-bold">P</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Partnership</h3>
-                <p className="text-gray-600">
+                <p className="text-navy-300">
                   We work as an extension of your team to achieve shared success.
                 </p>
               </div>
@@ -299,7 +299,7 @@ export default async function TeamPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl font-bold mb-4">Join Our Team</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-200 mb-8 max-w-2xl mx-auto">
               We&apos;re always looking for talented professionals who share our passion for technology excellence.
             </p>
             <a
