@@ -1,7 +1,7 @@
 {
   "name": "containercode",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2024-12-30",
+  "compatibility_date": "2025-05-05",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   
   "observability": {
@@ -69,5 +69,16 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "containercode"
     }
+  ],
+
+  // Cloudflare "send_email" binding. The contact + newsletter APIs call
+  // `env.EMAIL.send({ to, from, subject, html })` (Cloudflare's structured
+  // builder) to notify the admin inbox natively — no third-party key. Requires:
+  //  - Email Routing enabled on the containercode.club zone (verifies sender)
+  //  - ADMIN_EMAIL added + verified as an Email Routing destination address
+  // Note: it only delivers to VERIFIED destinations, so it is used for internal
+  // notifications only — user-facing confirmations go via Resend.
+  "send_email": [
+    { "name": "EMAIL", "remote": true }
   ]
 }
